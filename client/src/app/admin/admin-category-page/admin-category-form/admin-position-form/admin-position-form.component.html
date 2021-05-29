@@ -1,0 +1,99 @@
+<div class="row">
+    <div class="col s12">
+        <div class="page-subtitle">
+            <h5>Позиции:</h5>
+            <button class="waves-effect waves-light btn grey darken-1 btn-small" (click)="onAddPosition()">
+                Добавить позицию
+            </button>
+        </div>
+
+        <div *ngIf="!loading; else loader">
+            <div class="collection" *ngIf="positions.length !== 0; else empty">
+                <a *ngFor="let position of positions" class="collection-item collection-item-icon" (click)="onSelectPosition(position)">
+
+                    <span>
+                            {{position.name + " - "}} <strong>{{position.cost}} грн.</strong>
+                        </span>
+                    <span>
+                            <i class="material-icons" (click)="onDeletePosition($event, position)">delete</i>
+                    </span>
+
+                </a>
+            </div>
+            <ng-template #empty>
+                <div class="center">В категории нет ни одной позиции</div>
+            </ng-template>
+        </div>
+        <ng-template #loader>
+            <app-loader></app-loader>
+        </ng-template>
+    </div>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="modal" #modal>
+        <div class="modal-content">
+            <h4 class="mb1"> {{isNew ? 'Добавить' : 'Редактировать'}} позицию</h4>
+            <div class="input-field">
+                <input formControlName="name" id="pos-name" type="text" [ngClass]="{'invalid': f.name.invalid && f.name.touched}">
+                <label for="pos-name">Название</label>
+                <span *ngIf="f.name.invalid && f.name.touched" class="helper-text red-text">
+                        Название не должно быть пустым.
+                    </span>
+            </div>
+            <div class="input-field">
+                <input formControlName="brand" id="pos-brand" type="text" [ngClass]="{'invalid': f.brand.invalid && f.brand.touched}">
+                <label for="pos-name">Бренд</label>
+                <span *ngIf="f.brand.invalid && f.brand.touched" class="helper-text red-text">
+                        Поле Бренд не должно быть пустым.
+                    </span>
+            </div>
+            <div class="input-field">
+                <textarea class="materialize-textarea col s12" formControlName="description" id="pos-description" data-length="200" type="text" [ngClass]="{'invalid': f.description.invalid && f.description.touched}"></textarea>
+                <label for="pos-description">Характеристики, описание товара</label>
+                <span *ngIf="f.description.invalid && f.description.touched" class="helper-text red-text">
+                        Поле не должно быть пустым.
+                    </span>
+            </div>
+            <div class="input-field">
+                <input id="pos-cost" type="number" min="1" formControlName="cost" [ngClass]="{'invalid': f.cost.invalid && f.cost.touched}">
+                <label for="pos-cost">Цена</label>
+                <span *ngIf="f.cost.invalid && f.cost.touched" class="helper-text red-text">
+                        Введите корректную цену. Минимальное значение 1.
+                    </span>
+            </div>
+            <div class="input-field">
+                <input id="pos-inputCost" type="number" min="1" formControlName="inputCost" [ngClass]="{'invalid': f.inputCost.invalid && f.inputCost.touched}">
+                <label for="pos-inputCost">Цена закупки</label>
+                <span *ngIf="f.inputCost.invalid && f.inputCost.touched" class="helper-text red-text">
+                        Введите корректную цену. Минимальное значение 1.
+                    </span>
+            </div>
+            <div class="input-field">
+                <input id="pos-quantity" type="number" min="1" formControlName="quantity" [ngClass]="{'invalid': f.quantity.invalid && f.quantity.touched}">
+                <label for="pos-quantity">Количество</label>
+                <span *ngIf="f.quantity.invalid && f.quantity.touched" class="helper-text red-text">
+                        Введите количество товара. Минимальное значение 1.
+                    </span>
+            </div>
+            <div>
+                <input type="file" class="hide-input" (change)="onFileUpload($event)" #input>
+                <button *ngIf="isNew" (click)="triggerClick()" [disabled]="form.disabled" type="button" class="waves-effect waves-light btn orange lighten-2 mb2">
+                        <i class="material-icons left">backup</i>
+                        Загрузить изображение
+                    </button>
+            </div>
+            <div class="col s12 l4 center">
+                <img class="responsive-img h200" [src]="imagePreview" *ngIf="imagePreview">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" (click)="onCancel()" class="modal-action waves-effect waves-black btn-flat" [disabled]="form!.disabled">
+                    Отмена
+                </button>
+            <button class="modal-action btn waves-effect" type="submit" [disabled]="form!.invalid || form!.disabled">
+                    Сохранить
+                </button>
+        </div>
+    </div>
+</form>

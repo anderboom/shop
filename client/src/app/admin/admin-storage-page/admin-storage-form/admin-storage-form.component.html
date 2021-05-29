@@ -1,0 +1,38 @@
+<div *ngIf="!loading; else loader">
+    <div class="page-title">
+        <h5>{{category?.name}}</h5>
+    </div>
+    <div *ngIf="positions.length !== 0; else empty">
+        <span *ngFor="let position of positions; let i = index ">
+            <table class="centered">
+                <thead>
+                    <tr *ngIf="i == 0 ">
+                        <th>Название</th>
+                        <th>Количество</th>
+                        <th>Цена закупки</th>
+                        <th>Цена</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="name name-align">{{position.name}}</td>
+                        <td class="name">{{position.quantity}}</td>
+                        <td class="name">{{position.inputCost}}</td>
+                        <td class="name">{{position.cost}}</td>
+                    </tr>
+                </tbody>
+
+
+            </table>
+        </span>
+    </div>
+</div>
+
+
+<ng-template #empty>
+    <div class="center">В категории нет ни одной позиции</div>
+</ng-template>
+
+<ng-template #loader>
+    <app-loader></app-loader>
+</ng-template>

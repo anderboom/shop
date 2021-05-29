@@ -1,0 +1,51 @@
+<div class="container grey lighten-5 order-order col center">
+    <hr>
+    <p class="blue-text cart">КОШИК</p>
+    <hr>
+    <div *ngIf="orders.length > 0; else empty">
+        <div *ngFor="let order of orders; let i = index" class="row">
+            <table class="table-cart container centered mt4">
+                <thead>
+                    <tr *ngIf="i == 0 ">
+                        <th class="image"></th>
+                        <th class="name name-align">Назва</th>
+                        <th class="quantity">Кількість</th>
+                        <th>Ціна</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="image"><img class="img activator " src={{order.imageSrc}}></td>
+                        <td class="name name-align">{{order.name}}</td>
+                        <td class="quantity">
+                            <div class="quant">{{order.orderQuantity}}</div>
+                            <!-- <input #quantityInput class="col s6" id="pos-quantity" min=1 type="number" [(ngModel)]="order.orderQuantity"> -->
+                        </td>
+                        <td class="name">
+                            {{order.cost}} грн</td>
+                        <td class="name">
+                            <button class="btn btn-small red" (click)="delete(order)">
+                                <i class="material-icons">delete</i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="mb4">
+            <div class="left mb4 total right"><span>Загальна сума замовлення: {{totalCost}} грн </span></div>
+            <div class="left mb4">
+                <button type="button" (click)="onCancel()" class="modal-action waves-effect waves-black btn-flat">
+                    Повернутися до покупок
+                </button>
+                <button class=" btn waves-effect btn-small" type="submit" [routerLink]="['/order']">
+                    Оформити замовлення
+                </button>
+            </div>
+        </div>
+    </div>
+    <ng-template #empty>
+        <div class="center-align mt4">Кошик порожній<i class="material-icons">sentiment_very_dissatisfied</i></div>
+    </ng-template>
+</div>

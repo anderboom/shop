@@ -1,0 +1,50 @@
+.order {
+    margin-bottom: 10px;
+}
+
+.total {
+    color: rgba(62, 66, 119, 0.952);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.order-form {
+    margin-top: 20px;
+    outline: 0.5px solid rgb(128, 128, 128);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.order-order {
+    margin-top: 20px;
+    outline: 2px solid rgb(128, 128, 128);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.container {
+    width: 90%;
+}
+
+.image {
+    width: 23px;
+    height: 23px;
+}
+
+.imageOrder {
+    width: 80%;
+}
+
+.modal-footer {
+    margin-bottom: 20px;
+}
+
+.modal-action {
+    font-size: calc(7px + .5vw);
+}
+
+.line {
+    margin-top: 20px;
+}
+
+.name {
+    font-weight: 600;
+}

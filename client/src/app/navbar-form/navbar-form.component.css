@@ -1,0 +1,59 @@
+.cart {
+    color: #ffb74d;
+    font-size: calc(16px + .5vw)
+}
+
+.brand-logo {
+    margin-left: 1.5%;
+    font-size: calc(16px + .5vw);
+}
+
+.right {
+    margin-right: 2%;
+}
+
+.bold {
+    font-weight: 500;
+}
+
+.badge {
+    font-size: calc(8px + .5vw);
+}
+
+.auth {
+    font-size: calc(8px + .5vw);
+}
+
+.menu {
+    margin-left: 90px;
+    cursor: pointer;
+}
+
+.header {
+    margin-left: 32px;
+    height: 30px;
+    margin-top: 12px;
+}
+
+.header1 {
+    margin-left: 32px;
+    height: 45px;
+    vertical-align: auto;
+    font-weight: 600;
+    margin-top: 3px;
+}
+
+.hr1 {
+    height: 1px;
+    border: none;
+    color: rgba(163, 163, 163, 0.986);
+    background: linear-gradient(45deg, rgb(192, 190, 190), #ddd);
+}
+
+.name {
+    font-size: calc(7px + .5vw);
+}
+
+.promotions {
+    color: #fd9902;
+}

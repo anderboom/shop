@@ -1,0 +1,113 @@
+<div class="row container">
+    <div class="col s7 order-form">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="modal-content">
+                <h5 class="mb4 blue-text order">Оформлення замовлення</h5>
+                <div class="input-field">
+                    <select formControlName="payment" id="pos-payment" type="text" [ngClass]="{'invalid': f.payment.invalid && f.payment.touched}" #paymentSelector>
+                        <option disabled selected>Выберіть спосіб оплати</option>
+                        <option *ngFor="let item of paymentList" [value]="item.name">{{item.name}}</option>
+                    </select>
+                    <label for="pos-payment">Спосіб оплати:<span class="red-text">*</span></label>
+                </div>
+                <div class="input-field">
+                    <select formControlName="delivery" id="pos-delivery" type="text" (ngModelChange)="deliverySelected($event)" [ngClass]="{'invalid': f.delivery.invalid && f.delivery.touched}" #deliverySelector>
+                        <option disabled selected>Выберіть спосіб доставки</option>
+                        <option *ngFor="let item of deliveryList" [value]="item.name">
+                            <img *ngIf="item.id == 2" class="image" src="../../../assets/Nova_Poshta.png">{{item.name}}
+                        </option>
+                    </select>
+                    <label for="pos-delivery">Спосіб доставки:<span class="red-text">*</span></label>
+                </div>
+
+                <div *ngIf="isNovaPoshta">
+                    <p-tabView>
+                        <p-tabPanel header="Дані для відправки">
+                            <div class="p-col ">
+                                <div class="m-bottom-15">
+                                    <label>Виберіть область</label>
+                                    <p-dropdown [style]="{ width: '100%' }" [autoDisplayFirst]="false" [options]="areasSender!" [filter]="true" formControlName="area" (onChange)="getCities($event.value, 'sender')">
+                                    </p-dropdown>
+                                </div>
+                                <div class="m-bottom-15">
+                                    <label for="pos-city">Виберіть населений пункт</label>
+                                    <p-dropdown [style]="{ width: '100%' }" id="pos-city" [attr.disabled]="isDisableSenderDropdownCity" [autoDisplayFirst]="false" [options]="citiesSender!" formControlName="city" [filter]="true" (onChange)="getDepartments($event.value, 'sender')" [attr.title]="isDisableSenderDropdownCity ? 'Спочатку виберіть область' : ''">
+                                    </p-dropdown>
+                                </div>
+                                <div class="m-bottom-15">
+                                    <label>Виберіть відділення</label>
+                                    <p-dropdown [style]="{ width: '100%' }" [attr.disabled]="isDisableSenderDropdownDepartment" [autoDisplayFirst]="false" [options]="departmentsSender!" formControlName="department" [filter]="true" [attr.title]="isDisableSenderDropdownDepartment ? 'Спочатку виберіть населений пункт' : ''">
+                                    </p-dropdown>
+                                </div>
+                            </div>
+                        </p-tabPanel>
+                    </p-tabView>
+                </div>
+
+                <div class="input-field">
+                    <input formControlName="firstName" id="pos-firstName" type="text" [ngClass]="{'invalid': f.firstName.invalid && f.firstName.touched}">
+                    <label for="pos-firstName">Ім'я<span class="red-text">*</span></label>
+                    <span *ngIf="f.firstName.invalid && f.firstName.touched" class="helper-text red-text">
+                        Поле Ім'я не повинно бути порожнім.
+                    </span>
+                </div>
+                <div class="input-field">
+                    <input formControlName="secondName" id="pos-secondName" type="text" [ngClass]="{'invalid': f.secondName.invalid && f.secondName.touched}">
+                    <label for="pos-secondName">Прізвище<span class="red-text">*</span></label>
+                    <span *ngIf="f.secondName.invalid && f.secondName.touched" class="helper-text red-text">
+                        Поле Прізвище не повинно бути порожнім.
+                    </span>
+                </div>
+                <div class="input-field">
+                    <input formControlName="number" id="pos-number" type="text" [ngClass]="{'invalid': f.number.invalid && f.number.touched}">
+                    <label for="pos-number">Телефон<span class="red-text">*</span></label>
+                    <span *ngIf="f.number.invalid && f.number.touched" class="helper-text red-text">
+                        Поле Телефон не повинно бути порожнім.
+                    </span>
+                </div>
+                <div class="input-field">
+                    <input formControlName="email" id="pos-email" type="text">
+                    <label for="pos-email">Email</label>
+
+                </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">mode_edit</i>
+                    <textarea formControlName="comment" id="pos-comment" type="text" class="materialize-textarea"></textarea>
+                    <label for="pos-comment">Коментар до замовлення</label>
+                </div>
+
+                <!-- <div class="col s4 left mb4 total right">Сума: {{totalCost}} грн </div> -->
+            </div>
+            <div class="modal-footer row col s12">
+                <div class="col s6">
+                    <button type="button" (click)="onCancel()" class="modal-action waves-effect waves-black btn-flat left">
+                        До кошика
+                    </button>
+                </div>
+                <div class="col s6 ">
+                    <button class="modal-action btn waves-effect right" type="submit" [disabled]="form!.invalid || form!.disabled">
+                        Оформити замовлення
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <div class="col s4 order-order right">
+        <h6 class="mb4 blue-text order">Ваше замовлення</h6>
+        <div class="row" *ngFor="let order of orders">
+            <div class="col s4 left line">
+                <img class="imageOrder" src={{order.imageSrc}}>
+            </div>
+            <div class="col s8 line">
+                <div class="name">{{order.name}}</div>
+                <div>Кількість: {{order.orderQuantity}}</div>
+                <div>Ціна: {{order.cost}} грн</div>
+            </div>
+            <hr>
+        </div>
+        <hr>
+        <h6 class="mb4 total order">Сума до оплати: {{totalCost}} грн</h6>
+    </div>
+
+</div>

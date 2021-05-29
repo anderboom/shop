@@ -1,0 +1,31 @@
+@import "~materialize-css/dist/css/materialize.min.css";
+@import "theme/styles.min.css";
+@import "~primeicons/primeicons.css";
+@import "~primeng/resources/themes/nova/theme.css";
+@import "~primeng/resources/primeng.min.css";
+.container {
+    width: 90%;
+}
+
+.m-top-15 {
+    margin-top: 15px;
+}
+
+.m-bottom-15 {
+    margin-bottom: 5px;
+}
+
+
+/* header,
+main,
+footer {
+    padding-left: 300px;
+}
+
+@media only screen and (max-width: 992px) {
+    header,
+    main,
+    footer {
+        padding-left: 0;
+    }
+} */

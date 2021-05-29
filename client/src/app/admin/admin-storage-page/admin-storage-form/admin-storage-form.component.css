@@ -1,0 +1,12 @@
+.name {
+    width: 15%;
+}
+
+.name-align {
+    text-align: left;
+    padding-left: 25px;
+}
+
+h5 {
+    color: darkblue;
+}

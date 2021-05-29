@@ -1,0 +1,47 @@
+.bold {
+    font-weight: 500;
+    color: black;
+    width: 100%;
+    outline: none;
+}
+
+.collection {
+    cursor: pointer;
+}
+
+.menu {
+    pointer-events: none;
+    font-size: calc(7px + .5vw);
+}
+
+.name {
+    font-size: calc(7px + .5vw);
+}
+
+.categories {
+    margin-top: 18px;
+    margin-left: 0;
+}
+
+.promotions {
+    color: #fd9902;
+}
+
+.sidenav {
+    margin-top: 90px;
+    height: auto;
+    margin-left: 6px;
+}
+
+.header {
+    margin-left: 32px;
+    height: 30px;
+    margin-top: 12px;
+}
+
+.hr1 {
+    height: 1px;
+    border: none;
+    color: rgba(163, 163, 163, 0.986);
+    background: linear-gradient(45deg, rgb(192, 190, 190), #ddd);
+}
