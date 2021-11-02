@@ -3,12 +3,12 @@ import {
   Component,
   ElementRef,
   OnInit,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import {
   FormControl,
   FormGroup,
-  Validators
+  Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -16,6 +16,7 @@ import { SelectItem } from 'primeng/api';
 import { MaterialService } from 'src/app/admin/shared/classes/material.service';
 import { OrderPosition } from 'src/app/admin/shared/interfaces';
 import { OrderService } from 'src/app/admin/shared/services/order.service';
+import { AuthclientService } from 'src/app/shared/services/authclient.service';
 import { NovaposhtaService } from 'src/app/shared/services/novaposhta.service';
 
 type UserType = 'sender';
@@ -66,15 +67,24 @@ export class OrderFormComponent implements OnInit, AfterViewInit {
   constructor(
     private router: Router,
     private ordersService: OrderService,
-    private novaposhta: NovaposhtaService
+    private novaposhta: NovaposhtaService,
+    private auth: AuthclientService
   ) {}
 
   ngOnInit(): void {
+    this.auth.logout();
+    localStorage.removeItem('auth-token');
     this.orders = this.ordersService.list;
     this.totalCost = this.ordersService.totalCost;
-    this.getAreas();
+    let totalOrder: OrderPosition[] = JSON.parse(
+      localStorage.getItem('cart') || '{}'
+    );
+    let sumTotalCost = JSON.parse(localStorage.getItem('total') || '0');
+    this.orders = totalOrder;
+    this.totalCost = sumTotalCost;
+    // this.getAreas();
     this.deliveryList = [
-      { id: 1, name: 'Самовивіз зі складу' },
+      // { id: 1, name: 'Самовивіз зі складу' },
       { id: 2, name: 'Нова пошта' },
     ];
     this.paymentList = [
@@ -85,6 +95,7 @@ export class OrderFormComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.getAreas();
     MaterialService.initSelect(this.select1Ref!);
     MaterialService.initSelect(this.select2Ref!);
     MaterialService.updateTextInputs;
@@ -139,7 +150,22 @@ export class OrderFormComponent implements OnInit, AfterViewInit {
       (d) => d.value == this.form.value.department
     );
 
-    const order = {
+    type Order = {
+      payment: string;
+      delivery: string;
+      area?: string;
+      city?: string;
+      department?: string;
+      firstName: string;
+      secondName: string;
+      number: string;
+      email?: string;
+      comment?: string;
+      orders: OrderPosition[];
+      totalCost: number;
+    };
+
+    const order: Order = {
       payment: this.form.value.payment,
       delivery: this.form.value.delivery,
       area: this.area.label,
@@ -154,6 +180,14 @@ export class OrderFormComponent implements OnInit, AfterViewInit {
       totalCost: this.totalCost,
     };
     console.log(order);
+    MaterialService.toast(
+      'Дякуємо за замовлення! Наш оператор зв`яжеться з Вами найближчим часом.'
+    );
+    localStorage.clear();
+    this.ordersService.totalCost = 0;
+    this.ordersService.totalQuantity = 0;
+    this.ordersService.list = [];
+    this.router.navigate(['/']);
   }
 
   onCancel() {

@@ -1,8 +1,9 @@
 import {
   Component,
-  OnInit
+  OnInit,
 } from '@angular/core';
-import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs';
 
@@ -21,15 +22,15 @@ export class CategoriesPageComponent implements OnInit {
 
   constructor(
     private categoriesService: CategoriesService,
-    private router: Router,
-    private searchService: SearchService
-  ) {}
+    private searchService: SearchService,
+    private titleService: Title,
+    private route: ActivatedRoute
+  ) {
+    // this.titleService.setTitle(this.route.snapshot.data['title']);
+  }
 
   ngOnInit(): void {
     this.categories$ = this.categoriesService.fetch();
-    // this.router.routeReuseStrategy.shouldReuseRoute = function () {
-    //   return false;
-    // };
   }
 
   get isSearch(): boolean {

@@ -28,9 +28,10 @@
 }
 
 .sidenav {
-    margin-top: 90px;
+    position: absolute;
+    margin-top: 91px;
+    margin-left: 5px;
     height: auto;
-    margin-left: 6px;
 }
 
 .header {

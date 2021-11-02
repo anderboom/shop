@@ -14,8 +14,12 @@ import {
 import {
   CategoriesPageComponent
 } from './categories-page/categories-page.component';
+import {
+  DashboardPageComponent
+} from './dashboard-page/dashboard-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
+import { AuthclientGuard } from './shared/classes/authclient.guard';
 import {
   SiteLayoutComponent
 } from './shared/layouts/site-layout/site-layout.component';
@@ -30,6 +34,11 @@ const routes: Routes = [
       { path: 'category/:id', component: CategoriesFormComponent },
       { path: 'cart', component: CartPageComponent },
       { path: 'login', component: LoginPageComponent },
+      {
+        path: 'dashboard',
+        canActivate: [AuthclientGuard],
+        component: DashboardPageComponent,
+      },
       { path: 'register', component: RegisterPageComponent },
       { path: 'order', component: OrderFormComponent },
     ],

@@ -1,11 +1,11 @@
 <div class="search-filter row col s12">
     <div class="search">
         <div class="row filter col s12 grey lighten-5">
-            <div class="col s1 filter-text blue-text">
+            <div class="filter-text blue-text">
                 <span>Фільтр</span>
             </div>
             <div class="col s3">
-                <div class="input-field col s12">
+                <div class="input-field">
                     <span class="brand">ціна</span>
                     <select class="browser-default" (change)="isPriceSelect($event)" #priceSelector>
                         <option value="" selected>ціна</option>
@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="col s3">
-                <div class="input-field  col s12">
+                <div class="input-field">
                     <span class="brand">бренд</span>
                     <select class="browser-default" (change)="brandSelect($event)" #brandSelector>
                         <option value="" selected>бренд</option>
@@ -25,7 +25,7 @@
                 </div>
             </div>
 
-            <div class="input-field col s5 mr0 white">
+            <div class="input-field col s6 mr0 white">
                 <i class="search-icon material-icons prefix ">search</i>
                 <input id="icon_prefix" type="text" class="validate" [minlength]="minLength" [(ngModel)]="searchStr" (ngModelChange)="handleChange()">
                 <label class="search" for="icon_prefix">Пошук... </label>

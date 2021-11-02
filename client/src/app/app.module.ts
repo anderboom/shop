@@ -40,6 +40,9 @@ import {
 import {
   CategoriesPageComponent
 } from './categories-page/categories-page.component';
+import {
+  DashboardPageComponent
+} from './dashboard-page/dashboard-page.component';
 import { FooterFormComponent } from './footer-form/footer-form.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { NavbarFormComponent } from './navbar-form/navbar-form.component';
@@ -47,6 +50,7 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 import {
   SearchFilterFormComponent
 } from './search-filter-form/search-filter-form.component';
+import { UserTokenInterceptor } from './shared/classes/usertoken.interceptor';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import {
   AuthLayoutComponent
@@ -72,6 +76,7 @@ import {
     FooterFormComponent,
     OrderFormComponent,
     FilteredPositionFormComponent,
+    DashboardPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -96,6 +101,11 @@ import {
       provide: HTTP_INTERCEPTORS,
       multi: true,
       useClass: TokenInterceptor,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: UserTokenInterceptor,
     },
   ],
   bootstrap: [AppComponent],

@@ -26,7 +26,7 @@ export class NavbarFormComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('sidenav') sidenavRef: ElementRef | undefined;
   categories$: Observable<Category[]> | undefined;
   category!: Category;
-  totalQuantity = 0;
+
   sidenav: MaterialInstance | undefined;
 
   constructor(
@@ -55,6 +55,9 @@ export class NavbarFormComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   get total(): number {
-    return this.order.totalQuantity;
+    let totalQuantity = JSON.parse(
+      localStorage.getItem('totalQuantity') || '0'
+    );
+    return totalQuantity;
   }
 }

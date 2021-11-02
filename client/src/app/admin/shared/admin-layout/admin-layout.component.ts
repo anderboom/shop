@@ -2,7 +2,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -12,29 +12,26 @@ import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-admin-layout',
   templateUrl: './admin-layout.component.html',
-  styles: [
-  ]
+  styles: [],
 })
 export class AdminLayoutComponent implements AfterViewInit {
-
-  @ViewChild('floating') floatingRef: ElementRef | undefined
+  @ViewChild('floating') floatingRef: ElementRef | undefined;
   links = [
-    {url: '/admin/categories', name: 'Добавить, изменить товар'},
-    {url: '/admin/storage', name: 'Остатки по товарам'},
-    {url: '/admin/order', name: 'Заказы'},
-    {url: '/admin/history', name: 'История'},
-    {url: '/admin/register', name: 'Добавить администратора'}
-  ]
-  constructor(private auth: AuthService, private router: Router) { }
+    { url: '/admin/categories', name: 'Добавить, изменить товар' },
+    { url: '/admin/storage', name: 'Остатки по товарам' },
+    { url: '/admin/order', name: 'Заказы' },
+    { url: '/admin/history', name: 'История' },
+    // {url: '/admin/register', name: 'Добавить администратора'}
+  ];
+  constructor(private auth: AuthService, private router: Router) {}
 
   ngAfterViewInit() {
-    MaterialService.initializeFloatingButton(this.floatingRef!)
+    MaterialService.initializeFloatingButton(this.floatingRef!);
   }
 
   logout(event: Event) {
-    event.preventDefault()
-    this.auth.logout()
-    this.router.navigate(['/'])
+    event.preventDefault();
+    this.auth.logout();
+    this.router.navigate(['/']);
   }
-
 }

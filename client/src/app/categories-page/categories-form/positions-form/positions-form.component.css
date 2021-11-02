@@ -96,3 +96,8 @@
     font-size: calc(8px + .5vw);
     font-weight: 600;
 }
+
+.card-width {
+    width: 97%;
+    margin-left: 1%;
+}

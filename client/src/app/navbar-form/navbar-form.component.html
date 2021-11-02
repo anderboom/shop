@@ -1,11 +1,13 @@
 <nav class="nav-fixed">
     <div class="nav-wrapper  grey lighten-4">
-        <a routerLink="/" class="brand-logo blue-text left"><i class="material-icons">home</i>Maete</a>
+        <a routerLink="/" class="brand-logo blue-text left"><i class="material-icons">home</i>Shop</a>
         <a data-target="slide-out" class="sidenav-trigger"><i class="menu material-icons blue-text">menu</i></a>
         <ul id="nav-mobile" class="right blue-grey-text ">
-            <li *ngIf="total">
-                <span class="new badge light-green" data-badge-caption="">{{total}}
-                    товари(ів)</span>
+            <li>
+                <div class="phones">
+                    <div class="phone ">+380668888888</div>
+                    <div class="phone ">+380689999999</div>
+                </div>
             </li>
             <li>
                 <a *ngIf="!total">
@@ -16,6 +18,9 @@
                 <a *ngIf="total" routerLink="/cart">
                     <i class="material-icons cart">shopping_cart</i>
                 </a>
+            </li>
+            <li *ngIf="total">
+                <span class="badge tiny" data-badge-caption="">{{total}}</span>
             </li>
 
             <li routerLinkActive="active">

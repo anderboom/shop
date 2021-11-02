@@ -45,13 +45,17 @@ export class AdminLoginPageComponent implements OnInit, OnDestroy {
     this.route.queryParams.subscribe((params: Params) => {
       if (params['registered']) {
         // Вы зарегистрированы
-        MaterialService.toast('Пользователь успешно зарегистрирован!')
+        MaterialService.toast('Пользователь успешно зарегистрирован!');
       } else if (params['accessDenied']) {
         // Сперва авторизируйтесь
-        MaterialService.toast('Для начала работы с сервисом авторизируйтесь в системе!')
+        MaterialService.toast(
+          'Для начала работы с сервисом авторизируйтесь в системе!'
+        );
       } else if (params['sessionFailed']) {
         // Закончилось время сессии
-        MaterialService.toast('Время сессии истекло, авторизируйтесь в системе!')
+        MaterialService.toast(
+          'Время сессии истекло, авторизируйтесь в системе!'
+        );
       }
     });
   }
@@ -71,7 +75,7 @@ export class AdminLoginPageComponent implements OnInit, OnDestroy {
     this.aSub = this.auth.login(this.form.value).subscribe(
       () => this.router.navigate(['/admin/dashboard']),
       (error) => {
-        MaterialService.toast(error.error.message)
+        MaterialService.toast(error.error.message);
         this.form.enable();
       }
     );
