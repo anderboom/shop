@@ -21,7 +21,7 @@ export class AdminLayoutComponent implements AfterViewInit {
     { url: '/admin/storage', name: 'Остатки по товарам' },
     { url: '/admin/order', name: 'Заказы' },
     { url: '/admin/history', name: 'История' },
-    // {url: '/admin/register', name: 'Добавить администратора'}
+    { url: '/admin/register', name: 'Добавить администратора' },
   ];
   constructor(private auth: AuthService, private router: Router) {}
 
