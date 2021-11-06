@@ -2,13 +2,15 @@
     "/api/*": {
         "target": "http://localhost:5000",
         "secure": false,
-        "loglevel": "debug",
-        "changeOrigin": true
+        "logLevel": "debug",
+        "changeOrigin": true,
+        "pathRewrite": { "^/api": "http://localhost:5000/api" }
     },
     "/uploads/*": {
         "target": "http://localhost:5000",
         "secure": false,
-        "loglevel": "debug",
-        "changeOrigin": true
+        "logLevel": "debug",
+        "changeOrigin": true,
+        "pathRewrite": { "^/api": "http://localhost:5000/api" }
     }
 }
