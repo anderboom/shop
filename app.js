@@ -12,6 +12,8 @@ const keys = require('./config/keys');
 const app = express();
 const path = require('path');
 
+app.use(express.json());
+app.use(express.urlencoded());
 // app.use(express.urlencoded())
 mongoose
     .connect(keys.mongoURI, {
@@ -29,8 +31,6 @@ require('./middleware/passport')(passport);
 app.use(morgan('dev'));
 app.use('/uploads', express.static('uploads'));
 app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded());
 app.use('/api', userAuthRoutes);
 app.use('/api/admin', authRoutes);
 app.use('/api/admin/category', categoryRoutes);
