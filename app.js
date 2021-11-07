@@ -12,9 +12,6 @@ const keys = require('./config/keys');
 const app = express();
 const path = require('path');
 
-app.use(express.json());
-// app.use(express.urlencoded());
-// app.use(express.urlencoded())
 mongoose
     .connect(keys.mongoURI, {
         useNewUrlParser: true,
@@ -24,6 +21,9 @@ mongoose
     .then(() => console.log('MongoDB connected'))
     .catch((error) => console.log(error));
 mongoose.set('useFindAndModify', false);
+
+app.use(express.json());
+app.use(express.urlencoded());
 
 app.use(passport.initialize());
 require('./middleware/passport')(passport);
