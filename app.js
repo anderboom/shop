@@ -23,7 +23,7 @@ mongoose
 mongoose.set('useFindAndModify', false);
 
 app.use(express.json());
-app.use(express.urlencoded());
+// app.use(express.urlencoded());
 
 app.use(passport.initialize());
 require('./middleware/passport')(passport);
