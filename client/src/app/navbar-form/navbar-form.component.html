@@ -1,35 +1,42 @@
 <nav class="nav-fixed">
-    <div class="nav-wrapper  grey lighten-4">
-        <a routerLink="/" class="brand-logo blue-text left"><i class="material-icons">home</i></a>
-        <a data-target="slide-out" class="sidenav-trigger"><i class="menu material-icons blue-text">menu</i></a>
-        <ul id="nav-mobile" class="right blue-grey-text ">
-            <li>
-                <div class="phones">
-                    <div class="phone ">+380668888888</div>
-                    <div class="phone ">+380689999999</div>
-                </div>
-            </li>
-            <li>
-                <a *ngIf="!total">
-                    <i class="material-icons cart">shopping_cart</i>
-                </a>
-            </li>
-            <li>
-                <a *ngIf="total" routerLink="/cart">
-                    <i class="material-icons cart">shopping_cart</i>
-                </a>
-            </li>
-            <li *ngIf="total">
-                <span class="badge tiny" data-badge-caption="">{{total}}</span>
-            </li>
+    <div class="nav-wrapper  grey lighten-4 row col s12">
+        <div class="col s2 left-align">
+            <a routerLink="/" class="brand-logo blue-text left"><i class="material-icons">home</i></a>
+            <a data-target="slide-out" class="sidenav-trigger left"><i
+                    class="menu material-icons blue-text">menu</i></a>
+        </div>
 
-            <li routerLinkActive="active">
-                <a class="auth bold blue-text" routerLink="login">Вхід</a>
-            </li>
-            <li routerLinkActive="active">
-                <a class="auth right bold  blue-text" routerLink="register">Реєстрація</a>
-            </li>
-        </ul>
+        <div class="col s10">
+            <ul id="nav-mobile" class="right blue-grey-text ">
+                <li>
+                    <div class="phones">
+                        <div class="phone ">+380668888888</div>
+                        <div class="phone ">+380689999999</div>
+                    </div>
+                </li>
+                <li>
+                    <a *ngIf="!total">
+                        <i class="material-icons cart">shopping_cart</i>
+                    </a>
+                </li>
+                <li>
+                    <a *ngIf="total" routerLink="/cart">
+                        <i class="material-icons cart">shopping_cart</i>
+                    </a>
+                </li>
+                <li *ngIf="total">
+                    <span class="badge tiny" data-badge-caption="">{{total}}</span>
+                </li>
+
+                <li routerLinkActive="active">
+                    <a class="auth bold blue-text" routerLink="login">Вхід</a>
+                </li>
+                <li routerLinkActive="active">
+                    <a class="auth right bold  blue-text" routerLink="register">Реєстрація</a>
+                </li>
+            </ul>
+        </div>
+
     </div>
 </nav>
 
