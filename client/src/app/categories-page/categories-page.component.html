@@ -1,33 +1,4 @@
 <div class="row" *ngIf="categories$ | async as categories; else loader">
-    <!-- <div class="categories col s9 m3 l3">
-        <div>
-            <ul class="collection ">
-                <li class="collection-item grey lighten-3 blue-text bold menu">Категорії товарів</li>
-                <div class="active">
-                    <li class="collection-item grey lighten-5 active category" *ngFor="let category of categories">
-                        <div class="name bold waves-effect" [routerLink]="['categories', category._id]">
-                            <a class=" black-text">{{category.name}}</a>
-                            <a class=" black-text secondary-content">
-                                <i class="name material-icons">keyboard_arrow_right</i></a>
-                        </div>
-                    </li>
-                </div>
-
-            </ul>
-        </div>
-        <div>
-            <ul class="collection ">
-                <li class="collection-item grey lighten-5">
-                    <div class="name bold waves-effect"><i class="blue-text material-icons tiny">redeem</i>
-                        <a class="promotions">Акції</a><i class="blue-text material-icons tiny">redeem</i>
-                        <a class="promotions secondary-content">
-                            <i class="name material-icons">keyboard_arrow_right</i></a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div> -->
-
     <div class="col s3">
         <ul id="slide-out" class="sidenav sidenav-fixed" style="width: 25%">
             <div class="header blue-text bold">Категорії товарів</div>

@@ -2,8 +2,6 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs';
 
@@ -18,16 +16,12 @@ import { SearchService } from '../shared/services/search.service';
 })
 export class CategoriesPageComponent implements OnInit {
   categories$: Observable<Category[]> | undefined;
-  category!: Category;
+  category: Category | undefined;
 
   constructor(
     private categoriesService: CategoriesService,
-    private searchService: SearchService,
-    private titleService: Title,
-    private route: ActivatedRoute
-  ) {
-    // this.titleService.setTitle(this.route.snapshot.data['title']);
-  }
+    private searchService: SearchService
+  ) {}
 
   ngOnInit(): void {
     this.categories$ = this.categoriesService.fetch();

@@ -2,7 +2,7 @@ import {
   Component,
   ElementRef,
   OnInit,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -26,12 +26,7 @@ export class CartPageComponent implements OnInit {
   ngOnInit(): void {
     this.orders = this.ordersService.list;
     this.totalCost = this.ordersService.totalCost;
-
-    // let totalOrder: OrderPosition[] = JSON.parse(
-    //   localStorage.getItem('cart') || '{}'
-    // );
     let sumTotalCost = JSON.parse(localStorage.getItem('total') || '0');
-    // this.orders = totalOrder;
     this.totalCost = sumTotalCost;
   }
 
