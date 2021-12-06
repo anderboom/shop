@@ -1,0 +1,72 @@
+<nav class="nav-fixed">
+    <div class="nav-wrapper  grey lighten-4 row col s12">
+        <div class="col s2 left-align">
+            <a [routerLink]="['/']" class="brand-logo blue-text left"><i class="material-icons">home</i></a>
+            <a data-target="slide-out" class="sidenav-trigger left"><i
+                    class="menu material-icons blue-text">menu</i></a>
+        </div>
+
+        <div class="col s10">
+            <ul id="nav-mobile" class="right blue-grey-text ">
+                <li>
+                    <div class="phones">
+                        <div class="phone ">+380668888888</div>
+                        <div class="phone ">+380689999999</div>
+                    </div>
+                </li>
+                <li>
+                    <a *ngIf="!total">
+                        <i class="material-icons cart">shopping_cart</i>
+                    </a>
+                </li>
+                <li>
+                    <a *ngIf="total" [routerLink]="['/cart']">
+                        <i class="material-icons cart">shopping_cart</i>
+                    </a>
+                </li>
+                <li *ngIf="total">
+                    <span class="badge tiny" data-badge-caption="">{{total}}</span>
+                </li>
+                <ng-container *ngIf="!isAuth">
+                    <li routerLinkActive="active">
+                        <a class="auth bold blue-text" [routerLink]="['/login']">Вхід</a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a class="auth right bold  blue-text" [routerLink]="['/register']">Реєстрація</a>
+                    </li>
+                </ng-container>
+                <ng-container *ngIf="isAuth">
+                    <li routerLinkActive="active">
+                        <a class="auth right bold  blue-text" [routerLink]="['/']" (click)="logout()">Вихід</a>
+                    </li>
+                </ng-container>
+
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+<ul class="sidenav" id="slide-out" #sidenav>
+    <div *ngIf="categories$ | async as categories; else loader">
+        <li>
+            <div class="header1 blue-text bold">Категорії товарів</div>
+        </li>
+        <hr class="hr1">
+        <li class="bold" *ngFor="let category of categories" routerLinkActive="active" (click)="onCancel()">
+            <a [routerLink]="['/category', category._id]" class="waves-effect waves-orange">{{category.name}}
+                <a class=" black-text secondary-content">
+                    <i class="name material-icons">keyboard_arrow_right</i></a>
+            </a>
+        </li>
+        <li class="bold">
+            <a class="promotions waves-effect waves-orange">Акції
+                <a class="promotions secondary-content">
+                    <i class="name material-icons">keyboard_arrow_right</i></a>
+            </a>
+        </li>
+    </div>
+</ul>
+<ng-template #loader>
+    <app-loader></app-loader>
+</ng-template>

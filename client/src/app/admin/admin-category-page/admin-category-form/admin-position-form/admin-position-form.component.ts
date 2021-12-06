@@ -5,22 +5,22 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import {
   FormControl,
   FormGroup,
-  Validators
+  Validators,
 } from '@angular/forms';
 
 import {
   MaterialInstance,
-  MaterialService
+  MaterialService,
 } from 'src/app/admin/shared/classes/material.service';
 import { Position } from 'src/app/admin/shared/interfaces';
 import {
-  PositionsService
-} from 'src/app/admin/shared/services/positions.service';
+  AdminPositionsService,
+} from 'src/app/admin/shared/services/admin-positions.service';
 
 @Component({
   selector: 'app-admin-position-form',
@@ -28,7 +28,8 @@ import {
   styleUrls: ['./admin-position-form.component.css'],
 })
 export class AdminPositionFormComponent
-  implements OnInit, AfterViewInit, OnDestroy {
+  implements OnInit, AfterViewInit, OnDestroy
+{
   @ViewChild('input') inputRef: ElementRef | undefined;
   @Input('categoryId') categoryId: string | undefined;
   @ViewChild('modal') modalRef: ElementRef | undefined;
@@ -51,7 +52,7 @@ export class AdminPositionFormComponent
     brand: new FormControl(null, Validators.required),
   });
 
-  constructor(private positionsService: PositionsService) {}
+  constructor(private positionsService: AdminPositionsService) {}
 
   ngOnInit() {
     this.loading = true;
@@ -75,7 +76,7 @@ export class AdminPositionFormComponent
 
   onFileUpload(event: any) {
     const file = event.target.files[0];
-    this.image = file
+    this.image = file;
 
     const reader = new FileReader();
 
@@ -95,7 +96,7 @@ export class AdminPositionFormComponent
       cost: position.cost,
       quantity: position.quantity,
       inputCost: position.inputCost,
-      brand: position.brand
+      brand: position.brand,
     });
     this.imagePreview = position.imageSrc;
     this.modal?.open();
@@ -112,7 +113,7 @@ export class AdminPositionFormComponent
       quantity: 1,
       inputCost: 1,
       imageSrc: null,
-      brand: null
+      brand: null,
     });
     this.imagePreview = '';
     this.modal?.open();
@@ -161,7 +162,7 @@ export class AdminPositionFormComponent
         quantity: 1,
         inputCost: 1,
         imageSrc: '',
-        brand: ''
+        brand: '',
       });
       this.form.enable();
       this.imagePreview = '';

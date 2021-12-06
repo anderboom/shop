@@ -1,23 +1,23 @@
 import {
   Component,
   OnDestroy,
-  OnInit
+  OnInit,
 } from '@angular/core';
 import {
   FormControl,
   FormGroup,
-  Validators
+  Validators,
 } from '@angular/forms';
 import {
   ActivatedRoute,
   Params,
-  Router
+  Router,
 } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 
 import { MaterialService } from '../shared/classes/material.service';
-import { AuthService } from '../shared/services/auth.service';
+import { AdminAuthService } from '../shared/services/admin-auth.service';
 
 @Component({
   selector: 'app-admin-login-page',
@@ -36,7 +36,7 @@ export class AdminLoginPageComponent implements OnInit, OnDestroy {
   aSub: Subscription | undefined;
 
   constructor(
-    private auth: AuthService,
+    private auth: AdminAuthService,
     private router: Router,
     private route: ActivatedRoute
   ) {}

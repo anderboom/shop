@@ -3,22 +3,21 @@ import {
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
-  HttpRequest
+  HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 import {
   Observable,
-  throwError
+  throwError,
 } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-
-import { AuthclientService } from '../services/authclient.service';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Injectable()
 export class UserTokenInterceptor implements HttpInterceptor {
-  constructor(private auth: AuthclientService, private router: Router) {}
+  constructor(private auth: AuthService, private router: Router) {}
 
   intercept(
     req: HttpRequest<any>,

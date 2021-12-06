@@ -6,7 +6,9 @@ import {
 import { Observable } from 'rxjs';
 
 import { Category } from '../shared/interfaces';
-import { CategoriesService } from '../shared/services/categories.service';
+import {
+  AdminCategoriesService,
+} from '../shared/services/admin-categories.service';
 
 @Component({
   selector: 'app-admin-category-page',
@@ -16,7 +18,7 @@ import { CategoriesService } from '../shared/services/categories.service';
 export class AdminCategoryPageComponent implements OnInit {
   categories$: Observable<Category[]> | undefined;
 
-  constructor(private categoriesService: CategoriesService) {}
+  constructor(private categoriesService: AdminCategoriesService) {}
 
   ngOnInit(): void {
     this.categories$ = this.categoriesService.fetch();

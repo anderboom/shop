@@ -7,7 +7,7 @@ import {
 import { Router } from '@angular/router';
 
 import { MaterialService } from '../classes/material.service';
-import { AuthService } from '../services/auth.service';
+import { AdminAuthService } from '../services/admin-auth.service';
 
 @Component({
   selector: 'app-admin-layout',
@@ -23,7 +23,7 @@ export class AdminLayoutComponent implements AfterViewInit {
     { url: '/admin/history', name: 'История' },
     // { url: '/admin/register', name: 'Добавить администратора' },
   ];
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private auth: AdminAuthService, private router: Router) {}
 
   ngAfterViewInit() {
     MaterialService.initializeFloatingButton(this.floatingRef!);

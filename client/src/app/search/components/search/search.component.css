@@ -1,0 +1,136 @@
+.filter {
+    margin-top: 25px;
+    display: flex;
+    width: 10%;
+    height: 100%;
+}
+
+.filter-text {
+    font-size: calc(7px + .5vw);
+    font-weight: 500;
+    width: 6%;
+    margin: auto;
+    margin-right: 1%;
+    margin-left: 1%;
+}
+
+.input-field .prefix.active {
+    color: #1e88e5;
+}
+
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #1e88e5;
+    box-shadow: 0 1px 0 0 #1e88e5;
+}
+
+.input-field input[type=text]:focus+label {
+    color: #1e88e5;
+}
+
+.cost {
+    color: #ffb74d;
+    font-size: calc(8px + .5vw);
+    font-weight: 700;
+}
+
+.img {
+    max-width: 60%;
+    margin-top: 5%;
+    margin-bottom: 0%;
+}
+
+.bold {
+    font-weight: 600;
+    font-size: medium;
+}
+
+.card {
+    width: 100%;
+}
+
+.text-size {
+    font-size: calc(7px + .5vw);
+    font-weight: 600;
+}
+
+.availability {
+    font-size: calc(7px + .5vw);
+    font-weight: 600;
+    margin-top: 2px;
+}
+
+.add {
+    font-size: calc(7px + .5vw);
+    font-weight: 500;
+    width: 80%;
+    text-align: center;
+}
+
+.addIcon {
+    font-size: calc(12px + .5vw);
+    font-weight: 500;
+}
+
+.card-title {
+    font-size: calc(8px + .5vw);
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hr1 {
+    height: 1px;
+    border: none;
+    color: rgba(163, 163, 163, 0.986);
+    background: linear-gradient(45deg, rgb(192, 190, 190), #ddd);
+}
+
+.hr2 {
+    margin: -50px auto 10px;
+    padding: 0;
+    height: 50px;
+    border: none;
+    border-bottom: 1px solid #3a3531;
+    box-shadow: 0 20px 20px -20px rgb(95, 93, 93);
+    width: 95%;
+}
+
+.drop {
+    width: calc(7px + .5vw);
+    font-size: 1vw;
+}
+
+.search-icon {
+    font-size: calc(10px + .5vw);
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 95%;
+}
+
+.search {
+    font-size: calc(7px + .5vw);
+    width: 96%;
+    margin-left: 2%;
+}
+
+.brand {
+    font-size: calc(5px + .5vw);
+    color: grey;
+}
+
+.search-filter {
+    margin-top: -1.5%;
+    border-width: 1px;
+    box-shadow: 0 20px 20px -20px rgb(95, 93, 93);
+}
+
+.card-width {
+    width: 97%;
+    margin-left: 1%;
+}

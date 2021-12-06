@@ -1,26 +1,30 @@
 import {
   Component,
   Input,
-  OnInit
+  OnInit,
 } from '@angular/core';
 import {
   ActivatedRoute,
-  Params
+  Params,
 } from '@angular/router';
 
 import {
   Observable,
-  of
+  of,
 } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { MaterialService } from '../../shared/classes/material.service';
 import {
   Category,
-  Position
+  Position,
 } from '../../shared/interfaces';
-import { CategoriesService } from '../../shared/services/categories.service';
-import { PositionsService } from '../../shared/services/positions.service';
+import {
+  AdminCategoriesService,
+} from '../../shared/services/admin-categories.service';
+import {
+  AdminPositionsService,
+} from '../../shared/services/admin-positions.service';
 
 @Component({
   selector: 'app-admin-storage-form',
@@ -29,18 +33,17 @@ import { PositionsService } from '../../shared/services/positions.service';
 })
 export class AdminStorageFormComponent implements OnInit {
   @Input('categoryId') categoryId: string | undefined;
-  
-  categories$: Observable<Category[]> | undefined
+
+  categories$: Observable<Category[]> | undefined;
   positions: Position[] = [];
   loading = false;
-  skipCounter$ = 0
-  category!: Category 
-  
+  skipCounter$ = 0;
+  category: Category | undefined;
 
   constructor(
     private route: ActivatedRoute,
-    private positionsService: PositionsService,
-    private categoriesService: CategoriesService
+    private positionsService: AdminPositionsService,
+    private categoriesService: AdminCategoriesService
   ) {}
 
   ngOnInit(): void {
@@ -49,7 +52,7 @@ export class AdminStorageFormComponent implements OnInit {
       .pipe(
         switchMap((params: Params) => {
           if (params['id']) {
-            this.categoryId = params['id']
+            this.categoryId = params['id'];
             return this.positionsService.fetch(params['id']);
           }
 
@@ -66,7 +69,7 @@ export class AdminStorageFormComponent implements OnInit {
         (error) => MaterialService.toast(error.error.message)
       );
 
-      this.route.params
+    this.route.params
       .pipe(
         switchMap((params: Params) => {
           if (params['id']) {

@@ -1,0 +1,27 @@
+<div class="row" *ngIf="categories$ | async as categories; else loader">
+    <div class="col s3">
+        <ul id="slide-out" class="sidenav sidenav-fixed" style="width: 25%">
+            <div class="header blue-text bold">Категорії товарів</div>
+            <hr class="hr1">
+            <li class="bold" *ngFor="let category of categories" routerLinkActive="active">
+                <a [routerLink]="['/category', category._id]" class="waves-effect waves-orange">{{category.name}}
+                    <a class=" black-text secondary-content">
+                        <i class="name material-icons">keyboard_arrow_right</i></a>
+                </a>
+            </li>
+            <li class="bold">
+                <a class="promotions waves-effect waves-orange">Акції
+                    <a class="promotions secondary-content">
+                        <i class="name material-icons">keyboard_arrow_right</i></a>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- <div class="col s12 m12 l9 right">
+        <app-positions-form [categoryId]="categories[0]._id"></app-positions-form>
+    </div> -->
+</div>
+
+<ng-template #loader>
+    <app-loader></app-loader>
+</ng-template>

@@ -1,27 +1,27 @@
 import {
   Component,
-  OnInit
+  OnInit,
 } from '@angular/core';
 import {
   FormControl,
   FormGroup,
-  Validators
+  Validators,
 } from '@angular/forms';
 import {
   ActivatedRoute,
   Params,
-  Router
+  Router,
 } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 
 import { MaterialService } from '../shared/classes/material.service';
-import { AuthService } from '../shared/services/auth.service';
+import { AdminAuthService } from '../shared/services/admin-auth.service';
 
 @Component({
   selector: 'app-admin-register-page',
   templateUrl: './admin-register-page.component.html',
-  styleUrls: ['./admin-register-page.component.css']
+  styleUrls: ['./admin-register-page.component.css'],
 })
 export class AdminRegisterPageComponent implements OnInit {
   form = new FormGroup({
@@ -35,19 +35,17 @@ export class AdminRegisterPageComponent implements OnInit {
   aSub: Subscription | undefined;
 
   constructor(
-    private auth: AuthService,
+    private auth: AdminAuthService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe( (params: Params) => {
+    this.route.queryParams.subscribe((params: Params) => {
       if (params['registered']) {
-
       } else if (params['accessDenied']) {
-
       }
-    })
+    });
   }
 
   ngOnDestroy() {
@@ -71,10 +69,9 @@ export class AdminRegisterPageComponent implements OnInit {
         });
       },
       (error) => {
-       MaterialService.toast(error.error.message)
+        MaterialService.toast(error.error.message);
         this.form.enable();
       }
     );
-  } 
-   
+  }
 }

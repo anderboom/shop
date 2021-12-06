@@ -3,8 +3,8 @@ import {
   OnInit,
 } from '@angular/core';
 
-import { AuthService } from './admin/shared/services/auth.service';
-import { AuthclientService } from './shared/services/authclient.service';
+import { AdminAuthService } from './admin/shared/services/admin-auth.service';
+import { AuthService } from './auth/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +12,9 @@ import { AuthclientService } from './shared/services/authclient.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  // title = 'Shop';
   constructor(
-    private auth: AuthService,
-    private authclient: AuthclientService
+    private auth: AdminAuthService,
+    private authclient: AuthService
   ) {}
 
   ngOnInit() {

@@ -1,16 +1,16 @@
 import {
   Component,
-  OnInit
+  OnInit,
 } from '@angular/core';
 import {
   FormControl,
   FormGroup,
-  Validators
+  Validators,
 } from '@angular/forms';
 import {
   ActivatedRoute,
   Params,
-  Router
+  Router,
 } from '@angular/router';
 
 import { of } from 'rxjs';
@@ -18,7 +18,9 @@ import { switchMap } from 'rxjs/operators';
 
 import { MaterialService } from '../../shared/classes/material.service';
 import { Category } from '../../shared/interfaces';
-import { CategoriesService } from '../../shared/services/categories.service';
+import {
+  AdminCategoriesService,
+} from '../../shared/services/admin-categories.service';
 
 @Component({
   selector: 'app-admin-category-form',
@@ -34,7 +36,7 @@ export class AdminCategoryFormComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private categoriesService: CategoriesService,
+    private categoriesService: AdminCategoriesService,
     private router: Router
   ) {}
 
@@ -75,7 +77,7 @@ export class AdminCategoryFormComponent implements OnInit {
     if (this.isNew) {
       obs$ = this.categoriesService.create(this.form.value);
     } else {
-      obs$ = this.categoriesService.update(this.category?._id, this.form.value);
+      obs$ = this.categoriesService.update(this.category._id, this.form.value);
     }
 
     obs$.subscribe(

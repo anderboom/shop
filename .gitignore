@@ -1,5 +1,6 @@
 node_modules
 client/etc
-client/dist
-config/keys
-config/keys.prod
+config
+uploads
+
+
