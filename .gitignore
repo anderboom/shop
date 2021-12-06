@@ -1,6 +1,6 @@
 node_modules
 client/etc
-config
-uploads
+/config
+/uploads
 
 
