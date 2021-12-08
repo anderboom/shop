@@ -16,6 +16,7 @@ import {
 } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { MaterialService } from 'src/app/admin/shared/classes/material.service';
+import { SearchService } from 'src/app/search/services/search.service';
 
 import { CategoriesService } from '../../services/categories.service';
 import { CategoryInterface } from '../../types/catergory.interface';
@@ -33,7 +34,8 @@ export class CategoriesFormComponent implements OnInit, OnDestroy {
   constructor(
     private categoriesService: CategoriesService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private searchService: SearchService
   ) {}
 
   ngOnInit(): void {
@@ -65,5 +67,9 @@ export class CategoriesFormComponent implements OnInit, OnDestroy {
     if (this.routeSub) {
       this.routeSub?.unsubscribe();
     }
+  }
+
+  get isFilter(): boolean {
+    return this.searchService.isFilter;
   }
 }

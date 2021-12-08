@@ -48,7 +48,7 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes),
+    RouterModule.forRoot(routes),
     LoaderModule,
     HttpClientModule,
     FormsModule,

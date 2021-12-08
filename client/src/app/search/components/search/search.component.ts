@@ -4,15 +4,17 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { Router } from '@angular/router';
+import {
+  ActivatedRoute,
+  Router,
+} from '@angular/router';
 
 import { Subscription } from 'rxjs';
 import {
   MaterialInstance,
   MaterialService,
 } from 'src/app/admin/shared/classes/material.service';
-import { Position } from 'src/app/admin/shared/interfaces';
-import { PositionService } from 'src/app/categories/services/position.service';
+import { PositionInterface } from 'src/app/categories/types/position.interface';
 import { SearchService } from 'src/app/search/services/search.service';
 import { CartService } from 'src/app/shared/services/cart.service';
 
@@ -25,121 +27,103 @@ export class SearchComponent implements OnInit {
   @ViewChild('priceSelector') priceSelector: ElementRef | undefined;
   @ViewChild('brandSelector') brandSelector: ElementRef | undefined;
   @ViewChild('modal') modalRef: ElementRef | undefined;
-  @ViewChild('modal1') modal1Ref: ElementRef | undefined;
   @ViewChild('quantityInput') quantityInput: ElementRef | undefined;
   modal: MaterialInstance | undefined;
-  modal1: MaterialInstance | undefined;
   searchStr = '';
   minLength = 3;
-  foundPositions: Position[] = [];
-  brandPositions: Position[] = [];
+  foundPositions: PositionInterface[] = [];
   positionId: any = null;
-  isSearch = false;
-  isBrand = false;
-  isPrice = false;
+  isFilter = false;
+  price = '';
   loading = false;
-  totalQuantity = 0;
+  // totalQuantity = 0;
   brandNameArr: string[] = [];
-  brandSelected = '';
+  selectedBrand = '';
   p: number = 1;
-  searchSub: Subscription | undefined;
+  brandSub$: Subscription | undefined;
+  brandSelectSub$: Subscription | undefined;
+  searchSub$: Subscription | undefined;
 
   constructor(
     private searchService: SearchService,
-    private positionsService: PositionService,
     private router: Router,
+    private route: ActivatedRoute,
     public order: CartService
   ) {}
 
   ngOnInit(): void {
     this.sortByBrand();
-    this.searchService.resetFilter();
   }
 
   ngOnDestroy() {
     this.modal?.destroy();
-    this.modal1?.destroy();
-    if (this.searchSub) {
-      this.searchSub.unsubscribe();
-    }
+    this.searchSub$?.unsubscribe();
+    this.brandSub$?.unsubscribe();
+    this.brandSelectSub$?.unsubscribe();
   }
 
   ngAfterViewInit() {
     MaterialService.initSelect(this.priceSelector!);
     MaterialService.initSelect(this.brandSelector!);
     MaterialService.updateTextInputs;
-    if (this.modal !== undefined) {
-      this.modal = MaterialService.initModal(this.modalRef!);
-    }
-    if (this.modal1 !== undefined) {
-      this.modal1 = MaterialService.initModal(this.modal1Ref!);
-    }
+    this.modal = MaterialService.initModal(this.modalRef!);
   }
 
-  handleChange() {
+  searchHandleChange() {
+    this.searchValidate();
     if (this.minLength <= this.searchStr.length) {
-      this.searchSub = this.searchService.fetch().subscribe((positions) => {
+      this.searchSub$ = this.searchService.fetch().subscribe((positions) => {
         this.foundPositions = positions;
-        this.isSearch = true;
-        this.searchService.isSearch = this.isSearch;
-        this.isBrand = false;
-        this.isPrice = false;
-        this.searchService.isBrand = this.isBrand;
-        this.searchService.isPrice = this.isPrice;
+        this.setFilterMode(true);
       });
     }
     if (this.minLength > this.searchStr.length) {
-      this.searchService.fetch().subscribe((positions) => {
-        this.foundPositions = [];
-        this.isSearch = false;
-        this.searchService.isSearch = this.isSearch;
-      });
+      this.foundPositions = [];
+      this.setFilterMode(false);
+      this.router.routeReuseStrategy.shouldReuseRoute = function () {
+        return false;
+      };
+      this.searchSub$?.unsubscribe();
     }
   }
 
-  setDefaultBrand() {}
+  searchValidate() {
+    if (this.searchStr.length === 1) {
+      MaterialService.toast('Введіть не менше 3 символів');
+    }
+  }
+
+  setFilterMode(isFilter: boolean) {
+    this.isFilter = isFilter;
+    this.searchService.isFilter = isFilter;
+  }
 
   open() {
     this.modal?.open();
-  }
-  open1() {
-    this.modal1?.open();
   }
 
   onCancel() {
     this.modal?.close();
   }
-  onCancel1() {
-    this.modal1?.close();
-  }
 
-  onSelectFoundPosition(position: Position) {
+  unsubscribeFilter() {}
+  onSelectPosition(position: PositionInterface) {
     this.positionId = position._id;
     this.foundPositions.map((position) => {
       position.orderQuantity = 1;
       return position;
     });
   }
-  onSelectBrandPosition(position: Position) {
-    this.positionId = position._id;
-    this.brandPositions.map((position) => {
-      position.orderQuantity = 1;
-      return position;
-    });
-  }
 
-  addToCart(position: Position) {
+  addToCart(position: PositionInterface) {
     this.order.addToCart(position);
-    // this.totalQuantity = this.order.totalQuantity;
     MaterialService.toast(`Товар додано до кошика!`);
     this.modal?.close();
-    this.modal1?.close();
   }
-
   sortByBrand() {
-    this.searchService.fetch().subscribe((positions) => {
-      this.brandPositions = positions;
-      this.brandPositions.forEach((p) => {
+    this.brandSub$ = this.searchService.fetch().subscribe((positions) => {
+      this.foundPositions = positions;
+      this.foundPositions.forEach((p) => {
         this.brandNameArr.push(p.brand!);
         this.brandNameArr = Array.from(new Set(this.brandNameArr));
       });
@@ -148,22 +132,19 @@ export class SearchComponent implements OnInit {
 
   brandSelect(event: any) {
     let value = event.target.value;
-    this.brandSelected = value;
-    this.isBrand = true;
-    this.searchService.isBrand = this.isBrand;
-    this.isPrice = false;
-    this.isSearch = false;
-    this.searchService.isSearch = this.isSearch;
-    this.searchService.isPrice = this.isPrice;
+    this.selectedBrand = value;
+    this.setFilterMode(true);
+    this.searchSub$?.unsubscribe();
+    this.brandSub$?.unsubscribe();
+    this.brandSelectSub$ = this.searchService.fetch().subscribe((positions) => {
+      this.foundPositions = positions.filter(
+        (p) => p.brand === this.selectedBrand
+      );
+    });
   }
 
-  isPriceSelect(event: any) {
+  priceSelect(event: any) {
     let value = event.target.value;
-    this.isPrice = value;
-    this.searchService.isPrice = this.isPrice;
-    this.isBrand = false;
-    this.isSearch = false;
-    this.searchService.isBrand = this.isBrand;
-    this.searchService.isSearch = this.isSearch;
+    this.isFilter = value;
   }
 }
