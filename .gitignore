@@ -1,7 +1,8 @@
-/node_modules/*
-/client/node_modules/*
-/client/src/environments/*
-/config/*
-/uploads/*
-/.vscode/*
 
+.gitignore
+config/keys.dev.js config/keys.js config/keys.prod.js
+node_modules/
+client/node_modules/
+uploads/
+client/src/environments/
+.vscode/
