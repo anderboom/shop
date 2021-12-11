@@ -3,7 +3,9 @@ import {
   OnInit,
 } from '@angular/core';
 
-import { AdminAuthService } from './admin/shared/services/admin-auth.service';
+import {
+  AdminAuthService,
+} from './admin/admin-auth/services/admin-auth.service';
 import { AuthService } from './auth/services/auth.service';
 
 @Component({
@@ -14,14 +16,17 @@ import { AuthService } from './auth/services/auth.service';
 export class AppComponent implements OnInit {
   constructor(
     private auth: AdminAuthService,
-    private authclient: AuthService
+    private authClient: AuthService
   ) {}
 
   ngOnInit() {
     const localStorageToken = localStorage.getItem('auth-token');
+    const adminLocalStorageToken = localStorage.getItem('auth-token-admin');
     if (localStorageToken !== null) {
-      this.auth.setToken(localStorageToken);
-      this.authclient.setToken(localStorageToken);
+      this.authClient.setToken(localStorageToken);
+    }
+    if (adminLocalStorageToken !== null) {
+      this.auth.setToken(adminLocalStorageToken);
     }
   }
 }

@@ -1,0 +1,30 @@
+<div class="page-title">
+    <h5>
+        <a routerLink="/admin/categories">Категории</a>
+        <i class="tiny material-icons">chevron_right</i> {{isNew ? 'Добавить' : 'Редактировать'}} категорию
+    </h5>
+    <span>
+        <button *ngIf="!isNew" class="btn btn-small red" (click)="deleteCategory()">
+            <i class="material-icons">delete</i>
+        </button>
+    </span>
+</div>
+
+<div class="row">
+    <form class="col s12 l6" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="input-field">
+            <input formControlName="name" id="name" type="text" [ngClass]="{'invalid': f.name.invalid && f.name.touched}">
+            <label for="name">Название</label>
+            <span class="helper-text red-text" *ngIf="f.name.invalid && f.name.touched">
+                <span *ngIf="f.name.errors?.required">Поле названия не должно быть пустым!</span>
+            </span>
+        </div>
+        <div>
+            <button type="submit" [disabled]="form.invalid || form.disabled" class="waves-effect waves-light btn">
+                Сохранить
+            </button>
+        </div>
+    </form>
+</div>
+
+<app-admin-positions *ngIf="category?._id" [categoryId]="category._id"></app-admin-positions>

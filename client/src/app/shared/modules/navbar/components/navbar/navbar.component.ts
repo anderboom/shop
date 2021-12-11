@@ -67,6 +67,10 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
     return !!localStorage.getItem('auth-token');
   }
 
+  get isAuthAdmin(): boolean {
+    return !!localStorage.getItem('auth-token-admin');
+  }
+
   logout() {
     this.auth.logout();
   }

@@ -12,7 +12,7 @@ import {
   of,
 } from 'rxjs';
 
-import { AdminAuthService } from '../services/admin-auth.service';
+import { AdminAuthService } from '../../admin-auth/services/admin-auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +24,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> {
-    if (this.auth.isAuth()) {
+    if (this.auth.isAuthAdmin()) {
       return of(true);
     } else {
       this.router.navigate(['/admin/login'], {

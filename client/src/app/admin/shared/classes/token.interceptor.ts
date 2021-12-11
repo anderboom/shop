@@ -14,7 +14,7 @@ import {
 } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { AdminAuthService } from '../services/admin-auth.service';
+import { AdminAuthService } from '../../admin-auth/services/admin-auth.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -24,7 +24,7 @@ export class TokenInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    if (this.auth.isAuth()) {
+    if (this.auth.isAuthAdmin()) {
       req = req.clone({
         setHeaders: {
           Authorization: this.auth.getToken(),

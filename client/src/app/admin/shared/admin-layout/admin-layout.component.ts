@@ -6,8 +6,8 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { AdminAuthService } from '../../admin-auth/services/admin-auth.service';
 import { MaterialService } from '../classes/material.service';
-import { AdminAuthService } from '../services/admin-auth.service';
 
 @Component({
   selector: 'app-admin-layout',
@@ -21,7 +21,7 @@ export class AdminLayoutComponent implements AfterViewInit {
     { url: '/admin/storage', name: 'Остатки по товарам' },
     { url: '/admin/order', name: 'Заказы' },
     { url: '/admin/history', name: 'История' },
-    // { url: '/admin/register', name: 'Добавить администратора' },
+    { url: '/admin/register', name: 'Добавить администратора' },
   ];
   constructor(private auth: AdminAuthService, private router: Router) {}
 
