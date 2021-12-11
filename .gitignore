@@ -1,6 +1,7 @@
 node_modules
-client/node_modules
-client/src/environments
+client/node_modules/
+client/src/environments/
 config/
 uploads/
+.vscode/
 
