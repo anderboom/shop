@@ -1,6 +1,5 @@
 import {
   Component,
-  OnDestroy,
   OnInit,
 } from '@angular/core';
 import {
@@ -12,7 +11,6 @@ import {
 import {
   Observable,
   of,
-  Subscription,
 } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { MaterialService } from 'src/app/admin/shared/classes/material.service';
@@ -26,10 +24,9 @@ import { CategoryInterface } from '../../types/catergory.interface';
   templateUrl: './categories-form.component.html',
   styleUrls: ['./categories-form.component.css'],
 })
-export class CategoriesFormComponent implements OnInit, OnDestroy {
+export class CategoriesFormComponent implements OnInit {
   categories$: Observable<CategoryInterface[]> | undefined;
   category: CategoryInterface | undefined;
-  routeSub: Subscription | undefined;
 
   constructor(
     private categoriesService: CategoriesService,
@@ -40,7 +37,8 @@ export class CategoriesFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.categories$ = this.categoriesService.fetch();
-    this.routeSub = this.route.params
+
+    this.route.params
       .pipe(
         switchMap((params: Params) => {
           if (params['id']) {
@@ -54,6 +52,8 @@ export class CategoriesFormComponent implements OnInit, OnDestroy {
           if (category) {
             this.category = category;
             this.categoriesService.categoryName = category.name;
+            this.searchService.isSorted = false;
+
             this.router.routeReuseStrategy.shouldReuseRoute = function () {
               return false;
             };
@@ -63,13 +63,10 @@ export class CategoriesFormComponent implements OnInit, OnDestroy {
       );
   }
 
-  ngOnDestroy() {
-    if (this.routeSub) {
-      this.routeSub?.unsubscribe();
-    }
-  }
-
   get isFilter(): boolean {
     return this.searchService.isFilter;
+  }
+  get isSorted(): boolean {
+    return this.searchService.isSorted;
   }
 }

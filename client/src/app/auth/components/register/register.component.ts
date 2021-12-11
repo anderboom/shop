@@ -38,28 +38,11 @@ export class RegisterComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {
-    // this.route.queryParams.subscribe((params: Params) => {
-    //   if (params['registered']) {
-    //     // Вы зарегистрированы
-    //     MaterialService.toast('Користувач успішно зареєстрований!');
-    //   } else if (params['accessDenied']) {
-    //     // Сперва авторизируйтесь
-    //     MaterialService.toast(
-    //       'Для початку роботи з сервісом необхідно пройти авторизацію в системі!'
-    //     );
-    //   } else if (params['sessionFailed']) {
-    //     // Закончилось время сессии
-    //     MaterialService.toast(
-    //       'Час сесії минув, необхідно пройти авторизацію в системі!'
-    //     );
-    //   }
-    // });
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy() {
     if (this.registerSub) {
-      this.registerSub?.unsubscribe();
+      this.registerSub.unsubscribe();
     }
   }
 

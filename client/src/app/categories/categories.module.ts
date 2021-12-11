@@ -20,6 +20,9 @@ import {
   CategoriesComponent,
 } from './components/categories/categories.component';
 import {
+  FilteredPositionComponent,
+} from './components/filtered-position/filtered-position.component';
+import {
   PositionsFormComponent,
 } from './components/positions-form/positions-form.component';
 
@@ -45,6 +48,7 @@ const routes: Routes = [
     CategoriesComponent,
     CategoriesFormComponent,
     PositionsFormComponent,
+    FilteredPositionComponent,
   ],
   imports: [
     CommonModule,
@@ -58,6 +62,7 @@ const routes: Routes = [
     CategoriesComponent,
     CategoriesFormComponent,
     PositionsFormComponent,
+    FilteredPositionComponent,
   ],
 })
 export class CategoriesModule {}

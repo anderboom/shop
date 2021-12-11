@@ -42,15 +42,12 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params: Params) => {
       if (params['registered']) {
-        // Вы зарегистрированы
         MaterialService.toast('Зайдіть в систему використовуючи свої дані!');
       } else if (params['accessDenied']) {
-        // Сперва авторизируйтесь
         MaterialService.toast(
           'Для початку роботи з сервісом необхідно пройти авторизацію в системі!'
         );
       } else if (params['sessionFailed']) {
-        // Закончилось время сессии
         MaterialService.toast(
           'Час сесії минув, необхідно пройти авторизацію в системі!'
         );
@@ -60,7 +57,7 @@ export class LoginComponent implements OnInit {
 
   ngOnDestroy() {
     if (this.loginSub) {
-      this.loginSub?.unsubscribe();
+      this.loginSub.unsubscribe();
     }
   }
 

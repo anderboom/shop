@@ -1,11 +1,15 @@
 <div class="row" *ngIf="categories$ | async as categories; else loader">
+    <ng-container *ngIf="isSorted">
+        <div class="col s12 m12 l9 right">
+            <app-filtered-position *ngIf="category?._id" [categoryId]="category?._id"></app-filtered-position>
+        </div>
+    </ng-container>
     <ng-container *ngIf="!isFilter">
         <div class="col s12 m12 l9 right">
             <app-positions-form *ngIf="category?._id" [categoryId]="category?._id"></app-positions-form>
         </div>
     </ng-container>
 </div>
-
 <ng-template #loader>
-    <app-loader></app-loader>
+    <app-loader class="loader"></app-loader>
 </ng-template>

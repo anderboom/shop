@@ -14,6 +14,7 @@ import {
   MaterialService,
 } from 'src/app/admin/shared/classes/material.service';
 import { OrderService } from 'src/app/cart/services/order.service';
+import { SearchService } from 'src/app/search/services/search.service';
 import { CartService } from 'src/app/shared/services/cart.service';
 
 import { CategoriesService } from '../../services/categories.service';
@@ -34,7 +35,6 @@ export class PositionsFormComponent
 
   modal: MaterialInstance | undefined;
   positions: PositionInterface[] = [];
-  sortedPositions: PositionInterface[] = [];
   positionId: any = null;
   loading = false;
   totalQuantity = 0;
@@ -46,7 +46,8 @@ export class PositionsFormComponent
     private positionsService: PositionService,
     public orderService: OrderService,
     private categoriesService: CategoriesService,
-    private cartService: CartService
+    private cartService: CartService,
+    private searchService: SearchService
   ) {}
 
   ngOnInit(): void {
@@ -62,7 +63,7 @@ export class PositionsFormComponent
 
   ngOnDestroy() {
     if (this.positionSub) {
-      this.positionSub?.unsubscribe();
+      this.positionSub.unsubscribe();
     }
     this.modal?.destroy();
   }
