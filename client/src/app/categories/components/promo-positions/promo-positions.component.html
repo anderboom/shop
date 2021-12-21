@@ -1,8 +1,8 @@
 <div class="card-width row" *ngIf="!loading; else loader">
-    <div class="col s9 right">
+    <div class="col s12 m12 l9 right">
         <div *ngIf="sortingSelected === ''">
             <div *ngIf="promoPositions$ | async as positions">
-                <div *ngFor="let position of positions | paginate: {itemsPerPage: 6,currentPage: p};" class="card col s12 m6 l4">
+                <div *ngFor="let position of positions | paginate: {itemsPerPage: 6,currentPage: p};" class="card col s12 m6 l4 ">
                     <div class="card-image waves-effect waves-block waves-light mb0">
                         <img class="img-responsive" src="../../../../assets/akcia.png">
                         <img class="img activator center-block" src={{position.imageSrc}}>
