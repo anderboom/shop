@@ -40,12 +40,12 @@
 <ng-container>
     <div *ngIf="isFilter">
         <div class="row">
-            <div class="center blue-text col s9 right">
+            <div class="center blue-text col s12 m12 l9  right">
                 <span class="category">Результати пошуку</span>
             </div>
         </div>
         <div class="row card-width">
-            <div class="col s9 right ">
+            <div class="col s12 m12 l9 right ">
                 <div *ngFor="let position of foundPositions$ | async | filter: searchStr | paginate: {itemsPerPage: paginationStep,currentPage: p};" class="card col s12 m6 l4">
                     <div class="card-image waves-effect waves-block waves-light mb0">
                         <img class="img activator center-block" src={{position.imageSrc}}>
