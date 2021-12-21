@@ -7,10 +7,10 @@ import {
 
 import { LoaderModule } from 'src/app/shared/modules/loader/loader.module';
 
+import { AuthGuard } from '../shared/classes/auth.guard';
 import {
   AdminLayoutComponent,
-} from '../shared/admin-layout/admin-layout.component';
-import { AuthGuard } from '../shared/classes/auth.guard';
+} from '../shared/layouts/admin-layout/admin-layout.component';
 import {
   AdminStorageFormComponent,
 } from './components/admin-storage-form/admin-storage-form.component';

@@ -12,16 +12,15 @@ import {
   AdminCategoriesModule,
 } from './admin-categories/admin-categories.module';
 import { AdminDashboardModule } from './admin-dashboard/admin-dashboard.module';
-import { AdminHistoryModule } from './admin-history/admin-history.module';
 import { AdminOrdersModule } from './admin-orders/admin-orders.module';
+import { AdminPromoModule } from './admin-promo/admin-promo.module';
 import { AdminStorageModule } from './admin-storage/admin-storage.module';
 import {
   AdminLayoutComponent,
-} from './shared/admin-layout/admin-layout.component';
+} from './shared/layouts/admin-layout/admin-layout.component';
 import {
   AdminLoginLayoutComponent,
-} from './shared/admin-login-layout/admin-login-layout.component';
-import { LoaderComponent } from './shared/components/loader/loader.component';
+} from './shared/layouts/admin-login-layout/admin-login-layout.component';
 
 @NgModule({
   imports: [
@@ -32,17 +31,12 @@ import { LoaderComponent } from './shared/components/loader/loader.component';
     AdminCategoriesModule,
     AdminStorageModule,
     AdminOrdersModule,
-    AdminHistoryModule,
+    AdminPromoModule,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
   ],
   exports: [RouterModule],
-  declarations: [
-    AdminLayoutComponent,
-    AdminLoginLayoutComponent,
-
-    LoaderComponent,
-  ],
+  declarations: [AdminLayoutComponent, AdminLoginLayoutComponent],
 })
 export class AdminModule {}

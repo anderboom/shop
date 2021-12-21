@@ -20,10 +20,13 @@
                         <td class="name name-align">{{position.name}}</td>
                         <td class="quantity">
                             <div class="quant">{{position.orderQuantity}}</div>
-                            <!-- <input #quantityInput class="col s6" id="pos-quantity" min=1 type="number" [(ngModel)]="order.orderQuantity"> -->
                         </td>
-                        <td class="name">
-                            {{position.cost}} грн</td>
+                        <td *ngIf="position.groupPages === main" class="name">
+                            {{position.cost}} грн
+                        </td>
+                        <td *ngIf="position.groupPages === promo" class="name">
+                            {{position.promoCost}} грн
+                        </td>
                         <td class="name">
                             <button class="btn btn-small red" (click)="delete(position)">
                                 <i class="material-icons">delete</i>

@@ -1,5 +1,6 @@
 import {
   Component,
+  OnDestroy,
   OnInit,
 } from '@angular/core';
 import {
@@ -13,33 +14,36 @@ import {
   Router,
 } from '@angular/router';
 
-import { of } from 'rxjs';
+import {
+  of,
+  Subscription,
+} from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { MaterialService } from 'src/app/admin/shared/classes/material.service';
-import { Category } from 'src/app/admin/shared/interfaces';
+import { MaterialService } from 'src/app/shared/classes/material.service';
 
 import {
   AdminCategoriesService,
 } from '../../services/admin-categories.service';
+import { AdminCategoryInterface } from '../../types/admin-categories.interface';
 
 @Component({
   selector: 'app-admin-categories-form',
   templateUrl: './admin-categories-form.component.html',
   styleUrls: ['./admin-categories-form.component.css'],
 })
-export class AdminCategoriesFormComponent implements OnInit {
+export class AdminCategoriesFormComponent implements OnInit, OnDestroy {
   isNew = true;
-  category!: Category;
+  category!: AdminCategoryInterface;
   form = new FormGroup({
     name: new FormControl('', Validators.required),
   });
+  categorySub$: Subscription | undefined;
 
   constructor(
     private route: ActivatedRoute,
     private categoriesService: AdminCategoriesService,
     private router: Router
   ) {}
-
   ngOnInit(): void {
     this.form.disable();
     this.route.params
@@ -67,10 +71,13 @@ export class AdminCategoriesFormComponent implements OnInit {
       );
   }
 
+  ngOnDestroy(): void {
+    this.categorySub$?.unsubscribe();
+  }
+
   get f() {
     return this.form.controls;
   }
-
   onSubmit() {
     let obs$;
     this.form.disable();
@@ -80,7 +87,7 @@ export class AdminCategoriesFormComponent implements OnInit {
       obs$ = this.categoriesService.update(this.category._id, this.form.value);
     }
 
-    obs$.subscribe(
+    this.categorySub$ = obs$.subscribe(
       (category) => {
         this.category = category;
         MaterialService.toast('Сохранено!');
@@ -98,11 +105,13 @@ export class AdminCategoriesFormComponent implements OnInit {
       `Вы уверены что хотите удалить категорию ${this.category.name}?`
     );
     if (decision) {
-      this.categoriesService.delete(this.category._id).subscribe(
-        (response) => MaterialService.toast(response.message),
-        (error) => MaterialService.toast(error.error.message),
-        () => this.router.navigate(['/admin/categories'])
-      );
+      this.categorySub$ = this.categoriesService
+        .delete(this.category._id)
+        .subscribe(
+          (response) => MaterialService.toast(response.message),
+          (error) => MaterialService.toast(error.error.message),
+          () => this.router.navigate(['/admin/categories'])
+        );
     }
   }
 }

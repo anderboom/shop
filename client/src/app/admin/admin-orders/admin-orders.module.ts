@@ -5,13 +5,16 @@ import {
   Routes,
 } from '@angular/router';
 
+import { LoaderModule } from 'src/app/shared/modules/loader/loader.module';
+
+import { AuthGuard } from '../shared/classes/auth.guard';
 import {
   AdminLayoutComponent,
-} from '../shared/admin-layout/admin-layout.component';
-import { AuthGuard } from '../shared/classes/auth.guard';
+} from '../shared/layouts/admin-layout/admin-layout.component';
 import {
   AdminOrdersComponent,
 } from './components/admin-orders/admin-orders.component';
+import { AdminOrdersPositionComponent } from './components/admin-orders-position/admin-orders-position.component';
 
 const routes: Routes = [
   {
@@ -23,7 +26,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AdminOrdersComponent],
-  imports: [CommonModule, RouterModule.forChild(routes)],
+  declarations: [AdminOrdersComponent, AdminOrdersPositionComponent],
+  imports: [CommonModule, RouterModule.forChild(routes), LoaderModule],
 })
 export class AdminOrdersModule {}

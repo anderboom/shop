@@ -4,25 +4,22 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import {
-  ActivatedRoute,
-  Router,
-} from '@angular/router';
 
 import {
   Observable,
   Subscription,
 } from 'rxjs';
+import { CartService } from 'src/app/cart/services/cart.service';
+import { PositionInterface } from 'src/app/categories/types/position.interface';
+import { SearchService } from 'src/app/search/services/search.service';
 import {
   MaterialInstance,
   MaterialService,
-} from 'src/app/admin/shared/classes/material.service';
+} from 'src/app/shared/classes/material.service';
 import {
-  CategoryInterface,
-} from 'src/app/categories/types/catergory.interface';
-import { PositionInterface } from 'src/app/categories/types/position.interface';
-import { SearchService } from 'src/app/search/services/search.service';
-import { CartService } from 'src/app/shared/services/cart.service';
+  PaginationStep,
+  SortingEnum,
+} from 'src/app/shared/constants/constants.enum';
 
 @Component({
   selector: 'app-search',
@@ -35,30 +32,28 @@ export class SearchComponent implements OnInit {
   @ViewChild('modal') modalRef: ElementRef | undefined;
   @ViewChild('quantityInput') quantityInput: ElementRef | undefined;
   modal: MaterialInstance | undefined;
-  searchStr = '';
-  minLength = 3;
+
   foundPositions$: Observable<PositionInterface[]> | undefined;
-  foundPositionsArr: PositionInterface[] = [];
+  brandSelectSub$: Subscription | undefined;
+  sortPositionsMenu: string[] = [];
+  brandNameArr: string[] = [];
   positionId: any = null;
   isFilter = false;
-  isSorted = false;
-  price = '';
   loading = false;
-  brandNameArr: string[] = [];
   selectedBrand = '';
   p: number = 1;
-  brandSelectSub$: Subscription | undefined;
-  category: CategoryInterface | undefined;
-  categoryId: any;
+  paginationStep = PaginationStep.step;
+  searchStr = '';
+  minLength = 3;
+  sorting = '';
 
   constructor(
     private searchService: SearchService,
-    private router: Router,
-    private route: ActivatedRoute,
     public order: CartService
   ) {}
 
   ngOnInit(): void {
+    this.sortPositionsMenu = [SortingEnum.increase, SortingEnum.decrease];
     this.brandSelectSub$ = this.searchService
       .getBrandNames()
       .subscribe((brands) => (this.brandNameArr = brands));
@@ -67,7 +62,7 @@ export class SearchComponent implements OnInit {
   ngOnDestroy() {
     this.modal?.destroy();
     this.brandSelectSub$?.unsubscribe();
-    this.setFilterMode(false, false);
+    this.setFilterMode(false);
   }
 
   ngAfterViewInit() {
@@ -80,21 +75,16 @@ export class SearchComponent implements OnInit {
   searchHandleChange() {
     if (this.minLength <= this.searchStr.length) {
       this.foundPositions$ = this.searchService.fetch();
-      this.setFilterMode(true, false);
+      this.setFilterMode(true);
     }
     if (this.minLength > this.searchStr.length) {
-      this.setFilterMode(false, false);
-      this.router.routeReuseStrategy.shouldReuseRoute = function () {
-        return false;
-      };
+      this.setFilterMode(false);
     }
   }
 
-  setFilterMode(isFilter: boolean, isSorted: boolean) {
+  setFilterMode(isFilter: boolean) {
     this.isFilter = isFilter;
     this.searchService.isFilter = isFilter;
-    this.isSorted = isSorted;
-    this.searchService.isSorted = isSorted;
   }
 
   open() {
@@ -118,17 +108,20 @@ export class SearchComponent implements OnInit {
   brandSelect(event: any) {
     let value = event.target.value;
     this.selectedBrand = value;
-    this.setFilterMode(true, false);
     this.searchStr = '';
     this.foundPositions$ = this.searchService.selectedBrandFetch(
       this.selectedBrand
     );
+    this.setFilterMode(true);
+    if (value === '') {
+      this.searchStr = '';
+      this.setFilterMode(false);
+    }
   }
 
-  priceSelect(event: any) {
+  sortingSelect(event: any) {
     let value = event.target.value;
-    this.isSorted = value;
+    this.searchService.sorting = value;
     this.searchStr = '';
-    this.setFilterMode(true, this.isSorted);
   }
 }

@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col s12">
+        <div class="page-subtitle">
+            <h5>Позиции:</h5>
+        </div>
+
+        <div *ngIf="!loading; else loader">
+            <div class="collection" *ngIf="promoPositions.length !== 0; else empty">
+                <a *ngFor="let position of promoPositions" class="collection-item collection-item-icon">
+
+                    <span>
+                        {{position.name + " - "}} <strong>{{position.promoCost}} грн.</strong>
+                    </span>
+                    <span>
+                        <i class="material-icons" (click)="addToMain($event, position)">storage</i>
+                    </span>
+
+                </a>
+            </div>
+            <ng-template #empty>
+                <div class="center">В категории нет ни одной позиции</div>
+            </ng-template>
+        </div>
+        <ng-template #loader>
+            <app-loader></app-loader>
+        </ng-template>
+    </div>
+</div>

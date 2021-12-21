@@ -101,3 +101,10 @@
     width: 97%;
     margin-left: 1%;
 }
+
+.img-responsive {
+    margin-top: 5%;
+    max-width: 25%;
+    height: auto;
+    object-fit: cover;
+}

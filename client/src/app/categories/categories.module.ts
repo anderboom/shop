@@ -20,23 +20,32 @@ import {
   CategoriesComponent,
 } from './components/categories/categories.component';
 import {
-  FilteredPositionComponent,
-} from './components/filtered-position/filtered-position.component';
-import {
   PositionsFormComponent,
 } from './components/positions-form/positions-form.component';
+import {
+  PromoPositionsComponent,
+} from './components/promo-positions/promo-positions.component';
 
 const routes: Routes = [
   {
     path: '',
     component: SiteLayoutComponent,
     children: [
+      { path: '', redirectTo: 'category/promo', pathMatch: 'full' },
+      {
+        path: 'category/promo',
+        component: PromoPositionsComponent,
+      },
       {
         path: 'category',
         component: CategoriesComponent,
       },
       {
         path: 'category/:id',
+        component: CategoriesFormComponent,
+      },
+      {
+        path: 'category/:id/shop',
         component: CategoriesFormComponent,
       },
     ],
@@ -48,7 +57,7 @@ const routes: Routes = [
     CategoriesComponent,
     CategoriesFormComponent,
     PositionsFormComponent,
-    FilteredPositionComponent,
+    PromoPositionsComponent,
   ],
   imports: [
     CommonModule,
@@ -62,7 +71,6 @@ const routes: Routes = [
     CategoriesComponent,
     CategoriesFormComponent,
     PositionsFormComponent,
-    FilteredPositionComponent,
   ],
 })
 export class CategoriesModule {}

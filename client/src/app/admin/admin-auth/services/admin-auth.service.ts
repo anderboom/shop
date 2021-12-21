@@ -4,7 +4,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { User } from '../../shared/interfaces';
+import { AdminLoginInterface } from '../types/admin-login.interface';
+import { AdminRegisterInterface } from '../types/admin-password.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,7 @@ export class AdminAuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(user: User): Observable<{ token: string }> {
+  login(user: AdminLoginInterface): Observable<{ token: string }> {
     return this.http.post<{ token: string }>('/api/admin/login', user).pipe(
       tap(({ token }) => {
         localStorage.setItem('auth-token-admin', token);
@@ -40,7 +41,7 @@ export class AdminAuthService {
     localStorage.clear();
   }
 
-  register(user: User): Observable<User> {
-    return this.http.post<User>('/api/admin/register', user);
+  register(user: AdminRegisterInterface): Observable<AdminRegisterInterface> {
+    return this.http.post<AdminRegisterInterface>('/api/admin/register', user);
   }
 }

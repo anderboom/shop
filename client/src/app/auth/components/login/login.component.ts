@@ -14,7 +14,7 @@ import {
 } from '@angular/router';
 
 import { Subscription } from 'rxjs';
-import { MaterialService } from 'src/app/admin/shared/classes/material.service';
+import { MaterialService } from 'src/app/shared/classes/material.service';
 
 import { AuthService } from '../../services/auth.service';
 

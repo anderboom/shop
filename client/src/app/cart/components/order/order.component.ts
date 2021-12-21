@@ -12,12 +12,21 @@ import {
 import { Router } from '@angular/router';
 
 import { SelectItem } from 'primeng/api';
-import { MaterialService } from 'src/app/admin/shared/classes/material.service';
-import { AuthService } from 'src/app/auth/services/auth.service';
-import { CartService } from 'src/app/shared/services/cart.service';
+import { CartService } from 'src/app/cart/services/cart.service';
+import { MaterialService } from 'src/app/shared/classes/material.service';
+import {
+  DeliveryEnum,
+  PaymentEnum,
+} from 'src/app/shared/constants/constants.enum';
 
 import { NovaposhtaService } from '../../services/novaposhta.service';
-import { OrderPositionInterface } from '../../types/order.interface';
+import { OrderService } from '../../services/order.service';
+import { CartInterface } from '../../types/cart.interface';
+import {
+  DeliveryInterface,
+  OrderInterface,
+  UserDataInterface,
+} from '../../types/order.interface';
 
 type UserType = 'sender';
 
@@ -49,12 +58,12 @@ export class OrderComponent implements OnInit {
     department: new FormControl(''),
     firstName: new FormControl('', Validators.required),
     secondName: new FormControl('', Validators.required),
-    number: new FormControl(null, Validators.required),
+    phoneNumber: new FormControl(null, Validators.required),
     email: new FormControl(null),
     comment: new FormControl(null),
   });
 
-  orders: OrderPositionInterface[] = [];
+  cart: CartInterface[] = [];
   totalCost = 0;
   paymentList: any;
   deliveryList: any;
@@ -63,32 +72,25 @@ export class OrderComponent implements OnInit {
   area: any;
   city: any;
   department: any;
+  dateNow = new Date();
+  orderNumber = 0;
 
   constructor(
     private router: Router,
-    private ordersService: CartService,
-    private novaposhta: NovaposhtaService,
-    private auth: AuthService
+    private cartService: CartService,
+    private orderService: OrderService,
+    private novaposhta: NovaposhtaService
   ) {}
 
   ngOnInit(): void {
-    this.orders = this.ordersService.cart;
-    this.totalCost = this.ordersService.totalCost;
-    let totalOrder: OrderPositionInterface[] = JSON.parse(
-      localStorage.getItem('cart') || '{}'
-    );
-    let sumTotalCost = JSON.parse(localStorage.getItem('total') || '0');
-    this.orders = totalOrder;
-    this.totalCost = sumTotalCost;
-    // this.getAreas();
-    this.deliveryList = [
-      // { id: 1, name: 'Самовивіз зі складу' },
-      { id: 2, name: 'Нова пошта' },
-    ];
+    this.cart = JSON.parse(localStorage.getItem('cart') || '{}');
+    this.totalCost = JSON.parse(localStorage.getItem('total') || '0');
+
+    this.deliveryList = [{ id: 1, name: DeliveryEnum.novaposhta }];
     this.paymentList = [
-      { id: 1, name: 'Готівкою' },
-      { id: 2, name: 'Оплата на карту' },
-      { id: 3, name: 'Післяплата "Нова Пошта"' },
+      { id: 1, name: PaymentEnum.cash },
+      { id: 2, name: PaymentEnum.card },
+      { id: 3, name: PaymentEnum.postpay },
     ];
   }
 
@@ -147,44 +149,45 @@ export class OrderComponent implements OnInit {
     this.department = this.departmentsSender?.find(
       (d) => d.value == this.form.value.department
     );
-
-    type Order = {
-      payment: string;
-      delivery: string;
-      area?: string;
-      city?: string;
-      department?: string;
-      firstName: string;
-      secondName: string;
-      number: string;
-      email?: string;
-      comment?: string;
-      orders: OrderPositionInterface[];
-      totalCost: number;
-    };
-
-    const order: Order = {
+    const delivery: DeliveryInterface = {
       payment: this.form.value.payment,
-      delivery: this.form.value.delivery,
+      deliveryName: this.form.value.delivery,
       area: this.area.label,
       city: this.city.label,
       department: this.department.label,
+    };
+
+    const userData: UserDataInterface = {
       firstName: this.form.value.firstName,
       secondName: this.form.value.secondName,
-      number: this.form.value.number,
+      phoneNumber: this.form.value.phoneNumber,
       email: this.form.value.email,
       comment: this.form.value.comment,
-      orders: this.orders,
+    };
+
+    const newOrder: OrderInterface = {
+      delivery: delivery,
+      userData: userData,
+      cart: this.cart,
       totalCost: this.totalCost,
     };
-    console.log(order);
-    MaterialService.toast(
-      'Дякуємо за замовлення! Наш оператор зв`яжеться з Вами найближчим часом.'
+
+    this.orderService.createOrder(newOrder).subscribe(
+      (order) => {
+        console.log(order);
+        MaterialService.toast(
+          "Дякуємо за замовлення! Наш оператор зв'яжеться з Вами найближчим часом."
+        );
+      },
+      (error) => {
+        MaterialService.toast(error.error.message);
+      },
+      () => this.clearOrder()
     );
-    localStorage.clear();
-    this.ordersService.totalCost = 0;
-    this.ordersService.totalQuantity = 0;
-    this.ordersService.cart = [];
+  }
+
+  clearOrder() {
+    this.cartService.resetCart();
     this.router.navigate(['/']);
   }
 

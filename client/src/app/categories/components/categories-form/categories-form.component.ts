@@ -1,5 +1,6 @@
 import {
   Component,
+  OnDestroy,
   OnInit,
 } from '@angular/core';
 import {
@@ -11,9 +12,9 @@ import {
 import {
   Observable,
   of,
+  Subscription,
 } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { MaterialService } from 'src/app/admin/shared/classes/material.service';
 import { SearchService } from 'src/app/search/services/search.service';
 
 import { CategoriesService } from '../../services/categories.service';
@@ -24,9 +25,11 @@ import { CategoryInterface } from '../../types/catergory.interface';
   templateUrl: './categories-form.component.html',
   styleUrls: ['./categories-form.component.css'],
 })
-export class CategoriesFormComponent implements OnInit {
+export class CategoriesFormComponent implements OnInit, OnDestroy {
   categories$: Observable<CategoryInterface[]> | undefined;
+  categories: CategoryInterface[] | undefined;
   category: CategoryInterface | undefined;
+  cSub$: Subscription | undefined;
 
   constructor(
     private categoriesService: CategoriesService,
@@ -35,10 +38,13 @@ export class CategoriesFormComponent implements OnInit {
     private searchService: SearchService
   ) {}
 
+  ngOnDestroy(): void {
+    this.cSub$?.unsubscribe();
+  }
   ngOnInit(): void {
     this.categories$ = this.categoriesService.fetch();
 
-    this.route.params
+    this.cSub$ = this.route.params
       .pipe(
         switchMap((params: Params) => {
           if (params['id']) {
@@ -47,26 +53,12 @@ export class CategoriesFormComponent implements OnInit {
           return of(null);
         })
       )
-      .subscribe(
-        (category) => {
-          if (category) {
-            this.category = category;
-            this.categoriesService.categoryName = category.name;
-            this.searchService.isSorted = false;
-
-            this.router.routeReuseStrategy.shouldReuseRoute = function () {
-              return false;
-            };
-          }
-        },
-        (error) => MaterialService.toast(error.error.message)
-      );
-  }
-
-  get isFilter(): boolean {
-    return this.searchService.isFilter;
-  }
-  get isSorted(): boolean {
-    return this.searchService.isSorted;
+      .subscribe((category) => {
+        if (category) {
+          this.category = category;
+          this.categoriesService.categoryName = category.name;
+          this.router.navigate([`category/${this.category._id}/shop`]);
+        }
+      });
   }
 }

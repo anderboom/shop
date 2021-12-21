@@ -59,9 +59,9 @@
                     </span>
                 </div>
                 <div class="input-field">
-                    <input formControlName="number" id="pos-number" type="text" [ngClass]="{'invalid': f.number.invalid && f.number.touched}">
-                    <label for="pos-number">Телефон<span class="red-text">*</span></label>
-                    <span *ngIf="f.number.invalid && f.number.touched" class="helper-text red-text">
+                    <input formControlName="phoneNumber" id="pos-phoneNumber" type="text" [ngClass]="{'invalid': f.phoneNumber.invalid && f.phoneNumber.touched}">
+                    <label for="pos-phoneNumber">Телефон<span class="red-text">*</span></label>
+                    <span *ngIf="f.phoneNumber.invalid && f.phoneNumber.touched" class="helper-text red-text">
                         Поле Телефон не повинно бути порожнім.
                     </span>
                 </div>
@@ -95,7 +95,7 @@
     </div>
     <div class="col s4 order-order right">
         <h6 class="mb4 blue-text order">Ваше замовлення</h6>
-        <div class="row" *ngFor="let order of orders">
+        <div class="row" *ngFor="let order of cart">
             <div class="col s4 left line">
                 <img class="imageOrder" src={{order.imageSrc}}>
             </div>

@@ -9,15 +9,17 @@ import {
 
 import { Observable } from 'rxjs';
 import {
-  MaterialInstance,
-  MaterialService,
-} from 'src/app/admin/shared/classes/material.service';
-import { Category } from 'src/app/admin/shared/interfaces';
+  AdminCategoryInterface,
+} from 'src/app/admin/admin-categories/types/admin-categories.interface';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { CartService } from 'src/app/cart/services/cart.service';
 import {
   CategoriesService,
 } from 'src/app/categories/services/categories.service';
-import { CartService } from 'src/app/shared/services/cart.service';
+import {
+  MaterialInstance,
+  MaterialService,
+} from 'src/app/shared/classes/material.service';
 
 @Component({
   selector: 'app-navbar',
@@ -26,8 +28,8 @@ import { CartService } from 'src/app/shared/services/cart.service';
 })
 export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('sidenav') sidenavRef: ElementRef | undefined;
-  categories$: Observable<Category[]> | undefined;
-  category: Category | undefined;
+  categories$: Observable<AdminCategoryInterface[]> | undefined;
+  category: AdminCategoryInterface | undefined;
   sidenav: MaterialInstance | undefined;
 
   constructor(
@@ -45,7 +47,9 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.sidenav = MaterialService.initSidenav(this.sidenavRef!);
+    if (!this.isAuthAdmin) {
+      this.sidenav = MaterialService.initSidenav(this.sidenavRef!);
+    }
   }
 
   open() {

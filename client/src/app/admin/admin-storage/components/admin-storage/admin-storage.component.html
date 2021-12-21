@@ -2,7 +2,7 @@
     <h5>Категории</h5>
 </div>
 
-<div class="row" *ngIf="categories$ | async as categories; else loader">
+<div class="row" *ngIf="storageCategories$ | async as categories; else loader">
     <div class="col s12 ">
         <div class="collection " *ngIf="categories.length !== 0; else empty">
             <a *ngFor="let category of categories" [routerLink]="['/admin/storage', category._id]" class="collection-item">

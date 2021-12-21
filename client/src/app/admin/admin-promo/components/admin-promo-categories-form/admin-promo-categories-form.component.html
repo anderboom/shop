@@ -1,0 +1,11 @@
+<div class="page-title">
+    <h5><a routerLink="/admin/promo">Категории</a></h5>
+</div>
+<form class="col s12 l6" [formGroup]="form">
+    <div class="input-field">
+        <input formControlName="name" id="name" type="text" class="disabled">
+        <label for="name">Название</label>
+    </div>
+</form>
+
+<app-admin-promo-positions *ngIf="category?._id" [categoryId]="category?._id"></app-admin-promo-positions>

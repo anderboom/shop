@@ -10,18 +10,14 @@
                 </a>
             </li>
             <li class="bold">
-                <a class="promotions waves-effect waves-orange">Акції
+                <a [routerLink]="['/category/promo']" class="promotions waves-effect waves-orange">Акції
                     <a class="promotions secondary-content">
                         <i class="name material-icons">keyboard_arrow_right</i></a>
                 </a>
             </li>
         </ul>
     </div>
-    <!-- <div class="col s12 m12 l9 right">
-        <app-positions-form [categoryId]="categories[0]._id"></app-positions-form>
-    </div> -->
 </div>
-
 <ng-template #loader>
     <app-loader></app-loader>
 </ng-template>

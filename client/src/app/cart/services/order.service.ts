@@ -1,37 +1,20 @@
-import {
-  HttpClient,
-  HttpParams,
-} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import {
-  OrderInterface,
-  OrderPositionInterface,
-} from '../types/order.interface';
+import { OrderInterface } from '../types/order.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrderService {
-  list: OrderPositionInterface[] = [];
+  public order: OrderInterface[] = [];
+  public totalCost = 0;
 
   constructor(private http: HttpClient) {}
 
-  create(order: OrderInterface): Observable<OrderInterface> {
-    return this.http.post<OrderInterface>('/api/order', order);
+  createOrder(order: OrderInterface): Observable<OrderInterface> {
+    return this.http.post<OrderInterface>('/api/admin/order', order);
   }
-
-  fetch(params: any = {}): Observable<OrderInterface[]> {
-    return this.http.get<OrderInterface[]>('/api/order', {
-      params: new HttpParams({
-        fromObject: params,
-      }),
-    });
-  }
-
-  remove(order: OrderPositionInterface) {}
-
-  clear() {}
 }

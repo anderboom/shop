@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 import {
   AdminCategoriesService,
 } from '../../services/admin-categories.service';
-import { Category } from '../../types/categories.interface';
+import { AdminCategoryInterface } from '../../types/admin-categories.interface';
 
 @Component({
   selector: 'app-admin-categories',
@@ -16,7 +16,7 @@ import { Category } from '../../types/categories.interface';
   styleUrls: ['./admin-categories.component.css'],
 })
 export class AdminCategoriesComponent implements OnInit {
-  categories$: Observable<Category[]> | undefined;
+  categories$: Observable<AdminCategoryInterface[]> | undefined;
 
   constructor(private categoriesService: AdminCategoriesService) {}
 

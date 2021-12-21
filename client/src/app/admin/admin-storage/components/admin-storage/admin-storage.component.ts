@@ -4,12 +4,9 @@ import {
 } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import {
-  AdminCategoriesService,
-} from 'src/app/admin/admin-categories/services/admin-categories.service';
-import {
-  Category,
-} from 'src/app/admin/admin-categories/types/categories.interface';
+
+import { AdminStorageService } from '../../services/admin-storage.service';
+import { StorageCategoryInterface } from '../../types/admin-storage.interface';
 
 @Component({
   selector: 'app-admin-storage',
@@ -17,11 +14,11 @@ import {
   styleUrls: ['./admin-storage.component.css'],
 })
 export class AdminStorageComponent implements OnInit {
-  categories$: Observable<Category[]> | undefined;
+  storageCategories$: Observable<StorageCategoryInterface[]> | undefined;
 
-  constructor(private categoriesService: AdminCategoriesService) {}
+  constructor(private storageService: AdminStorageService) {}
 
   ngOnInit(): void {
-    this.categories$ = this.categoriesService.fetch();
+    this.storageCategories$ = this.storageService.fetchCategories();
   }
 }

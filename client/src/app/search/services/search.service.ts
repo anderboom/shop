@@ -10,13 +10,12 @@ import { PositionInterface } from 'src/app/categories/types/position.interface';
 })
 export class SearchService {
   isFilter = false;
-  isSorted = false;
   foundPositions: PositionInterface[] = [];
   brandsArr: PositionInterface[] = [];
   brandsNameArr: string[] = [];
-  categoryName = '';
   positionId: any = null;
   categoryId: any = null;
+  sorting = '';
 
   constructor(private http: HttpClient) {}
 
@@ -45,10 +44,11 @@ export class SearchService {
   selectedBrandFetch(brand: string): Observable<PositionInterface[]> {
     return this.http.get<PositionInterface[]>('/api/admin/position/').pipe(
       map((positions: PositionInterface[]) => {
-        this.brandsArr = positions;
-        this.brandsArr = this.brandsArr.filter((p) => p.brand === brand);
-        this.brandsArr.forEach((p) => (p.orderQuantity = 1));
-        return this.brandsArr;
+        this.foundPositions = positions;
+        this.foundPositions.forEach((p) => (p.orderQuantity = 1));
+        return (this.foundPositions = this.foundPositions.filter(
+          (p) => p.brand === brand
+        ));
       })
     );
   }

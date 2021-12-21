@@ -1,16 +1,27 @@
+import { CartInterface } from './cart.interface';
+
 export interface OrderInterface {
-  date?: Date;
-  order?: number;
-  user?: string;
-  list: OrderPositionInterface[];
-  _id: string;
+  orderNumber?: number;
+  delivery: DeliveryInterface;
+  userData: UserDataInterface;
+  cart: CartInterface[];
+  totalCost: number;
+  groupPages?: string;
+  _id?: string;
 }
 
-export interface OrderPositionInterface {
-  name: string;
-  cost: number;
-  orderQuantity?: number;
-  quantity: number;
-  imageSrc?: string;
-  _id?: string;
+export interface DeliveryInterface {
+  payment: string;
+  deliveryName: string;
+  area?: string;
+  city?: string;
+  department?: string;
+}
+
+export interface UserDataInterface {
+  firstName: string;
+  secondName: string;
+  phoneNumber: string;
+  email?: string;
+  comment?: string;
 }

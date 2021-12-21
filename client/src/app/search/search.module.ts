@@ -14,7 +14,6 @@ import { SearchComponent } from './components/search/search.component';
   declarations: [SearchComponent],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
     FormsModule,

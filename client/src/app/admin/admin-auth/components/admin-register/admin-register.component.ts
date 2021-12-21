@@ -15,7 +15,7 @@ import {
 
 import { Subscription } from 'rxjs';
 
-import { MaterialService } from '../../../shared/classes/material.service';
+import { MaterialService } from '../../../../shared/classes/material.service';
 import { AdminAuthService } from '../../services/admin-auth.service';
 
 @Component({

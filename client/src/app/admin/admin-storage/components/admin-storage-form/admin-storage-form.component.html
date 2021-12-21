@@ -1,9 +1,9 @@
 <div *ngIf="!loading; else loader">
     <div class="page-title">
-        <h5>{{category?.name}}</h5>
+        <h5>{{storageCategory?.name}}</h5>
     </div>
-    <div *ngIf="positions.length !== 0; else empty">
-        <span *ngFor="let position of positions; let i = index ">
+    <div *ngIf="storagePositions.length !== 0; else empty">
+        <span *ngFor="let position of storagePositions; let i = index ">
             <table class="centered">
                 <thead>
                     <tr *ngIf="i == 0 ">

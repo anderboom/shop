@@ -2,7 +2,7 @@
     <div class="col s12">
         <div class="page-subtitle">
             <h5>Позиции:</h5>
-            <button class="waves-effect waves-light btn grey darken-1 btn-small" (click)="onAddPosition()">
+            <button class="waves-effect waves-light btn blue-grey darken-1 btn-small" (click)="onAddPosition()">
                 Добавить позицию
             </button>
         </div>
@@ -15,9 +15,9 @@
                         {{position.name + " - "}} <strong>{{position.cost}} грн.</strong>
                     </span>
                     <span>
-                        <i class="material-icons" (click)="onDeletePosition($event, position)">delete</i>
+                        <i class="material-icons delete" (click)="onDeletePosition($event, position)">delete</i>
+                        <i class="material-icons" (click)="addToPromo($event, position)">add</i>
                     </span>
-
                 </a>
             </div>
             <ng-template #empty>
@@ -68,6 +68,10 @@
                 <span *ngIf="f.inputCost.invalid && f.inputCost.touched" class="helper-text red-text">
                     Введите корректную цену. Минимальное значение 1.
                 </span>
+            </div>
+            <div class="input-field">
+                <input id="pos-promoCost" type="number" min="1" formControlName="promoCost">
+                <label for="pos-inputCost">Акционная цена</label>
             </div>
             <div class="input-field">
                 <input id="pos-quantity" type="number" min="1" formControlName="quantity" [ngClass]="{'invalid': f.quantity.invalid && f.quantity.touched}">

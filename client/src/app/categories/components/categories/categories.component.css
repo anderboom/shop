@@ -46,3 +46,7 @@
     color: rgba(163, 163, 163, 0.986);
     background: linear-gradient(45deg, rgb(192, 190, 190), #ddd);
 }
+
+.loader {
+    margin-left: 30%;
+}

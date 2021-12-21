@@ -8,14 +8,18 @@ import {
   ViewChild,
 } from '@angular/core';
 
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
+import { CartService } from 'src/app/cart/services/cart.service';
+import { OrderService } from 'src/app/cart/services/order.service';
+import { SearchService } from 'src/app/search/services/search.service';
 import {
   MaterialInstance,
   MaterialService,
-} from 'src/app/admin/shared/classes/material.service';
-import { OrderService } from 'src/app/cart/services/order.service';
-import { SearchService } from 'src/app/search/services/search.service';
-import { CartService } from 'src/app/shared/services/cart.service';
+} from 'src/app/shared/classes/material.service';
+import {
+  PaginationStep,
+  SortingEnum,
+} from 'src/app/shared/constants/constants.enum';
 
 import { CategoriesService } from '../../services/categories.service';
 import { PositionService } from '../../services/position.service';
@@ -34,13 +38,16 @@ export class PositionsFormComponent
   @ViewChild('quantityInput') quantityInput: ElementRef | undefined;
 
   modal: MaterialInstance | undefined;
-  positions: PositionInterface[] = [];
+  positions$: Observable<PositionInterface[]> | undefined;
+  positionsByInc$: Observable<PositionInterface[]> | undefined;
+  positionsByDec$: Observable<PositionInterface[]> | undefined;
   positionId: any = null;
   loading = false;
-  totalQuantity = 0;
   p: number = 1;
+  paginationStep = PaginationStep.step;
   categoryName = '';
-  positionSub: Subscription | undefined;
+  increase: string = SortingEnum.increase;
+  decrease: string = SortingEnum.decrease;
 
   constructor(
     private positionsService: PositionService,
@@ -53,18 +60,17 @@ export class PositionsFormComponent
   ngOnInit(): void {
     this.loading = true;
     this.categoryName = this.categoriesService.categoryName;
-    this.positionSub = this.positionsService
-      .fetch(this.categoryId)
-      .subscribe((positions) => {
-        this.positions = positions;
-      });
+    this.positions$ = this.positionsService.fetch(this.categoryId);
+    this.positionsByInc$ = this.positionsService.fetchByIncrease(
+      this.categoryId
+    );
+    this.positionsByDec$ = this.positionsService.fetchByDecrease(
+      this.categoryId
+    );
     this.loading = false;
   }
 
   ngOnDestroy() {
-    if (this.positionSub) {
-      this.positionSub.unsubscribe();
-    }
     this.modal?.destroy();
   }
 
@@ -82,15 +88,15 @@ export class PositionsFormComponent
 
   onSelectPosition(position: PositionInterface) {
     this.positionId = position._id;
-    this.positions.map((position) => {
-      position.orderQuantity = 1;
-      return position;
-    });
   }
 
   addToCart(position: PositionInterface) {
     this.cartService.addToCart(position);
     MaterialService.toast(`Товар додано до кошика!`);
     this.modal?.close();
+  }
+
+  get sortingSelected(): string {
+    return this.searchService.sorting;
   }
 }

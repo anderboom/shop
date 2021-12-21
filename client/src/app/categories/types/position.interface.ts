@@ -8,5 +8,7 @@ export interface PositionInterface {
   quantity: number;
   orderQuantity?: number;
   inputCost?: number;
+  promoCost?: number;
   brand?: string;
+  groupPages?: string;
 }

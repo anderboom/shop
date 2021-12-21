@@ -3,10 +3,8 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import {
-  Category,
-  Message,
-} from '../../shared/interfaces';
+import { Message } from '../../shared/interfaces';
+import { AdminCategoryInterface } from '../types/admin-categories.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -16,22 +14,32 @@ export class AdminCategoriesService {
   constructor(private http: HttpClient) {}
 
   // Получаем список всех категорий
-  fetch(): Observable<Category[]> {
-    return this.http.get<Category[]>('/api/admin/category');
+  fetch(): Observable<AdminCategoryInterface[]> {
+    return this.http.get<AdminCategoryInterface[]>('/api/admin/category');
   }
 
-  getById(id: any): Observable<Category> {
-    return this.http.get<Category>(`/api/admin/category/${id}`);
+  getById(id: any): Observable<AdminCategoryInterface> {
+    return this.http.get<AdminCategoryInterface>(`/api/admin/category/${id}`);
   }
 
-  create(name: Category): Observable<Category> {
-    return this.http.post<Category>('/api/admin/category', name);
+  create(name: AdminCategoryInterface): Observable<AdminCategoryInterface> {
+    return this.http.post<AdminCategoryInterface>('/api/admin/category', name);
   }
+  // createPromo(
+  //   name: AdminCategoryInterface
+  // ): Observable<AdminCategoryInterface> {
+  //   return this.http.post<AdminCategoryInterface>('/api/admin/promo', name);
+  // }
 
-  update(id: any, name: Category): Observable<Category> {
-    return this.http.patch<Category>(`/api/admin/category/${id}`, name);
+  update(
+    id: any,
+    name: AdminCategoryInterface
+  ): Observable<AdminCategoryInterface> {
+    return this.http.patch<AdminCategoryInterface>(
+      `/api/admin/category/${id}`,
+      name
+    );
   }
-
   delete(id: any): Observable<Message> {
     return this.http.delete<Message>(`/api/admin/category/${id}`);
   }

@@ -1,0 +1,105 @@
+<table class="highlight mb2">
+    <thead>
+        <tr>
+            <th>№ заказа</th>
+            <th>Дата</th>
+            <th>Время</th>
+            <th>Сумма заказа</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let order of orders">
+            <td>1</td>
+            <td>{{order.date | date:'dd.MM.yyyy'}}</td>
+            <td>{{order.date | date:'HH:mm:ss'}}</td>
+            <td>{{order.totalCost}} UAH</td>
+            <td>
+                <button class="btn btn-small grey darken-1" (click)="onSelectOrder(order)">
+                    <i class="material-icons">open_in_new</i>
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-small grey darken-1" (click)="onDeleteOrder($event, order)">
+                    <i class="material-icons">delete</i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<div class="modal " #modal>
+    <div>
+        <div class="modal-content" *ngIf="selectedOrder">
+            <h6 class="mb1">Заказ №1</h6>
+            <table class="card">
+                <thead>
+                    <tr>
+                        <th>Наименование</th>
+                        <th>Количество</th>
+                        <th>Цена</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of selectedOrder.cart">
+                        <td>{{item.name}}</td>
+                        <td>{{item.orderQuantity}}</td>
+                        <td *ngIf="item.groupPages === main">{{item.cost}}</td>
+                        <td *ngIf="item.groupPages === promo">{{item.promoCost}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="card">
+                <thead>
+                    <tr>
+                        <th>Доставка</th>
+                        <th>Оплата</th>
+                        <th>Область</th>
+                        <th>Город</th>
+                        <th>№ отд.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{selectedOrder.delivery.deliveryName}}</td>
+                        <td>{{selectedOrder.delivery.payment}}</td>
+                        <td>{{selectedOrder.delivery.area}}</td>
+                        <td>{{selectedOrder.delivery.city}}</td>
+                        <td>{{selectedOrder.delivery.department}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="card">
+                <thead>
+                    <tr>
+                        <th>Имя</th>
+                        <th>Фамилия</th>
+                        <th>Телефон</th>
+                        <th>Email</th>
+                        <th>Комментарий</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{selectedOrder.userData.firstName}}</td>
+                        <td>{{selectedOrder.userData.secondName}}</td>
+                        <td>{{selectedOrder.userData.phoneNumber}}</td>
+                        <td>{{selectedOrder.userData.email}}</td>
+                        <td>{{selectedOrder.userData.comment}}</td>
+                    </tr>
+                </tbody>
+                <div class="order-summary right">
+                    <p>Общая сумма заказа <strong>{{selectedOrder.totalCost}} UAH</strong></p>
+                </div>
+            </table>
+
+        </div>
+        <div class="modal-footer">
+            <button class="waves-effect waves-light btn-small" (click)="closeModal()">
+                Закрыть
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,33 +1,24 @@
-import {
-  HttpClient,
-  HttpParams,
-} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import {
-  Order,
-  OrderPosition,
-} from '../../shared/interfaces';
+import { Message } from '../../shared/interfaces';
+import { AdminOrderInterface } from '../types/admin-orders.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminOrdersService {
-  public list: OrderPosition[] = [];
+  orders: AdminOrderInterface[] = [];
 
   constructor(private http: HttpClient) {}
 
-  fetch(params: any = {}): Observable<Order[]> {
-    return this.http.get<Order[]>('/api/order', {
-      params: new HttpParams({
-        fromObject: params,
-      }),
-    });
+  fetchOrders(): Observable<AdminOrderInterface[]> {
+    return this.http.get<AdminOrderInterface[]>('/api/admin/order');
   }
 
-  remove(order: OrderPosition) {}
-
-  clear() {}
+  delete(order: AdminOrderInterface): Observable<Message> {
+    return this.http.delete<Message>(`/api/admin/order/${order._id}`);
+  }
 }

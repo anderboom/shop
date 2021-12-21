@@ -13,17 +13,13 @@ import {
   of,
 } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { MaterialService } from 'src/app/shared/classes/material.service';
+
+import { AdminStorageService } from '../../services/admin-storage.service';
 import {
-  AdminCategoriesService,
-} from 'src/app/admin/admin-categories/services/admin-categories.service';
-import {
-  AdminPositionsService,
-} from 'src/app/admin/admin-categories/services/admin-positions.service';
-import {
-  Position,
-} from 'src/app/admin/admin-categories/types/positions.interface';
-import { MaterialService } from 'src/app/admin/shared/classes/material.service';
-import { Category } from 'src/app/admin/shared/interfaces';
+  StorageCategoryInterface,
+  StoragePositionInterface,
+} from '../../types/admin-storage.interface';
 
 @Component({
   selector: 'app-admin-storage-form',
@@ -33,16 +29,14 @@ import { Category } from 'src/app/admin/shared/interfaces';
 export class AdminStorageFormComponent implements OnInit {
   @Input('categoryId') categoryId: string | undefined;
 
-  categories$: Observable<Category[]> | undefined;
-  positions: Position[] = [];
+  storageCategories$: Observable<StorageCategoryInterface[]> | undefined;
+  storagePositions: StoragePositionInterface[] = [];
   loading = false;
-  skipCounter$ = 0;
-  category: Category | undefined;
+  storageCategory: StorageCategoryInterface | undefined;
 
   constructor(
     private route: ActivatedRoute,
-    private positionsService: AdminPositionsService,
-    private categoriesService: AdminCategoriesService
+    private storageService: AdminStorageService
   ) {}
 
   ngOnInit(): void {
@@ -52,7 +46,7 @@ export class AdminStorageFormComponent implements OnInit {
         switchMap((params: Params) => {
           if (params['id']) {
             this.categoryId = params['id'];
-            return this.positionsService.fetch(params['id']);
+            return this.storageService.fetchPositions(params['id']);
           }
 
           return of(null);
@@ -61,7 +55,7 @@ export class AdminStorageFormComponent implements OnInit {
       .subscribe(
         (positions) => {
           if (positions) {
-            this.positions = positions;
+            this.storagePositions = positions;
             this.loading = false;
           }
         },
@@ -72,7 +66,7 @@ export class AdminStorageFormComponent implements OnInit {
       .pipe(
         switchMap((params: Params) => {
           if (params['id']) {
-            return this.categoriesService.getById(params['id']);
+            return this.storageService.getCategoryById(params['id']);
           }
 
           return of(null);
@@ -81,7 +75,7 @@ export class AdminStorageFormComponent implements OnInit {
       .subscribe(
         (category) => {
           if (category) {
-            this.category = category;
+            this.storageCategory = category;
           }
         },
         (error) => MaterialService.toast(error.error.message)

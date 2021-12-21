@@ -1,1 +1,17 @@
-<p>admin-orders works!</p>
+<div class="page-title">
+    <h5>История заказов</h5>
+</div>
+
+<div>
+    <div *ngIf="orders.length > 0; else empty">
+        <app-admin-orders-position [orders]="orders"></app-admin-orders-position>
+        <div class="center mb2">
+            <ng-template #loader>
+                <app-loader></app-loader>
+            </ng-template>
+        </div>
+    </div>
+    <ng-template #empty>
+        <div class="center">Заказов нет</div>
+    </ng-template>
+</div>
