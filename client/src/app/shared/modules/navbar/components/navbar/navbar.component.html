@@ -10,12 +10,6 @@
             <div class="col s10">
                 <ul id="nav-mobile" class="right blue-grey-text ">
                     <li>
-                        <div class="phones">
-                            <div class="phone ">+3806688888</div>
-                            <div class="phone ">+3806899999</div>
-                        </div>
-                    </li>
-                    <li>
                         <a *ngIf="!total">
                             <i class="material-icons cart">shopping_cart</i>
                         </a>
@@ -60,7 +54,7 @@
                         <i class="name material-icons">keyboard_arrow_right</i></a>
                 </a>
             </li>
-            <li class="bold">
+            <li class="bold" routerLinkActive="active" (click)="onCancel()">
                 <a class="promotions waves-effect waves-orange" [routerLink]="['/category/promo']">Акції
                     <a class="promotions secondary-content">
                         <i class="name material-icons">keyboard_arrow_right</i></a>
