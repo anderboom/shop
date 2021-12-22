@@ -4,7 +4,7 @@
     </div>
 
     <div class="card-width row" *ngIf="!loading; else loader">
-        <div class="col s12 m12 l9" *ngIf="sortingSelected === ''">
+        <div class="col s12 " *ngIf="sortingSelected === ''">
             <div *ngIf="positions$ | async as positions">
                 <div *ngFor="let position of positions | paginate: {itemsPerPage: paginationStep,currentPage: p};" class="card col s12 m6 l4">
                     <div class="card-image waves-effect waves-block waves-light mb0">
