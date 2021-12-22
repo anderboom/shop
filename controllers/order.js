@@ -35,20 +35,18 @@ module.exports.getAllOrders = async function(req, res) {
 
 module.exports.create = async function(req, res) {
     try {
-        // const lastOrder = await Order.findOne({ user: req.user.id }).sort({
-        //     date: -1,
-        // });
+        const lastOrder = await Order.findOne({}).sort({
+            _id: -1,
+        });
 
-        // const maxOrder = lastOrder ? lastOrder.order : 0;
-
-        // const maxOrder = lastOrder ? lastOrder.order : 0;
+        const maxOrder = lastOrder ? lastOrder.order : 0;
 
         const order = await new Order({
             cart: req.body.cart,
             totalCost: req.body.totalCost,
             delivery: req.body.delivery,
             userData: req.body.userData,
-            // orderNumber: maxOrder + 1,
+            order: maxOrder + 1,
         }).save();
         res.status(201).json(order);
     } catch (e) {

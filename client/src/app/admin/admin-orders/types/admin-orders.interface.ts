@@ -1,6 +1,6 @@
 export interface AdminOrderInterface {
   date?: Date;
-  orderNumber?: number;
+  order?: number;
   delivery: DeliveryInterface;
   userData: UserDataInterface;
   cart: CartInterface[];

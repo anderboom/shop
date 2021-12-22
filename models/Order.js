@@ -6,12 +6,12 @@ const orderSchema = new Schema({
         type: Date,
         default: Date.now,
     },
-    orderNumber: {
+    order: {
         type: Number,
-        required: false,
+        required: true,
     },
     user: {
-        ref: 'users',
+        ref: 'usersauth',
         type: Schema.Types.ObjectId,
     },
     totalCost: {

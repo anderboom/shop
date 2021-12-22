@@ -11,7 +11,7 @@
 
     <tbody>
         <tr *ngFor="let order of orders">
-            <td>1</td>
+            <td>Заказ №Z1969{{order.order}}</td>
             <td>{{order.date | date:'dd.MM.yyyy'}}</td>
             <td>{{order.date | date:'HH:mm:ss'}}</td>
             <td>{{order.totalCost}} UAH</td>
@@ -33,8 +33,8 @@
 <div class="modal " #modal>
     <div>
         <div class="modal-content" *ngIf="selectedOrder">
-            <h6 class="mb1">Заказ №1</h6>
-            <table class="card">
+            <h6 class="mb1">Заказ №Z1969{{selectedOrder.order}}</h6>
+            <table class="card center-align">
                 <thead>
                     <tr>
                         <th>Наименование</th>
@@ -51,7 +51,7 @@
                     </tr>
                 </tbody>
             </table>
-            <table class="card">
+            <table class="card center-align">
                 <thead>
                     <tr>
                         <th>Доставка</th>
@@ -71,7 +71,7 @@
                     </tr>
                 </tbody>
             </table>
-            <table class="card">
+            <table class="card center-align">
                 <thead>
                     <tr>
                         <th>Имя</th>
@@ -90,11 +90,13 @@
                         <td>{{selectedOrder.userData.comment}}</td>
                     </tr>
                 </tbody>
-                <div class="order-summary right">
-                    <p>Общая сумма заказа <strong>{{selectedOrder.totalCost}} UAH</strong></p>
-                </div>
+                <tbody>
+                    <tr>
+                        <td>Общая сумма заказа:</td>
+                        <td>{{selectedOrder.totalCost}} UAH</td>
+                    </tr>
+                </tbody>
             </table>
-
         </div>
         <div class="modal-footer">
             <button class="waves-effect waves-light btn-small" (click)="closeModal()">

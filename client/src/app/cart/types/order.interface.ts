@@ -1,7 +1,6 @@
 import { CartInterface } from './cart.interface';
 
 export interface OrderInterface {
-  orderNumber?: number;
   delivery: DeliveryInterface;
   userData: UserDataInterface;
   cart: CartInterface[];
