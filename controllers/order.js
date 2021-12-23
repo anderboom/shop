@@ -56,7 +56,14 @@ module.exports.create = async function(req, res) {
 
 module.exports.getOrderById = async function(req, res) {};
 
-module.exports.updateOrderById = async function(req, res) {};
+module.exports.updateOrderById = async function(req, res) {
+    try {
+        const order = await Order.findByIdAndUpdate({ _id: req.body._id }, { $set: req.body }, { new: true });
+        res.status(200).json(order);
+    } catch (e) {
+        errorHandler(res, e);
+    }
+};
 
 module.exports.deleteOrder = async function(req, res) {
     try {

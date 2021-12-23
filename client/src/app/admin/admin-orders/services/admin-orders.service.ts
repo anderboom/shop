@@ -11,6 +11,7 @@ import { AdminOrderInterface } from '../types/admin-orders.interface';
 })
 export class AdminOrdersService {
   orders: AdminOrderInterface[] = [];
+  order: AdminOrderInterface | undefined;
 
   constructor(private http: HttpClient) {}
 
@@ -18,7 +19,16 @@ export class AdminOrdersService {
     return this.http.get<AdminOrderInterface[]>('/api/admin/order');
   }
 
-  delete(order: AdminOrderInterface): Observable<Message> {
+  patchIsDoneOrder(
+    order: AdminOrderInterface
+  ): Observable<AdminOrderInterface> {
+    return this.http.patch<AdminOrderInterface>(
+      `/api/admin/order/${order._id}`,
+      order
+    );
+  }
+
+  deleteOrder(order: AdminOrderInterface): Observable<Message> {
     return this.http.delete<Message>(`/api/admin/order/${order._id}`);
   }
 }

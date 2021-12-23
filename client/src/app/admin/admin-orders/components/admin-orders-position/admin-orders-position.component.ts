@@ -7,6 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 
+import { Subscription } from 'rxjs';
 import {
   MenuEnum,
 } from 'src/app/admin/shared/admin.constants/admin.constants.enum';
@@ -31,6 +32,7 @@ export class AdminOrdersPositionComponent implements OnDestroy, AfterViewInit {
   selectedOrder: AdminOrderInterface | undefined;
   main = MenuEnum.main;
   promo = MenuEnum.promo;
+  doneSub$: Subscription | undefined;
 
   constructor(private ordersService: AdminOrdersService) {}
 
@@ -40,6 +42,7 @@ export class AdminOrdersPositionComponent implements OnDestroy, AfterViewInit {
 
   ngOnDestroy(): void {
     this.modal?.destroy();
+    this.doneSub$?.unsubscribe();
   }
 
   closeModal() {
@@ -51,14 +54,27 @@ export class AdminOrdersPositionComponent implements OnDestroy, AfterViewInit {
     this.modal?.open();
   }
 
+  orderIsDone(event: Event, order: AdminOrderInterface) {
+    event.stopPropagation();
+    this.selectedOrder = order;
+    this.selectedOrder.done = !this.selectedOrder.done;
+    this.doneSub$ = this.ordersService
+      .patchIsDoneOrder(this.selectedOrder)
+      .subscribe();
+  }
+
   onDeleteOrder(event: Event, order: AdminOrderInterface) {
-    this.ordersService.delete(order).subscribe(
-      (response) => {
-        const idx = this.orders!.findIndex((o) => o._id === order._id);
-        this.orders!.splice(idx, 1);
-        MaterialService.toast(response.message);
-      },
-      (error) => MaterialService.toast(error.error.message)
-    );
+    event.stopPropagation();
+    const decision = window.confirm(`Удалить заказ?`);
+    if (decision) {
+      this.ordersService.deleteOrder(order).subscribe(
+        (response) => {
+          const idx = this.orders!.findIndex((o) => o._id === order._id);
+          this.orders!.splice(idx, 1);
+          MaterialService.toast(response.message);
+        },
+        (error) => MaterialService.toast(error.error.message)
+      );
+    }
   }
 }
