@@ -37,16 +37,15 @@
                         </li>
                     </ng-container>
                     <ng-container *ngIf="isAuth">
-                        <li routerLinkActive="active">
+                        <!-- <li routerLinkActive="active">
                             <a class="auth right bold  " [routerLink]="['/dashboard']">Профіль</a>
+                        </li> -->
+                        <li routerLinkActive="active">
+                            <a class="auth right bold ml2 " [routerLink]="['/']" (click)="logout()">Вихід</a>
                         </li>
                         <li routerLinkActive="active">
-                            <a class="auth right bold  " [routerLink]="['/']" (click)="logout()">Вихід</a>
-                        </li>
-                        <li class="profile">
-                            <i class="material-icons 
-                                ">account_circle</i>
-
+                            <a class="profile right"> <i class="material-icons 
+                                ">account_circle</i></a>
                         </li>
                     </ng-container>
 
