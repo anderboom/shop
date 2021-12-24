@@ -5,7 +5,7 @@ export interface AdminOrderInterface {
   userData: UserDataInterface;
   cart: CartInterface[];
   totalCost: number;
-  done?: boolean;
+  isDone?: boolean;
   _id?: string;
 }
 

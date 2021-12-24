@@ -76,7 +76,7 @@ const orderSchema = new Schema({
             required: false,
         },
     }, ],
-    done: {
+    isDone: {
         type: Boolean,
         required: true,
         default: false,

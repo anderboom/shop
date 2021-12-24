@@ -57,7 +57,7 @@ export class AdminOrdersPositionComponent implements OnDestroy, AfterViewInit {
   orderIsDone(event: Event, order: AdminOrderInterface) {
     event.stopPropagation();
     this.selectedOrder = order;
-    this.selectedOrder.done = !this.selectedOrder.done;
+    this.selectedOrder.isDone = !this.selectedOrder.isDone;
     this.doneSub$ = this.ordersService
       .patchIsDoneOrder(this.selectedOrder)
       .subscribe();

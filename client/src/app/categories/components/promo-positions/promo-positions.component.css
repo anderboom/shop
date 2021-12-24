@@ -12,7 +12,8 @@
 }
 
 .img {
-    max-width: 60%;
+    max-width: 150px;
+    max-height: 150px;
     margin-top: 5%;
     margin-bottom: 0%;
 }
@@ -32,13 +33,12 @@
 }
 
 .availability {
-    font-size: calc(7px + .5vw);
+    font-size: 12px;
     font-weight: 600;
     margin-top: 2px;
 }
 
 .add {
-    font-size: calc(7px + .5vw);
     font-weight: 500;
     width: 80%;
     text-align: center;
@@ -50,7 +50,7 @@
 }
 
 .card-title {
-    font-size: calc(8px + .5vw);
+    font-size: 14px;
     font-weight: 500;
     white-space: nowrap;
     overflow: hidden;
@@ -63,7 +63,7 @@
 }
 
 .description {
-    font-size: calc(7px + .5vw);
+    font-size: 12px
 }
 
 .hr1 {
@@ -122,7 +122,7 @@
 }
 
 .img-responsive {
-    max-width: 21%;
+    max-width: 20%;
     height: auto;
     object-fit: cover;
 }

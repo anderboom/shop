@@ -15,6 +15,9 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {
+  MenuEnum,
+} from 'src/app/admin/shared/admin.constants/admin.constants.enum';
+import {
   MaterialInstance,
   MaterialService,
 } from 'src/app/shared/classes/material.service';
@@ -174,7 +177,7 @@ export class AdminPositionsComponent implements OnInit {
       promoCost: this.form.value.promoCost,
       brand: this.form.value.brand,
       imageSrc: this.imagePreview as string,
-      groupPages: 'main',
+      groupPages: MenuEnum.main,
     };
     let obs$;
     if (this.positionId) {
@@ -216,7 +219,7 @@ export class AdminPositionsComponent implements OnInit {
       brand: position.brand,
       imageSrc: position.imageSrc,
       _id: position._id,
-      groupPages: 'promo',
+      groupPages: MenuEnum.promo,
     };
     event.stopPropagation();
     const decision = window.confirm(`Добавить позицию в акции?`);
