@@ -2,7 +2,7 @@
     <nav class="nav-fixed">
         <div class="nav-wrapper  grey lighten-4 row col s12">
             <div class="col s2 left-align">
-                <a [routerLink]="['/']" class="brand-logo blue-text left"><i class="material-icons">home</i></a>
+                <a [routerLink]="['/']" class="brand-logo left"><i class="material-icons">home</i></a>
                 <a data-target="slide-out" class="sidenav-trigger left"><i
                         class="menu material-icons blue-text">menu</i></a>
             </div>
@@ -20,22 +20,28 @@
                         </a>
                     </li>
                     <li *ngIf="total">
-                        <span class="badge tiny" data-badge-caption="">{{total}}</span>
+                        <div class="badge-size">
+                            <span class="badge tiny">
+                                <div class="total">
+                                    {{total}}
+                                </div>
+                            </span>
+                        </div>
                     </li>
                     <ng-container *ngIf="!isAuth">
                         <li routerLinkActive="active">
-                            <a class="auth bold blue-text" [routerLink]="['/login']">Вхід</a>
+                            <a class="auth bold " [routerLink]="['/login']">Вхід</a>
                         </li>
                         <li routerLinkActive="active">
-                            <a class="auth right bold  blue-text" [routerLink]="['/register']">Реєстрація</a>
+                            <a class="auth right bold  " [routerLink]="['/register']">Реєстрація</a>
                         </li>
                     </ng-container>
                     <ng-container *ngIf="isAuth">
                         <li routerLinkActive="active">
-                            <a class="auth right bold  blue-text" [routerLink]="['/dashboard']">Профіль</a>
+                            <a class="auth right bold  " [routerLink]="['/dashboard']">Профіль</a>
                         </li>
                         <li routerLinkActive="active">
-                            <a class="auth right bold  blue-text" [routerLink]="['/']" (click)="logout()">Вихід</a>
+                            <a class="auth right bold  " [routerLink]="['/']" (click)="logout()">Вихід</a>
                         </li>
                         <li class="profile">
                             <i class="material-icons 

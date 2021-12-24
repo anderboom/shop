@@ -1,5 +1,5 @@
 .cost {
-    color: #ffb74d;
+    color: #424242;
     font-size: calc(10px + .5vw);
     font-weight: 700;
 }
@@ -7,7 +7,7 @@
 .promo-cost {
     display: inline-block;
     text-decoration: line-through;
-    color: red;
+    color: #e53935;
     margin-right: 10px;
 }
 
@@ -33,6 +33,7 @@
 }
 
 .availability {
+    color: #00bfa5;
     font-size: 12px;
     font-weight: 600;
     margin-top: 2px;

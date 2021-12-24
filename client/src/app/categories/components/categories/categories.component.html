@@ -1,7 +1,7 @@
 <div class="row" *ngIf="categories$ | async as categories; else loader">
     <div class="col s3">
         <ul id="slide-out" class="sidenav sidenav-fixed" style="width: 25%">
-            <div class="header blue-text bold">Категорії товарів</div>
+            <div class="header bold">Категорії товарів</div>
             <hr class="hr1">
             <li class="bold" *ngFor="let category of categories" routerLinkActive="active">
                 <a [routerLink]="['/category', category._id]" class="waves-effect waves-orange">{{category.name}}

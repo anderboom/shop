@@ -1,5 +1,5 @@
 .cost {
-    color: #ffb74d;
+    color: #424242;
     font-size: calc(10px + .5vw);
     font-weight: 700;
 }
@@ -26,6 +26,7 @@
 }
 
 .availability {
+    color: #00bfa5;
     font-size: 12px;
     font-weight: 600;
     margin-top: 2px;
@@ -94,6 +95,7 @@
 }
 
 .category {
+    color: #0097a7;
     font-size: calc(8px + .5vw);
     font-weight: 600;
 }
