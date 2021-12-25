@@ -20,7 +20,6 @@ import { CategoryInterface } from '../../types/catergory.interface';
 export class CategoriesComponent implements OnInit {
   categories$: Observable<CategoryInterface[]> | undefined;
   cSub: Subscription | undefined;
-
   constructor(
     private categoriesService: CategoriesService,
     private searchService: SearchService

@@ -6,6 +6,7 @@ export interface MaterialInstance {
   open(): void;
   close(): void;
   destroy(): void;
+  next(): void;
 }
 
 export interface MaterialDatepicker extends MaterialInstance {
@@ -23,6 +24,10 @@ export class MaterialService {
 
   static initializeDropdownButton(ref: ElementRef): MaterialInstance {
     return M.Dropdown.init(ref.nativeElement);
+  }
+
+  static initializeCarousel(ref: ElementRef): MaterialInstance {
+    return M.Carousel.init(ref.nativeElement);
   }
 
   static updateTextInputs() {

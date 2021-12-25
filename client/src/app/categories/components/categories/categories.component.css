@@ -51,3 +51,7 @@
 .loader {
     margin-left: 30%;
 }
+
+.carousel {
+    max-height: 250px;
+}

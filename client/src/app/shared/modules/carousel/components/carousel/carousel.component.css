@@ -1,0 +1,24 @@
+.img {
+    max-height: 180px;
+    max-width: 180px;
+}
+
+.promo {
+    max-height: 200px;
+    align-content: center;
+}
+
+.bold {
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.hr2 {
+    margin: -50px auto 10px;
+    padding: 0;
+    height: 50px;
+    border: none;
+    border-bottom: 1px solid #b6b4b2;
+    box-shadow: 0 20px 20px -20px rgb(85, 84, 84);
+    width: 95%;
+}

@@ -15,7 +15,6 @@ import {
   Subscription,
 } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { SearchService } from 'src/app/search/services/search.service';
 
 import { CategoriesService } from '../../services/categories.service';
 import { CategoryInterface } from '../../types/catergory.interface';
@@ -34,8 +33,7 @@ export class CategoriesFormComponent implements OnInit, OnDestroy {
   constructor(
     private categoriesService: CategoriesService,
     private route: ActivatedRoute,
-    private router: Router,
-    private searchService: SearchService
+    private router: Router
   ) {}
 
   ngOnDestroy(): void {

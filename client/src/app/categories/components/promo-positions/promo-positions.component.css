@@ -11,13 +11,6 @@
     margin-right: 10px;
 }
 
-.img {
-    max-width: 150px;
-    max-height: 150px;
-    margin-top: 5%;
-    margin-bottom: 0%;
-}
-
 .bold {
     font-weight: 600;
     font-size: medium;
@@ -110,20 +103,30 @@
     margin-left: 1%;
 }
 
-.img-responsive {
-    margin-top: 5%;
-    max-width: 25%;
-    height: auto;
-    object-fit: cover;
-}
-
 .img {
-    position: relative;
-    margin-top: -15px;
+    position: absolute;
+    max-width: 150px;
+    max-height: 150px;
+    margin-top: -5px;
 }
 
 .img-responsive {
+    position: relative;
+    margin-top: 2%;
     max-width: 20%;
     height: auto;
-    object-fit: cover;
 }
+
+
+/* .img {
+    position: absolute;
+    margin-top: -15px;
+} */
+
+
+/* .img-responsive {
+    position: relative;
+    max-width: 18%;
+    height: auto;
+    object-fit: cover;
+} */

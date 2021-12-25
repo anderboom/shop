@@ -36,6 +36,7 @@ import {
 import {
   SiteLayoutComponent,
 } from './shared/layouts/site-layout/site-layout.component';
+import { CarouselModule } from './shared/modules/carousel/carousel.module';
 import { FooterModule } from './shared/modules/footer/footer.module';
 import { LoaderModule } from './shared/modules/loader/loader.module';
 import { NavbarModule } from './shared/modules/navbar/navbar.module';
@@ -67,6 +68,7 @@ import { NavbarModule } from './shared/modules/navbar/navbar.module';
     SearchModule,
     CartModule,
     DashboardModule,
+    CarouselModule,
   ],
   providers: [
     {

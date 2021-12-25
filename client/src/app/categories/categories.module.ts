@@ -12,6 +12,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import {
   SiteLayoutComponent,
 } from '../shared/layouts/site-layout/site-layout.component';
+import { CarouselModule } from '../shared/modules/carousel/carousel.module';
 import { LoaderModule } from '../shared/modules/loader/loader.module';
 import {
   CategoriesFormComponent,
@@ -66,6 +67,7 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     NgxPaginationModule,
+    CarouselModule,
   ],
   exports: [
     CategoriesComponent,
