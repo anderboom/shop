@@ -3,8 +3,7 @@
         <div class="nav-wrapper  grey lighten-4 row col s12">
             <div class="col s2 left-align">
                 <a [routerLink]="['/']" class="brand-logo left"><i class="material-icons">home</i></a>
-                <a data-target="slide-out" class="sidenav-trigger left"><i
-                        class="menu material-icons blue-text">menu</i></a>
+                <a data-target="slide-out" class="sidenav-trigger left"><i class="menu material-icons ">menu</i></a>
             </div>
 
             <div class="col s10">
@@ -44,7 +43,7 @@
                             <a class="auth right bold ml2 " [routerLink]="['/']" (click)="logout()">Вихід</a>
                         </li>
                         <li routerLinkActive="active">
-                            <a class="profile right"> <i class="material-icons 
+                            <a data-target="slide-out" class="profile "> <i class="material-icons 
                                 ">account_circle</i></a>
                         </li>
                     </ng-container>
@@ -55,26 +54,53 @@
         </div>
     </nav>
 
-    <ul class="sidenav" id="slide-out" #sidenav>
-        <div *ngIf="categories$ | async as categories; else loader">
+    <ng-container>
+        <ul class="sidenav" id="slide-out" #sidenav>
+            <div *ngIf="categories$ | async as categories; else loader">
+                <li>
+                    <div class="header1 bold">Категорії товарів</div>
+                </li>
+                <hr class="hr1">
+                <li class="bold" *ngFor="let category of categories" routerLinkActive="active" (click)="onCancel()">
+                    <a [routerLink]="['/category', category._id]" class="waves-effect waves-orange">{{category.name}}
+                        <a class=" black-text secondary-content">
+                            <i class="name material-icons">keyboard_arrow_right</i></a>
+                    </a>
+                </li>
+                <li class="bold" routerLinkActive="active" (click)="onCancel()">
+                    <a class="promotions waves-effect waves-orange" [routerLink]="['/category/promo']">Акції
+                        <a class="promotions secondary-content">
+                            <i class="name material-icons">keyboard_arrow_right</i></a>
+                    </a>
+                </li>
+            </div>
+        </ul>
+    </ng-container>
+
+    <ng-container>
+        <ul id="slide-out" class="sidenav" #sidenav>
             <li>
-                <div class="header1 blue-text bold">Категорії товарів</div>
+                <div class="user-view">
+                    <div class="background">
+                        <!-- <img src="images/office.jpg"> -->
+                    </div>
+                    <!-- <a href="#user"><img class="circle" src="images/yuna.jpg"></a>
+                    <a href="#name"><span class="white-text name">John Doe</span></a>
+                    <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a> -->
+                </div>
             </li>
-            <hr class="hr1">
-            <li class="bold" *ngFor="let category of categories" routerLinkActive="active" (click)="onCancel()">
-                <a [routerLink]="['/category', category._id]" class="waves-effect waves-orange">{{category.name}}
-                    <a class=" black-text secondary-content">
-                        <i class="name material-icons">keyboard_arrow_right</i></a>
-                </a>
+            <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+            <li><a href="#!">Second Link</a></li>
+            <li>
+                <div class="divider"></div>
             </li>
-            <li class="bold" routerLinkActive="active" (click)="onCancel()">
-                <a class="promotions waves-effect waves-orange" [routerLink]="['/category/promo']">Акції
-                    <a class="promotions secondary-content">
-                        <i class="name material-icons">keyboard_arrow_right</i></a>
-                </a>
-            </li>
-        </div>
-    </ul>
+            <li><a class="subheader">Subheader</a></li>
+            <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+        </ul>
+    </ng-container>
+
+
+
     <ng-template #loader>
         <app-loader></app-loader>
     </ng-template>

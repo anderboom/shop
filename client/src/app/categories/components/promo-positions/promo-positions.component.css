@@ -113,6 +113,7 @@
 .img-responsive {
     position: relative;
     margin-top: 2%;
+    margin-left: -8px;
     max-width: 20%;
     height: auto;
 }

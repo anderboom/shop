@@ -1,10 +1,9 @@
 <div class="promo">
     <hr class="hr2">
     <div class="center bold">Акції тижня</div>
-    <div class="carousel carousel-slider center" #carousel>
-        <a class="carousel-item" *ngFor="let item of imgPositions">
+    <div class="carousel carousel-slider  center" #carousel>
+        <a class="carousel-item middle-indicator" *ngFor="let item of imgPositions">
             <img class="img" src={{item}}>
-            <!-- <ng-container>{{carouselSetInterval()}}</ng-container> -->
         </a>
     </div>
 </div>
