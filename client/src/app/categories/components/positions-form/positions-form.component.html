@@ -8,7 +8,7 @@
             <div *ngIf="positions$ | async as positions">
                 <div *ngFor="let position of positions | paginate: {itemsPerPage: paginationStep,currentPage: p};" class="card col s12 m6 l4">
                     <div class="card-image waves-effect waves-block waves-light mb0">
-                        <img class="img activator center-block" src={{position.imageSrc}}>
+                        <img class="img activator" src={{position.imageSrc}}>
                     </div>
                     <div class="card-content">
                         <hr class="hr1">
