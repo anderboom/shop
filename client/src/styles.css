@@ -14,3 +14,7 @@
 .m-bottom-15 {
     margin-bottom: 5px;
 }
+
+footer {
+    flex: 0 0 auto;
+}

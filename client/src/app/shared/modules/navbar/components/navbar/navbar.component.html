@@ -1,6 +1,6 @@
 <ng-container *ngIf="!isAuthAdmin">
     <nav class="nav-fixed">
-        <div class="nav-wrapper  grey lighten-4 row col s12">
+        <div class="nav-wrapper  grey lighten-4 row">
             <div class="col s2 left-align">
                 <a [routerLink]="['/']" class="brand-logo left"><i class="material-icons">home</i></a>
                 <a data-target="slide-out" class="sidenav-trigger left"><i class="menu material-icons ">menu</i></a>
@@ -40,7 +40,7 @@
                             <a class="auth right bold ml2 " [routerLink]="['/']" (click)="logout()">Вихід</a>
                         </li>
                         <li routerLinkActive="active">
-                            <a class="profile"> <i class="material-icons 
+                            <a class="profile" [routerLink]="['/profile']"> <i class="material-icons 
                                 ">account_circle</i></a>
                         </li>
                     </ng-container>

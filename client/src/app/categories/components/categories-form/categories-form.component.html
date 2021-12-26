@@ -1,4 +1,4 @@
-<div class="row" *ngIf="categories$ | async as categories; else loader">
+<div class="row " *ngIf="categories$ | async as categories; else loader">
     <div class="col s12 m12 l9 right">
         <app-positions-form *ngIf="category?._id" [categoryId]="category?._id"></app-positions-form>
     </div>

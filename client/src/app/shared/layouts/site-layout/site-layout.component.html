@@ -1,9 +1,14 @@
-<body>
+<div class='header'>
+    <app-navbar></app-navbar>
+</div>
+<div class="">
     <app-categories></app-categories>
     <app-search></app-search>
-    <main></main>
-    <div class="container">
-        <router-outlet></router-outlet>
-    </div>
-    <app-footer></app-footer>
-</body>
+</div>
+<div class="content">
+    <router-outlet></router-outlet>
+</div>
+
+<div>
+    <app-footer class="footer"></app-footer>
+</div>

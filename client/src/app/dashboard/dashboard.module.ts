@@ -6,13 +6,22 @@ import {
 } from '@angular/router';
 
 import { AuthclientGuard } from '../shared/classes/authclient.guard';
+import {
+  AuthLayoutComponent,
+} from '../shared/layouts/auth-layout/auth-layout.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
-    path: 'dashboard',
-    canActivate: [AuthclientGuard],
-    component: DashboardComponent,
+    path: '',
+    component: AuthLayoutComponent,
+    children: [
+      {
+        path: 'profile',
+        canActivate: [AuthclientGuard],
+        component: DashboardComponent,
+      },
+    ],
   },
 ];
 

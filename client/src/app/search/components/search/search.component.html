@@ -83,8 +83,8 @@
         <div *ngFor="let position of foundPositions$ | async">
             <div *ngIf="position._id == positionId">
                 <div class="modal-content">
-                    <span>Найменування товару: {{position.name}}</span>
-                    <span class="right">Ціна: {{position.cost}} UAH</span>
+                    <div>Найменування товару: {{position.name}}</div>
+                    <div>Ціна: {{position.cost}} UAH</div>
                     <input #quantityInput id="pos-quantity" type="number" value="1" [(ngModel)]="position.orderQuantity">
                     <label for="pos-quantity">Кількість</label>
                 </div>

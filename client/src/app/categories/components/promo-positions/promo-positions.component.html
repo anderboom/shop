@@ -129,18 +129,21 @@
         <div *ngFor="let position of positions">
             <div *ngIf="position._id == positionId">
                 <div class="modal-content">
-                    <span>Найменування товару: {{position.name}}</span>
-                    <span class="right">Ціна: {{ position.promoCost}} UAH</span>
+                    <div>Найменування товару: {{position.name}}</div>
+                    <div>Ціна: {{ position.promoCost}} UAH</div>
                     <input #quantityInput id="pos-quantity" type="number" [(ngModel)]="position.orderQuantity">
                     <label for="pos-quantity">Кількість</label>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" (click)="onCancel()" class="modal-action waves-effect waves-black btn-flat">
-                        Скасувати
-                    </button>
-                    <button class="modal-action btn waves-effect btn-small" type="submit" (click)="addToCart(position)" [disabled]="!position.orderQuantity">
-                        Додати в кошик
-                    </button>
+                    <div>
+                        <button type="button" (click)="onCancel()" class="modal-action waves-effect waves-black btn-flat">
+                            Скасувати
+                        </button>
+
+                        <button class="modal-action btn waves-effect btn-small" type="submit" (click)="addToCart(position)" [disabled]="!position.orderQuantity">
+                            Додати в кошик
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

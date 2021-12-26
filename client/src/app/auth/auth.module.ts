@@ -9,20 +9,34 @@ import {
   Routes,
 } from '@angular/router';
 
+import {
+  AuthLayoutComponent,
+} from '../shared/layouts/auth-layout/auth-layout.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
   {
-    path: 'register',
-    component: RegisterComponent,
+    path: 'login',
+    component: AuthLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: LoginComponent,
+      },
+    ],
   },
   {
-    path: 'login',
-    component: LoginComponent,
+    path: 'register',
+    component: AuthLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: RegisterComponent,
+      },
+    ],
   },
 ];
-
 @NgModule({
   declarations: [RegisterComponent, LoginComponent],
   imports: [
