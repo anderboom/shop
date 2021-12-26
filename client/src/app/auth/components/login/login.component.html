@@ -1,7 +1,7 @@
 <div class="auth-block">
     <form class="card" [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="card-content">
-            <span class="card-title">Введіть дані для авторизації</span>
+            <div class="card-title">Введіть дані для авторизації</div>
             <div class="input-field">
                 <input formControlName="email" id="email" type="email" [ngClass]="{'invalid': f.email.invalid && f.email.touched}">
                 <label for="email">Логін:</label>

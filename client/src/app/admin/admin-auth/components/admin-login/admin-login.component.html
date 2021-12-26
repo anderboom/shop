@@ -1,6 +1,6 @@
 <form class="card" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="card-content">
-        <span class="card-title">Войти в систему</span>
+        <div class="card-title">Войти в систему</div>
         <div class="input-field">
             <input formControlName="email" id="email" type="email" [ngClass]="{'invalid': f.email.invalid && f.email.touched}">
             <label for="email">Логин:</label>
@@ -8,9 +8,9 @@
                 <span *ngIf="f.email.errors?.required">Поле Логин не должно быть пустым</span>
             <span *ngIf="f.email.errors?.minlength
                 && f.email.errors?.minlength.requiredLength">
-                   Логин должен содержать более {{f.email.errors?.minlength.requiredLength}} символов.
-                   Вы ввели {{f.email.errors?.minlength.actualLength}} символа(ов)
-               </span>
+                    Логин должен содержать более {{f.email.errors?.minlength.requiredLength}} символов.
+                    Вы ввели {{f.email.errors?.minlength.actualLength}} символа(ов)
+                </span>
             </span>
         </div>
         <div class="input-field">
