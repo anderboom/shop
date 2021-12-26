@@ -28,6 +28,7 @@ import {
 })
 export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('sidenav') sidenavRef: ElementRef | undefined;
+
   categories$: Observable<AdminCategoryInterface[]> | undefined;
   category: AdminCategoryInterface | undefined;
   sidenav: MaterialInstance | undefined;
