@@ -1,10 +1,14 @@
-<div class="promo">
+<div class="promo row centered">
     <hr class="hr2">
     <div class="center bold">Акції тижня</div>
     <hr class="hr1">
-    <div class="carousel carousel-slider  center-align" #carousel>
-        <a class="carousel-item middle-indicator" *ngFor="let item of imgPositions">
-            <img class="img" src={{item}}>
-        </a>
+    <div class="carousel carousel-slider col s12 m12 l12 center" #carousel>
+        <div>
+            <a class="carousel-item center-align col s12" *ngFor="let item of imgPositions">
+                <img class="img" src={{item}}>
+            </a>
+        </div>
+
+
     </div>
 </div>

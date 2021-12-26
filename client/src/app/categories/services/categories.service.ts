@@ -12,7 +12,6 @@ export class CategoriesService {
   categoryName = '';
   constructor(private http: HttpClient) {}
 
-  // Получаем список всех категорий
   fetch(): Observable<CategoryInterface[]> {
     return this.http.get<CategoryInterface[]>('/api/admin/category');
   }

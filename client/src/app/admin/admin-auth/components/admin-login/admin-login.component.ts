@@ -44,15 +44,12 @@ export class AdminLoginComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params: Params) => {
       if (params['registered']) {
-        // Вы зарегистрированы
         MaterialService.toast('Пользователь успешно зарегистрирован!');
       } else if (params['accessDenied']) {
-        // Сперва авторизируйтесь
         MaterialService.toast(
           'Для начала работы с сервисом авторизируйтесь в системе!'
         );
       } else if (params['sessionFailed']) {
-        // Закончилось время сессии
         this.router.navigate(['/']);
         MaterialService.toast(
           'Время сессии истекло, авторизируйтесь в системе!'

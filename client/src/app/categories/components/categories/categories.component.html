@@ -1,6 +1,6 @@
 <div class="row" *ngIf="categories$ | async as categories; else loader">
     <div class="col s3">
-        <ul id="slide-out" class="sidenav sidenav-fixed" style="width: 25%">
+        <ul id="slide-out" class="sidenav sidenav-fixed">
             <div class="header bold">Категорії товарів</div>
             <hr class="hr1">
             <li class="bold" *ngFor="let category of categories" routerLinkActive="active">

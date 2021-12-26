@@ -32,6 +32,8 @@
     margin-top: 91px;
     margin-left: 5px;
     height: auto;
+    width: 25%;
+    overflow-x: hidden;
 }
 
 .header {
@@ -54,5 +56,5 @@
 
 .carousel {
     max-height: 250px;
-    align-content: center;
+    align-content: space-between;
 }
