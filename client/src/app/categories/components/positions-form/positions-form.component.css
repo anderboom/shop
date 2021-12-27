@@ -103,7 +103,7 @@
 }
 
 .category-name {
-    margin-top: -25px;
+    margin-top: -30px;
 }
 
 .category {
@@ -113,7 +113,6 @@
 }
 
 .main-card {
-    /* width: 100%; */
     align-content: center;
 }
 

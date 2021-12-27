@@ -37,7 +37,7 @@ export class SearchService {
           this.brandsNameArr.push(p.brand!);
           this.brandsNameArr = Array.from(new Set(this.brandsNameArr));
         });
-        return this.brandsNameArr;
+        return this.brandsNameArr.sort();
       })
     );
   }
