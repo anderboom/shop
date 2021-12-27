@@ -51,8 +51,8 @@
 }
 
 .name {
-    display: flex;
-    align-items: center;
+    /* display: flex; */
+    text-align: center;
     justify-content: center;
 }
 

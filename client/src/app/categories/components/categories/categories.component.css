@@ -34,6 +34,7 @@
     height: auto;
     width: 25%;
     overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .header {
@@ -66,11 +67,11 @@
 
 .parent {
     position: relative;
+    height: 220px;
 }
 
 .carousel {
     position: relative;
-    /* ширина и высота 2 блока в % */
-    width: 250px;
+    width: 280px;
     margin: auto;
 }

@@ -12,22 +12,12 @@
         margin-top: -5px;
     }
     
-    .hr2 {
-        margin: -50px auto 10px;
-        padding: 0;
-        height: 50px;
-        border: none;
-        border-bottom: 1px solid #b6b4b2;
-        box-shadow: 0 20px 20px -20px rgb(85, 84, 84);
-        width: 95%;
-    }
-    
     .promo {
-        max-height: 240px;
+        max-height: 200px;
     }
     
     .carousel {
-        margin-top: 60px;
+        margin-top: 12px;
         width: 100%;
     }
     
@@ -37,8 +27,8 @@
     }
     
     .img {
-        height: 250px;
-        width: 250px;
+        height: 180px;
+        width: 180px;
         align-content: space-between;
         object-fit: contain;
         display: inline-block;
