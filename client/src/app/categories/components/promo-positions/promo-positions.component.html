@@ -32,7 +32,12 @@
                 </div>
             </div>
             <div class="col s12">
-                <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel="">
+                <style>
+                    .my-pagination /deep/ .ngx-pagination .current {
+                        background: #0097a7;
+                    }
+                </style>
+                <pagination-controls class="my-pagination" (pageChange)="p = $event" previousLabel="" nextLabel="">
                 </pagination-controls>
             </div>
         </div>
@@ -72,7 +77,12 @@
                 </div>
             </div>
             <div class="col s12">
-                <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel="">
+                <style>
+                    .my-pagination /deep/ .ngx-pagination .current {
+                        background: #0097a7;
+                    }
+                </style>
+                <pagination-controls class="my-pagination" (pageChange)="p = $event" previousLabel="" nextLabel="">
                 </pagination-controls>
             </div>
         </div>
@@ -112,7 +122,12 @@
                 </div>
             </div>
             <div class="col s12">
-                <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel="">
+                <style>
+                    .my-pagination /deep/ .ngx-pagination .current {
+                        background: #0097a7;
+                    }
+                </style>
+                <pagination-controls class="my-pagination" (pageChange)="p = $event" previousLabel="" nextLabel="">
                 </pagination-controls>
             </div>
         </div>

@@ -3,10 +3,10 @@
         <span class="category">{{categoryName}}</span>
     </div>
 
-    <div class="card-width row" *ngIf="!loading; else loader">
-        <div class="col s12 " *ngIf="sortingSelected === ''">
-            <div *ngIf="positions$ | async as positions">
-                <div *ngFor="let position of positions | paginate: {itemsPerPage: paginationStep,currentPage: p};" class="card col s12 m6 l4">
+    <div class="row" *ngIf="!loading; else loader">
+        <div *ngIf="sortingSelected === ''">
+            <div class="card-width" *ngIf="positions$ | async as positions">
+                <div class="card col s12 m6 l4" *ngFor="let position of positions | paginate: {itemsPerPage: paginationStep,currentPage: p};">
                     <div class="card-image waves-effect waves-block waves-light mb0">
                         <img class="img activator" src={{position.imageSrc}}>
                     </div>
@@ -31,12 +31,19 @@
                     </div>
                 </div>
             </div>
-            <div class="col s12">
-                <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel="">
+            <div class=" col s12">
+                <style>
+                    .my-pagination /deep/ .ngx-pagination .current {
+                        background: #0097a7;
+                    }
+                </style>
+                <pagination-controls class="my-pagination" (pageChange)="p = $event" previousLabel="" nextLabel="">
                 </pagination-controls>
             </div>
         </div>
     </div>
+
+
     <div class="card-width row" *ngIf="!loading; else loader">
         <div *ngIf="sortingSelected === increase">
             <div *ngIf="positionsByInc$ | async as positions">
@@ -67,7 +74,12 @@
                 </div>
             </div>
             <div class="col s12">
-                <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel="">
+                <style>
+                    .my-pagination /deep/ .ngx-pagination .current {
+                        background: #0097a7;
+                    }
+                </style>
+                <pagination-controls class="my-pagination" (pageChange)="p = $event" previousLabel="" nextLabel="">
                 </pagination-controls>
             </div>
         </div>
@@ -102,7 +114,12 @@
                 </div>
             </div>
             <div class="col s12">
-                <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel="">
+                <style>
+                    .my-pagination /deep/ .ngx-pagination .current {
+                        background: #0097a7;
+                    }
+                </style>
+                <pagination-controls class="my-pagination" (pageChange)="p = $event" previousLabel="" nextLabel="">
                 </pagination-controls>
             </div>
         </div>

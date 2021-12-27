@@ -15,16 +15,16 @@
 }
 
 .input-field .prefix.active {
-    color: #1e88e5;
+    color: #0097a7;
 }
 
 .input-field input[type=text]:focus {
-    border-bottom: 1px solid #1e88e5;
-    box-shadow: 0 1px 0 0 #1e88e5;
+    border-bottom: 1px solid #0097a7;
+    box-shadow: 0 1px 0 0 #0097a7;
 }
 
 .input-field input[type=text]:focus+label {
-    color: #1e88e5;
+    color: #0097a7;
 }
 
 .cost {
@@ -146,6 +146,7 @@
 }
 
 .category {
+    color: #0097a7;
     font-size: calc(8px + .5vw);
     font-weight: 600;
 }
