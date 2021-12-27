@@ -4,14 +4,10 @@
             <div class="card-title">Введіть дані для авторизації</div>
             <div class="input-field">
                 <input formControlName="email" id="email" type="email" [ngClass]="{'invalid': f.email.invalid && f.email.touched}">
-                <label for="email">Логін:</label>
+                <label for="email">Email:</label>
                 <span class="helper-text red-text" *ngIf="f.email.invalid && f.email.touched">
-                    <span *ngIf="f.email.errors?.required">Поле Логін не повинно бути порожнім</span>
-                <span *ngIf="f.email.errors?.minlength
-                    && f.email.errors?.minlength.requiredLength">
-                        Логін повинен містити більш {{f.email.errors?.minlength.requiredLength}} символів.
-                        Ви ввели {{f.email.errors?.minlength.actualLength}} символи(ів)
-                    </span>
+                    <span *ngIf="f.email.errors?.required">Поле Email не повинно бути порожнім</span>
+                <span *ngIf="f.email.errors?.email"> Введіть коректну електронну адресу</span>
                 </span>
             </div>
             <div class="input-field">

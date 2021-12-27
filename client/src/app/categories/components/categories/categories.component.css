@@ -50,11 +50,27 @@
     background: linear-gradient(45deg, rgb(192, 190, 190), #ddd);
 }
 
+.hr2 {
+    margin: -50px auto 10px;
+    padding: 0;
+    height: 50px;
+    border: none;
+    border-bottom: 1px solid #b6b4b2;
+    box-shadow: 0 20px 20px -20px rgb(85, 84, 84);
+    width: 95%;
+}
+
 .loader {
     margin-left: 30%;
 }
 
+.parent {
+    position: relative;
+}
+
 .carousel {
-    max-height: 250px;
-    align-content: space-between;
+    position: relative;
+    /* ширина и высота 2 блока в % */
+    width: 250px;
+    margin: auto;
 }

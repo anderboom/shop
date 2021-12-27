@@ -15,15 +15,13 @@ export class CarouselService {
 
   constructor(private http: HttpClient) {}
 
-  fetchPromoImg(): Observable<string[]> {
+  fetchPromoImg(): Observable<PositionInterface[]> {
     return this.http.get<PositionInterface[]>(`/api/admin/position/`).pipe(
       map((positions) => {
         this.positions = positions;
-        this.positions = this.positions.filter(
-          (p) => p.groupPages === MenuEnum.promo
-        );
-        this.positions.map((p) => this.imgPositions.push(p.imageSrc!));
-        return this.imgPositions;
+        return this.positions.filter((p) => p.groupPages === MenuEnum.promo);
+        // this.positions.map((p) => this.imgPositions.push(p.imageSrc!));
+        // return this.imgPositions;
       })
     );
   }

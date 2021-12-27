@@ -7,7 +7,8 @@ import {
   ViewChild,
 } from '@angular/core';
 
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
+import { PositionInterface } from 'src/app/categories/types/position.interface';
 import {
   MaterialInstance,
   MaterialService,
@@ -22,19 +23,15 @@ import { CarouselService } from '../../services/carousel.service';
 })
 export class CarouselComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('carousel') carouselRef: ElementRef | undefined;
-
-  carouselSub$: Subscription | undefined;
+  positions$: Observable<PositionInterface[]> | undefined;
   carousel: MaterialInstance | undefined;
   interval: any;
   timerId: any;
-  imgPositions: string[] = [];
 
   constructor(private carouselService: CarouselService) {}
 
   ngOnInit(): void {
-    this.carouselSub$ = this.carouselService
-      .fetchPromoImg()
-      .subscribe((positions) => (this.imgPositions = positions));
+    this.positions$ = this.carouselService.fetchPromoImg();
   }
 
   carouselSetInterval() {
@@ -56,7 +53,6 @@ export class CarouselComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.stopCarousel();
-    this.carouselSub$?.unsubscribe();
   }
 
   stopCarousel() {
