@@ -27,7 +27,7 @@
     }
     
     .carousel {
-        margin-top: 20px;
+        margin-top: 60px;
         width: 100%;
     }
     
@@ -37,8 +37,8 @@
     }
     
     .img {
-        height: 160px;
-        width: 160px;
+        height: 250px;
+        width: 250px;
         align-content: space-between;
         object-fit: contain;
         display: inline-block;

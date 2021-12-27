@@ -7,10 +7,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import {
-  ActivatedRoute,
-  Router,
-} from '@angular/router';
+import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 import { MaterialService } from 'src/app/shared/classes/material.service';
@@ -24,7 +21,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class RegisterComponent implements OnInit {
   form = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(8),
@@ -32,11 +29,7 @@ export class RegisterComponent implements OnInit {
   });
 
   registerSub: Subscription | undefined;
-  constructor(
-    private auth: AuthService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
 

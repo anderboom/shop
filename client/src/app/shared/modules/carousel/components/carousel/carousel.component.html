@@ -1,14 +1,11 @@
-<div class="promo row centered">
-    <hr class="hr2">
+<div class="promo row s12 centered">
     <div class="center bold">Акції тижня</div>
     <hr class="hr1">
-    <div class="carousel carousel-slider col s12 m12 l12 center" #carousel>
-        <div>
-            <a class="carousel-item center-align col s12" *ngFor="let item of imgPositions">
-                <img class="img" src={{item}}>
+    <div *ngIf="positions$ |async as positions" class="carousel carousel-slider col s12 center" #carousel>
+        <div *ngFor="let position of positions">
+            <a class="carousel-item center-align">
+                <img class="img" src={{position.imageSrc}}>
             </a>
         </div>
-
-
     </div>
 </div>

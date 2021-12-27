@@ -25,7 +25,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
   form = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(8),
@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.form.disable();
     this.loginSub = this.auth.login(this.form.value).subscribe(
-      () => this.router.navigate(['/']),
+      () => this.router.navigate(['/profile']),
       (error) => {
         MaterialService.toast(error.error.message);
         this.form.enable();
