@@ -68,6 +68,7 @@
 .parent {
     position: relative;
     height: 220px;
+    margin-left: -17px;
 }
 
 .carousel {
