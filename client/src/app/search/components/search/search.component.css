@@ -63,7 +63,7 @@
 }
 
 .availability {
-    color: #00bfa5;
+    color: #0097a7;
     font-size: 12px;
     font-weight: 600;
     margin-top: 2px;
@@ -124,9 +124,8 @@
 }
 
 .search {
-    font-size: 12px;
-    width: 96%;
-    margin-left: 2%;
+    font-size: 14px;
+    color: #0097a7;
 }
 
 .brand {

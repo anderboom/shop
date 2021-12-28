@@ -3,10 +3,10 @@
         <span class="category">{{categoryName}}</span>
     </div>
 
-    <div class="row" *ngIf="!loading; else loader">
+    <div class="card-width row" *ngIf="!loading; else loader">
         <div *ngIf="sortingSelected === ''">
-            <div class="card-width" *ngIf="positions$ | async as positions">
-                <div class="card col s12 m6 l4" *ngFor="let position of positions | paginate: {itemsPerPage: paginationStep,currentPage: p};">
+            <div *ngIf="positions$ | async as positions">
+                <div *ngFor="let position of positions | paginate: {itemsPerPage: paginationStep,currentPage: p};" class="card col s12 m6 l4">
                     <div class="card-image waves-effect waves-block waves-light mb0">
                         <img class="img activator" src={{position.imageSrc}}>
                     </div>

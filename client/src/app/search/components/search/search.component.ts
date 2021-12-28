@@ -46,6 +46,7 @@ export class SearchComponent implements OnInit {
   searchStr = '';
   minLength = 3;
   sorting = '';
+  timerId: any;
 
   constructor(
     private searchService: SearchService,
@@ -63,13 +64,21 @@ export class SearchComponent implements OnInit {
     this.modal?.destroy();
     this.brandSelectSub$?.unsubscribe();
     this.setFilterMode(false);
+    clearInterval(this.timerId);
   }
 
   ngAfterViewInit() {
     MaterialService.initSelect(this.priceSelector!);
-    MaterialService.initSelect(this.brandSelector!);
+    // MaterialService.initSelect(this.brandSelector!);
+    this.initSelector();
     MaterialService.updateTextInputs;
     this.modal = MaterialService.initModal(this.modalRef!);
+  }
+
+  initSelector() {
+    this.timerId = setTimeout(() => {
+      MaterialService.initSelect(this.brandSelector!);
+    }, 200);
   }
 
   searchHandleChange() {

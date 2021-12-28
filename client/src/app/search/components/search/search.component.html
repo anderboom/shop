@@ -3,29 +3,30 @@
         <div class="search-filter col s12 m12 l9  right">
             <div class="search">
                 <div class="row filter col s12 grey lighten-5">
-                    <div class="col s3">
+                    <div class="col s4">
                         <div class="input-field">
-                            <span class="brand">ціна</span>
-                            <select class="browser-default" (change)="sortingSelect($event)" #priceSelector>
-                                <option value="" selected>фільтр</option>
-                                <option *ngFor="let position of sortPositionsMenu" [value]="position">{{position}}
+                            <select (change)="sortingSelect($event)" #priceSelector>
+                                <option class="h5" value="" selected>фільтр</option>
+                                <option *ngFor="let position of sortPositionsMenu" [value]="position">
+                                    {{position}}
                                 </option>
                             </select>
+                            <label>ціна</label>
                         </div>
                     </div>
-                    <div class="col s3">
+                    <div class="col s4">
                         <div class="input-field">
-                            <span class="brand">бренд</span>
-                            <select class="browser-default" (change)="brandSelect($event)" #brandSelector>
+                            <select class="" (change)="brandSelect($event)" #brandSelector>
                                 <option value="" selected>бренд</option>
                                 <option *ngFor="let brand of brandNameArr" [value]="brand">
                                     {{brand}}
                                 </option>
                             </select>
+                            <label>бренд</label>
                         </div>
                     </div>
 
-                    <div class="input-field col s6 mr0 white">
+                    <div class="input-field col s4 mr0">
                         <i class="search-icon material-icons prefix ">search</i>
                         <input id="icon_prefix" type="text" class="validate" [minlength]="minLength" [(ngModel)]="searchStr" (ngModelChange)="searchHandleChange()">
                         <label class="search" for="icon_prefix">Пошук... </label>
