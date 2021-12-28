@@ -3,10 +3,10 @@
         <div class="search-filter col s12 m12 l9  right">
             <div class="search">
                 <div class="row filter col s12 grey lighten-5">
-                    <div class="col s4">
+                    <div class="col s3">
                         <div class="input-field">
                             <select (change)="sortingSelect($event)" #priceSelector>
-                                <option class="h5" value="" selected>фільтр</option>
+                                <option value="" selected>фільтр</option>
                                 <option *ngFor="let position of sortPositionsMenu" [value]="position">
                                     {{position}}
                                 </option>
@@ -14,7 +14,7 @@
                             <label>ціна</label>
                         </div>
                     </div>
-                    <div class="col s4">
+                    <div class="col s3">
                         <div class="input-field">
                             <select class="" (change)="brandSelect($event)" #brandSelector>
                                 <option value="" selected>бренд</option>
@@ -26,10 +26,10 @@
                         </div>
                     </div>
 
-                    <div class="input-field col s4 mr0">
-                        <i class="search-icon material-icons prefix ">search</i>
+                    <div class="input-field col s5  ml0">
                         <input id="icon_prefix" type="text" class="validate" [minlength]="minLength" [(ngModel)]="searchStr" (ngModelChange)="searchHandleChange()">
-                        <label class="search" for="icon_prefix">Пошук... </label>
+                        <label class="search" for="icon_prefix"><i
+                                class="search-icon material-icons prefix ">search</i></label>
                         <span class="helper-text mb0" data-error="Мінімальна довжина слова 3 символи" data-success="Пошук..."></span>
                     </div>
                 </div>

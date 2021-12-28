@@ -116,25 +116,22 @@
     font-size: 1vw;
 }
 
-.search-icon {
-    font-size: calc(10px + .5vw);
-    margin-top: 10px;
-    margin-left: 10px;
-    width: 95%;
-}
-
 .search {
-    font-size: 14px;
+    font-size: 20px;
     color: #0097a7;
 }
 
 .brand {
-    font-size: calc(5px + .5vw);
+    font-size: 12px;
     color: grey;
 }
 
+.search-icon {
+    font-size: 16px;
+}
+
 .search-filter {
-    margin-top: -1.8%;
+    margin-top: -3%;
     border-width: 1px;
     box-shadow: 0 20px 20px -20px rgb(95, 93, 93);
 }

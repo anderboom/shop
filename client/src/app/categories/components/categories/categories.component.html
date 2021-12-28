@@ -5,7 +5,7 @@
             <hr class="hr1">
             <li class="bold" *ngFor="let category of categories" routerLinkActive="active">
                 <a [routerLink]="['/category', category._id]" class="waves-effect waves-orange">{{category.name}}
-                    <a class=" black-text secondary-content">
+                    <a class=" black-text secondary-content ">
                         <i class="name material-icons">keyboard_arrow_right</i></a>
                 </a>
             </li>
