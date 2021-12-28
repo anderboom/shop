@@ -69,7 +69,6 @@ export class SearchComponent implements OnInit {
 
   ngAfterViewInit() {
     MaterialService.initSelect(this.priceSelector!);
-    // MaterialService.initSelect(this.brandSelector!);
     this.initSelector();
     MaterialService.updateTextInputs;
     this.modal = MaterialService.initModal(this.modalRef!);
