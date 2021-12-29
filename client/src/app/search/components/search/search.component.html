@@ -6,7 +6,7 @@
                     <div class="col s3">
                         <div class="input-field">
                             <select (change)="sortingSelect($event)" #priceSelector>
-                                <option value="" selected>вибрати</option>
+                                <option value="" selected>вибір</option>
                                 <option *ngFor="let position of sortPositionsMenu" [value]="position">
                                     {{position}}
                                 </option>
@@ -17,12 +17,12 @@
                     <div class="col s3 h6">
                         <div class="input-field">
                             <select (change)="brandSelect($event)" #brandSelector>
-                                <option value="" selected>вибрати</option>
+                                <option value="" selected>вибір</option>
                                 <option *ngFor="let brand of brandNameArr" [value]="brand">
                                     {{brand}}
                                 </option>
                             </select>
-                            <label>фільтр бренд</label>
+                            <label>бренд</label>
                         </div>
                     </div>
                     <div class="input-field col s5">

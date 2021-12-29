@@ -43,9 +43,6 @@
         </div>
     </div>
 </div>
-<ng-template #loader>
-    <app-loader></app-loader>
-</ng-template>
 <div class="card-width row" *ngIf="!loading; else loader">
     <div class="col s12 m12 l9 right">
         <div *ngIf="sortingSelected === increase">
@@ -91,9 +88,7 @@
         </div>
     </div>
 </div>
-<ng-template #loader>
-    <app-loader></app-loader>
-</ng-template>
+
 <div class="card-width row" *ngIf="!loading; else loader">
     <div class="col s12 m12 l9 right">
         <div *ngIf="sortingSelected === decrease">
@@ -140,7 +135,7 @@
     </div>
 </div>
 <ng-template #loader>
-    <app-loader></app-loader>
+    <app-loader class="row col s9 right"></app-loader>
 </ng-template>
 
 
