@@ -6,23 +6,23 @@
                     <div class="col s3">
                         <div class="input-field">
                             <select (change)="sortingSelect($event)" #priceSelector>
-                                <option value="" selected>фільтр</option>
+                                <option value="" selected>вибрати</option>
                                 <option *ngFor="let position of sortPositionsMenu" [value]="position">
                                     {{position}}
                                 </option>
                             </select>
-                            <label>ціна</label>
+                            <label>фільтр ціна</label>
                         </div>
                     </div>
                     <div class="col s3 h6">
                         <div class="input-field">
                             <select (change)="brandSelect($event)" #brandSelector>
-                                <option value="" selected>бренд</option>
+                                <option value="" selected>вибрати</option>
                                 <option *ngFor="let brand of brandNameArr" [value]="brand">
                                     {{brand}}
                                 </option>
                             </select>
-                            <label>бренд</label>
+                            <label>фільтр бренд</label>
                         </div>
                     </div>
                     <div class="input-field col s5">
@@ -59,7 +59,7 @@
                     <div class="card-content">
                         <hr class="hr1">
                         <div class="card-title activator grey-text text-darken-4">
-                            <div class="name" [title]="position.name">{{position.name}}</div>
+                            <div class="name truncate" [title]="position.name">{{position.name}}</div>
                         </div>
                         <hr class="hr1">
                         <div class="cost center mb4">{{position.cost}} грн</div>
@@ -71,7 +71,7 @@
                                 class="addIcon material-icons ">shopping_cart</i></button>
                     </div>
                     <div class="card-reveal">
-                        <span class="card-title text-size grey lighten-5">{{position.name}}<i
+                        <span class="card-title text-size grey lighten-5 truncate">{{position.name}}<i
                                 class="material-icons right">close</i></span>
                         <p>{{position.description}}</p>
                     </div>

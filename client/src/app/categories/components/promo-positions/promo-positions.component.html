@@ -25,7 +25,7 @@
                                 class="addIcon material-icons ">shopping_cart</i></button>
                     </div>
                     <div class="card-reveal">
-                        <span class="card-title text-size grey lighten-5">{{position.name}}<i
+                        <span class="card-title text-size grey lighten-5 truncate">{{position.name}}<i
                                 class="material-icons right">close</i></span>
                         <span class="description">{{position.description}}</span>
                     </div>
@@ -43,6 +43,9 @@
         </div>
     </div>
 </div>
+<ng-template #loader>
+    <app-loader></app-loader>
+</ng-template>
 <div class="card-width row" *ngIf="!loading; else loader">
     <div class="col s12 m12 l9 right">
         <div *ngIf="sortingSelected === increase">
@@ -70,7 +73,7 @@
                                 class="addIcon material-icons ">shopping_cart</i></button>
                     </div>
                     <div class="card-reveal">
-                        <span class="card-title text-size grey lighten-5">{{position.name}}<i
+                        <span class="card-title text-size grey lighten-5 truncate">{{position.name}}<i
                                 class="material-icons right">close</i></span>
                         <span class="description">{{position.description}}</span>
                     </div>
@@ -88,6 +91,9 @@
         </div>
     </div>
 </div>
+<ng-template #loader>
+    <app-loader></app-loader>
+</ng-template>
 <div class="card-width row" *ngIf="!loading; else loader">
     <div class="col s12 m12 l9 right">
         <div *ngIf="sortingSelected === decrease">
@@ -115,7 +121,7 @@
                                 class="addIcon material-icons ">shopping_cart</i></button>
                     </div>
                     <div class="card-reveal">
-                        <span class="card-title text-size grey lighten-5">{{position.name}}<i
+                        <span class="card-title text-size grey lighten-5 truncate">{{position.name}}<i
                                 class="material-icons right">close</i></span>
                         <span class="description">{{position.description}}</span>
                     </div>
@@ -133,7 +139,6 @@
         </div>
     </div>
 </div>
-
 <ng-template #loader>
     <app-loader></app-loader>
 </ng-template>

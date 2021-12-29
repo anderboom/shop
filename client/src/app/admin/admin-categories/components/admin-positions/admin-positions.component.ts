@@ -167,6 +167,8 @@ export class AdminPositionsComponent implements OnInit {
   onSubmit() {
     this.form.disable();
 
+    const newBrand = this.form.value.brand.split(' ').join('');
+
     const newPosition: AdminPositionInterface = {
       name: this.form.value.name,
       cost: this.form.value.cost,
@@ -175,7 +177,7 @@ export class AdminPositionsComponent implements OnInit {
       quantity: this.form.value.quantity,
       inputCost: this.form.value.inputCost,
       promoCost: this.form.value.promoCost,
-      brand: this.form.value.brand,
+      brand: newBrand,
       imageSrc: this.imagePreview as string,
       groupPages: MenuEnum.main,
     };

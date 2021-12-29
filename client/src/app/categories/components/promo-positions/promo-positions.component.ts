@@ -50,11 +50,9 @@ export class PromoPositionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-
     this.promoPositions$ = this.positionsService.fetchPromo();
     this.promoPositionsByInc$ = this.positionsService.fetchPromoByIncrease();
     this.promoPositionsByDec$ = this.positionsService.fetchPromoByDecrease();
-
     this.loading = false;
   }
 
