@@ -57,7 +57,13 @@ export class SearchComponent implements OnInit {
     this.sortPositionsMenu = [SortingEnum.increase, SortingEnum.decrease];
     this.brandSelectSub$ = this.searchService
       .getBrandNames()
-      .subscribe((brands) => (this.brandNameArr = brands));
+      .subscribe((brands) => {
+        this.brandNameArr = brands;
+        if (this.brandNameArr) {
+          this.initSelector();
+          this.modal = MaterialService.initModal(this.modalRef!);
+        }
+      });
   }
 
   ngOnDestroy() {
@@ -69,7 +75,6 @@ export class SearchComponent implements OnInit {
 
   ngAfterViewInit() {
     MaterialService.initSelect(this.priceSelector!);
-    this.initSelector();
     MaterialService.updateTextInputs;
     this.modal = MaterialService.initModal(this.modalRef!);
   }

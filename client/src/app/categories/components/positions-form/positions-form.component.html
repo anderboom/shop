@@ -18,7 +18,8 @@
                         <hr class="hr1">
                         <div class="cost center mb4">{{position.cost}} грн</div>
                         <div *ngIf="position.quantity" class="availability  center mt4">в наявності</div>
-                        <div *ngIf="!position.quantity" class="availability blue-text center mt4">очікується</div>
+                        <div *ngIf="!position.quantity" class="availability blue-text center mt4">очікується
+                        </div>
                     </div>
                     <div class="card-action mt0 center-align" (click)="onSelectPosition(position)">
                         <button class="add waves-effect waves-light btn cyan darken-2" (click)="open()" [disabled]="!position.quantity"><i
@@ -31,6 +32,7 @@
                     </div>
                 </div>
             </div>
+
             <div class=" col s12">
                 <style>
                     .my-pagination /deep/ .ngx-pagination .current {
@@ -40,6 +42,7 @@
                 <pagination-controls class="my-pagination" (pageChange)="p = $event" previousLabel="" nextLabel="">
                 </pagination-controls>
             </div>
+
         </div>
     </div>
 
