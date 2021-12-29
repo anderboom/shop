@@ -1,15 +1,11 @@
-<div class='header'>
+<body>
     <app-navbar></app-navbar>
-</div>
-<div>
-    <app-categories></app-categories>
-    <app-search></app-search>
-</div>
-<!-- <div class="content"></div> -->
-<div class="content">
-    <router-outlet></router-outlet>
-</div>
-
-<div>
+    <main>
+        <app-categories></app-categories>
+        <app-search></app-search>
+    </main>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
     <app-footer class="footer"></app-footer>
-</div>
+</body>
