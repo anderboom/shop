@@ -3,11 +3,7 @@ import {
   OnInit,
 } from '@angular/core';
 
-import {
-  Observable,
-  Subscription,
-} from 'rxjs';
-import { SearchService } from 'src/app/search/services/search.service';
+import { Observable } from 'rxjs';
 
 import { CategoriesService } from '../../services/categories.service';
 import { CategoryInterface } from '../../types/catergory.interface';
@@ -19,11 +15,7 @@ import { CategoryInterface } from '../../types/catergory.interface';
 })
 export class CategoriesComponent implements OnInit {
   categories$: Observable<CategoryInterface[]> | undefined;
-  cSub: Subscription | undefined;
-  constructor(
-    private categoriesService: CategoriesService,
-    private searchService: SearchService
-  ) {}
+  constructor(private categoriesService: CategoriesService) {}
 
   ngOnInit(): void {
     this.categories$ = this.categoriesService.fetch();

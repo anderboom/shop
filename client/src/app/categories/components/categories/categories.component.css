@@ -67,12 +67,18 @@
 
 .parent {
     position: relative;
-    height: 220px;
-    margin-left: -17px;
+    height: 160px;
+    margin-left: -12px;
 }
 
 .carousel {
     position: relative;
-    width: 280px;
-    margin: auto;
+    width: 270px;
+    margin: 0 auto;
+}
+
+.bold {
+    color: #0097a7;
+    font-weight: 600;
+    margin-bottom: 7px;
 }
