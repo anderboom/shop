@@ -35,7 +35,6 @@ export class PromoPositionsComponent implements OnInit {
   promoPositionsByInc$: Observable<PositionInterface[]> | undefined;
   promoPositionsByDec$: Observable<PositionInterface[]> | undefined;
   positionId: any = null;
-  loading = false;
   p: number = 1;
   paginationStep = PaginationStep.step;
   increase = SortingEnum.increase;
@@ -49,11 +48,9 @@ export class PromoPositionsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loading = true;
     this.promoPositions$ = this.positionsService.fetchPromo();
     this.promoPositionsByInc$ = this.positionsService.fetchPromoByIncrease();
     this.promoPositionsByDec$ = this.positionsService.fetchPromoByDecrease();
-    this.loading = false;
   }
 
   ngOnDestroy() {

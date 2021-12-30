@@ -2,9 +2,9 @@
     <span class="category">{{categoryName}}</span>
 </div>
 
-<div class="card-width row" *ngIf="!loading; else loader">
+<div class="card-width row">
     <div *ngIf="sortingSelected === ''">
-        <div *ngIf="positions$ | async as positions">
+        <div *ngIf="positions$ | async as positions; else loader">
             <div *ngFor="let position of positions | paginate: {itemsPerPage: paginationStep,currentPage: p};" class="card col s12 m6 l4">
                 <div class="card-image waves-effect waves-block waves-light mb0">
                     <img class="img activator" src={{position.imageSrc}}>
@@ -43,9 +43,9 @@
 </div>
 
 
-<div class="card-width row" *ngIf="!loading; else loader">
+<div class="card-width row">
     <div *ngIf="sortingSelected === increase">
-        <div *ngIf="positionsByInc$ | async as positions">
+        <div *ngIf="positionsByInc$ | async as positions; else loader">
             <div *ngFor="let position of positions | paginate: {itemsPerPage: 6,currentPage: p};" class="card col s12 m6 l4">
                 <div class="card-image waves-effect waves-block waves-light mb0">
                     <img class="img activator center-block" src={{position.imageSrc}}>
@@ -82,9 +82,9 @@
         </div>
     </div>
 </div>
-<div class="card-width row" *ngIf="!loading; else loader">
+<div class="card-width row">
     <div *ngIf="sortingSelected === decrease">
-        <div *ngIf="positionsByDec$ | async as positions">
+        <div *ngIf="positionsByDec$ | async as positions; else loader">
             <div *ngFor="let position of positions | paginate: {itemsPerPage: 6,currentPage: p};" class="card col s12 m6 l4">
                 <div class="card-image waves-effect waves-block waves-light mb0">
                     <img class="img activator center-block" src={{position.imageSrc}}>

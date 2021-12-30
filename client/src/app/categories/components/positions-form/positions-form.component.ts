@@ -42,7 +42,6 @@ export class PositionsFormComponent
   positionsByInc$: Observable<PositionInterface[]> | undefined;
   positionsByDec$: Observable<PositionInterface[]> | undefined;
   positionId: any = null;
-  loading = false;
   p: number = 1;
   paginationStep = PaginationStep.step;
   categoryName = '';
@@ -58,7 +57,6 @@ export class PositionsFormComponent
   ) {}
 
   ngOnInit(): void {
-    this.loading = true;
     this.categoryName = this.categoriesService.categoryName;
     this.positions$ = this.positionsService.fetch(this.categoryId);
     this.positionsByInc$ = this.positionsService.fetchByIncrease(
@@ -67,7 +65,6 @@ export class PositionsFormComponent
     this.positionsByDec$ = this.positionsService.fetchByDecrease(
       this.categoryId
     );
-    this.loading = false;
   }
 
   ngOnDestroy() {
