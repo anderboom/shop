@@ -15,6 +15,7 @@ import { CategoryInterface } from '../../types/catergory.interface';
 })
 export class CategoriesComponent implements OnInit {
   categories$: Observable<CategoryInterface[]> | undefined;
+
   constructor(private categoriesService: CategoriesService) {}
 
   ngOnInit(): void {

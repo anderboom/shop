@@ -10,6 +10,9 @@ import {
   Subscription,
 } from 'rxjs';
 import { CartService } from 'src/app/cart/services/cart.service';
+import {
+  CategoriesService,
+} from 'src/app/categories/services/categories.service';
 import { PositionInterface } from 'src/app/categories/types/position.interface';
 import { SearchService } from 'src/app/search/services/search.service';
 import {
@@ -50,6 +53,7 @@ export class SearchComponent implements OnInit {
 
   constructor(
     private searchService: SearchService,
+    private categoriesService: CategoriesService,
     public order: CartService
   ) {}
 
@@ -136,5 +140,6 @@ export class SearchComponent implements OnInit {
     let value = event.target.value;
     this.searchService.sorting = value;
     this.searchStr = '';
+    this.setFilterMode(false);
   }
 }

@@ -5,16 +5,6 @@
     height: 100%;
 }
 
-
-/* .filter-text {
-    font-size: 12px;
-    font-weight: 500;
-    width: 6%;
-    margin: auto;
-    margin-right: 1%;
-    margin-left: 1%;
-} */
-
 .input-field .prefix.active {
     color: #0097a7;
 }
@@ -136,7 +126,7 @@
 }
 
 .search-filter {
-    margin-top: -3%;
+    margin-top: -3.3%;
     border-width: 1px;
     box-shadow: 0 20px 20px -20px rgb(95, 93, 93);
 }

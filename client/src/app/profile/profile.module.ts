@@ -9,7 +9,7 @@ import { AuthclientGuard } from '../shared/classes/authclient.guard';
 import {
   AuthLayoutComponent,
 } from '../shared/layouts/auth-layout/auth-layout.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ProfileComponent } from './components/dashboard/profile.component';
 
 const routes: Routes = [
   {
@@ -19,14 +19,14 @@ const routes: Routes = [
       {
         path: 'profile',
         canActivate: [AuthclientGuard],
-        component: DashboardComponent,
+        component: ProfileComponent,
       },
     ],
   },
 ];
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [ProfileComponent],
   imports: [CommonModule, RouterModule.forChild(routes)],
 })
-export class DashboardModule {}
+export class ProfileModule {}

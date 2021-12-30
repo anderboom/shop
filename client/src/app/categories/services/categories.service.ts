@@ -10,6 +10,7 @@ import { CategoryInterface } from '../types/catergory.interface';
 })
 export class CategoriesService {
   categoryName = '';
+
   constructor(private http: HttpClient) {}
 
   fetch(): Observable<CategoryInterface[]> {

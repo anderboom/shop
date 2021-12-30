@@ -2,11 +2,13 @@
     <div class="row">
         <div class="search-filter col s12 m12 l9  right">
             <div class="search">
-                <div class="row filter col s12 grey lighten-5">
+                <div class=" filter col s12 grey lighten-5">
                     <div class="col s3">
                         <div class="input-field">
                             <select (change)="sortingSelect($event)" #priceSelector>
-                                <option value="" selected>вибір</option>
+                                <option value="" selected>
+                                    вибір
+                                </option>
                                 <option *ngFor="let position of sortPositionsMenu" [value]="position">
                                     {{position}}
                                 </option>
@@ -30,12 +32,9 @@
                             <i class="search-icon material-icons prefix">search
                             </i>
                         </div>
-
                         <input id="icon_prefix2" type="text" class="validate" [minlength]="minLength" [(ngModel)]="searchStr" (ngModelChange)="searchHandleChange()">
                         <label class="search" for="icon_prefix2">Пошук...</label>
                         <span class="helper-text mb0" data-error="Мінімальна довжина слова 3 символи" data-success="Пошук..."></span>
-
-
                     </div>
                 </div>
             </div>

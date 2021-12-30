@@ -27,7 +27,7 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { CartModule } from './cart/cart.module';
 import { CategoriesModule } from './categories/categories.module';
-import { DashboardModule } from './dashboard/dashboard.module';
+import { ProfileModule } from './profile/profile.module';
 import { SearchModule } from './search/search.module';
 import { UserTokenInterceptor } from './shared/classes/usertoken.interceptor';
 import {
@@ -67,7 +67,7 @@ import { NavbarModule } from './shared/modules/navbar/navbar.module';
     CategoriesModule,
     SearchModule,
     CartModule,
-    DashboardModule,
+    ProfileModule,
     CarouselModule,
   ],
   providers: [
