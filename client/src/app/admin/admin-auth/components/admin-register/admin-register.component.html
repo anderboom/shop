@@ -4,9 +4,9 @@
             <span class="card-title">Добавить администратора</span>
             <div class="input-field">
                 <input formControlName="superAdminLogin" id="superAdminLogin" type="password" [ngClass]="{'invalid': f.superAdminLogin.invalid && f.superAdminLogin.touched}">
-                <label for="superAdminLogin">Логин суперадмина:</label>
+                <label for="superAdminLogin">Пароль суперадмина:</label>
                 <span class="helper-text red-text" *ngIf="f.superAdminLogin.invalid && f.superAdminLogin.touched">
-                    <span *ngIf="f.superAdminLogin.errors?.required">Неверный логин суперадмина</span>
+                    <span *ngIf="f.superAdminLogin.errors?.required">Неверный пароль суперадмина</span>
                 </span>
             </div>
             <div class="input-field">
