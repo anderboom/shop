@@ -39,7 +39,7 @@ export class UserTokenInterceptor implements HttpInterceptor {
 
   private handleAuthError(error: HttpErrorResponse): Observable<any> {
     if (error.status === 401) {
-      this.router.navigate(['/login'], {
+      this.router.navigate(['/auth/login'], {
         queryParams: {
           sessionFailed: true,
         },

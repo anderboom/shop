@@ -14,30 +14,42 @@ const userAuthSchema = new Schema({
     firstName: {
         type: String,
         required: false,
+        default: '',
     },
     secondName: {
         type: String,
         required: false,
+        default: '',
     },
     phoneNumber: {
         type: String,
         required: false,
+        default: '',
     },
     deliveryName: {
         type: String,
         required: false,
+        default: '',
     },
     area: {
         type: String,
         required: false,
+        default: '',
     },
     city: {
         type: String,
         required: false,
+        default: '',
     },
     department: {
         type: String,
         required: false,
+        default: '',
+    },
+    isFilledProfile: {
+        type: Boolean,
+        required: false,
+        default: false,
     },
 });
 

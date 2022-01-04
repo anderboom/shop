@@ -8,4 +8,5 @@ export interface RegisterInterface {
   area?: string;
   city?: string;
   department?: string;
+  isFilledProfile?: boolean;
 }

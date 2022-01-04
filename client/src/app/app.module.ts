@@ -27,12 +27,14 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { CartModule } from './cart/cart.module';
 import { CategoriesModule } from './categories/categories.module';
-import { ProfileModule } from './profile/profile.module';
 import { SearchModule } from './search/search.module';
 import { UserTokenInterceptor } from './shared/classes/usertoken.interceptor';
 import {
   AuthLayoutComponent,
 } from './shared/layouts/auth-layout/auth-layout.component';
+import {
+  ProfileLayoutComponent,
+} from './shared/layouts/profile-layout/profile-layout.component';
 import {
   SiteLayoutComponent,
 } from './shared/layouts/site-layout/site-layout.component';
@@ -42,7 +44,12 @@ import { LoaderModule } from './shared/modules/loader/loader.module';
 import { NavbarModule } from './shared/modules/navbar/navbar.module';
 
 @NgModule({
-  declarations: [AppComponent, AuthLayoutComponent, SiteLayoutComponent],
+  declarations: [
+    AppComponent,
+    AuthLayoutComponent,
+    SiteLayoutComponent,
+    ProfileLayoutComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -67,7 +74,6 @@ import { NavbarModule } from './shared/modules/navbar/navbar.module';
     CategoriesModule,
     SearchModule,
     CartModule,
-    ProfileModule,
     CarouselModule,
   ],
   providers: [

@@ -67,8 +67,11 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.form.disable();
+    localStorage.setItem('email', JSON.stringify(this.form.value.email));
     this.loginSub = this.auth.login(this.form.value).subscribe(
-      () => this.router.navigate(['/']),
+      () => {
+        this.router.navigate(['/']);
+      },
       (error) => {
         MaterialService.toast(error.error.message);
         this.form.enable();

@@ -73,7 +73,7 @@ export class OrderComponent implements OnInit {
   city: any;
   department: any;
   dateNow = new Date();
-  orderNumber = 0;
+  // orderNumber = 0;
 
   constructor(
     private router: Router,
@@ -95,7 +95,6 @@ export class OrderComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.getAreas();
     MaterialService.initSelect(this.select1Ref!);
     MaterialService.initSelect(this.select2Ref!);
     MaterialService.updateTextInputs;
@@ -200,11 +199,19 @@ export class OrderComponent implements OnInit {
   }
 
   novaPoshtaSelected(value: any) {
-    if (value == 'Нова пошта') {
+    if (value == DeliveryEnum.novaposhta) {
       this.isNovaPoshta = true;
+      this.getAreas();
     } else {
       this.isNovaPoshta = false;
     }
+  }
+
+  reloadCurrentPage() {
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]);
+    });
   }
 
   get f() {

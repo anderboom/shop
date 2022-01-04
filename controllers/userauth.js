@@ -26,7 +26,7 @@ module.exports.login = async function(req, res) {
             });
         } else {
             res.status(401).json({
-                message: 'Невірний логін або пароль',
+                message: 'Невірна пошта або пароль',
             });
         }
     } else {
@@ -41,7 +41,7 @@ module.exports.register = async function(req, res) {
     const candidate = await User.findOne({ email: req.body.email });
     if (candidate) {
         res.status(409).json({
-            message: 'Користувач з таким логіном вже існує',
+            message: 'Користувач з такою поштою вже існує',
         });
     } else {
         const salt = bcrypt.genSaltSync(10);
@@ -49,6 +49,13 @@ module.exports.register = async function(req, res) {
         const user = new User({
             email: req.body.email,
             password: bcrypt.hashSync(password, salt),
+            firstName: req.body.firstName,
+            secondName: req.body.secondName,
+            phoneNumber: req.body.phoneNumber,
+            deliveryName: req.body.deliveryName,
+            area: req.body.area,
+            city: req.body.city,
+            department: req.body.department,
         });
 
         try {
@@ -59,6 +66,21 @@ module.exports.register = async function(req, res) {
             errorHandler(res, e);
         }
     }
+};
 
-    module.exports.updateUserById = async function(req, res) {};
+module.exports.getUsers = async function(req, res) {
+    try {
+        const users = await User.find();
+        res.status(200).json(users);
+    } catch (e) {
+        errorHandler(res, e);
+    }
+};
+module.exports.updateProfile = async function(req, res) {
+    try {
+        const user = await User.findByIdAndUpdate({ _id: req.params.id }, { $set: req.body }, { new: true });
+        res.status(200).json(user);
+    } catch (e) {
+        errorHandler(res, e);
+    }
 };

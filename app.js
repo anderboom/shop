@@ -30,7 +30,7 @@ require('./middleware/passport')(passport);
 app.use(morgan('dev'));
 app.use('/uploads', express.static('uploads'));
 app.use(cors());
-app.use('/api', userAuthRoutes);
+app.use('/api/auth', userAuthRoutes);
 app.use('/api/admin', authRoutes);
 app.use('/api/admin/category', categoryRoutes);
 app.use('/api/admin/order', orderRoutes);

@@ -14,17 +14,35 @@ import { DropdownModule } from 'primeng/dropdown';
 import { TabViewModule } from 'primeng/tabview';
 import { ToolbarModule } from 'primeng/toolbar';
 
+import {
+  AuthLayoutComponent,
+} from '../shared/layouts/auth-layout/auth-layout.component';
+import {
+  ProfileLayoutComponent,
+} from '../shared/layouts/profile-layout/profile-layout.component';
 import { CartComponent } from './components/cart/cart.component';
 import { OrderComponent } from './components/order/order.component';
 
 const routes: Routes = [
   {
-    path: 'cart',
-    component: CartComponent,
+    path: '',
+    component: AuthLayoutComponent,
+    children: [
+      {
+        path: 'cart',
+        component: CartComponent,
+      },
+    ],
   },
   {
-    path: 'order',
-    component: OrderComponent,
+    path: '',
+    component: ProfileLayoutComponent,
+    children: [
+      {
+        path: 'order',
+        component: OrderComponent,
+      },
+    ],
   },
 ];
 @NgModule({

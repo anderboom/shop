@@ -81,6 +81,10 @@ const orderSchema = new Schema({
         required: true,
         default: false,
     },
+    user: {
+        ref: 'usersauth',
+        type: Schema.Types.ObjectId,
+    },
 });
 
 module.exports = mongoose.model('orders', orderSchema);

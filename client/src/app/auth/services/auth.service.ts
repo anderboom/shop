@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { LoginInterface } from '../types/login.interface';
+import { ProfileInterface } from '../types/profile.interface';
 import { RegisterInterface } from '../types/register.interface';
 
 @Injectable({
@@ -13,10 +14,14 @@ import { RegisterInterface } from '../types/register.interface';
 export class AuthService {
   private token = '';
 
+  id: any;
+  profile: ProfileInterface | undefined;
+  profiles: ProfileInterface[] | undefined;
+
   constructor(private http: HttpClient) {}
 
   login(user: LoginInterface): Observable<{ token: string }> {
-    return this.http.post<{ token: string }>('/api/login', user).pipe(
+    return this.http.post<{ token: string }>('/api/auth/login', user).pipe(
       tap(({ token }) => {
         localStorage.setItem('auth-token', token);
         this.setToken(token);
@@ -38,9 +43,21 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('auth-token');
+    localStorage.removeItem('email');
   }
 
   register(user: RegisterInterface): Observable<RegisterInterface> {
-    return this.http.post<RegisterInterface>('/api/register', user);
+    return this.http.post<RegisterInterface>('/api/auth/register', user);
+  }
+
+  fetchProfileByEmail(): Observable<ProfileInterface[]> {
+    return this.http.get<ProfileInterface[]>(`/api/auth/register`);
+  }
+
+  updateProfile(profile: ProfileInterface): Observable<ProfileInterface> {
+    return this.http.patch<ProfileInterface>(
+      `/api/auth/register/${profile._id}`,
+      profile
+    );
   }
 }

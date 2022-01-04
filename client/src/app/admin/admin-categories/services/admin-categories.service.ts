@@ -25,12 +25,6 @@ export class AdminCategoriesService {
   create(name: AdminCategoryInterface): Observable<AdminCategoryInterface> {
     return this.http.post<AdminCategoryInterface>('/api/admin/category', name);
   }
-  // createPromo(
-  //   name: AdminCategoryInterface
-  // ): Observable<AdminCategoryInterface> {
-  //   return this.http.post<AdminCategoryInterface>('/api/admin/promo', name);
-  // }
-
   update(
     id: any,
     name: AdminCategoryInterface

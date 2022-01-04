@@ -29,10 +29,10 @@
                     </li>
                     <ng-container *ngIf="!isAuth">
                         <li routerLinkActive="active">
-                            <a class="auth bold " [routerLink]="['/login']">Вхід</a>
+                            <a class="auth bold " [routerLink]="['/auth/login']">Вхід</a>
                         </li>
                         <li routerLinkActive="active">
-                            <a class="auth right bold  " [routerLink]="['/register']">Реєстрація</a>
+                            <a class="auth right bold  " [routerLink]="['/auth/register']">Реєстрація</a>
                         </li>
                     </ng-container>
                     <ng-container *ngIf="isAuth">
@@ -40,7 +40,7 @@
                             <a class="auth right bold ml2 " [routerLink]="['/']" (click)="logout()">Вихід</a>
                         </li>
                         <li routerLinkActive="active">
-                            <a class="profile" [routerLink]="['/profile']"> <i class="material-icons 
+                            <a class="profile" [routerLink]="['/auth/profile']"> <i class="material-icons 
                                 ">account_circle</i></a>
                         </li>
                     </ng-container>

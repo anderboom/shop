@@ -36,7 +36,6 @@ export class AdminPositionsComponent implements OnInit {
   @ViewChild('modal') modalRef: ElementRef | undefined;
 
   positions: AdminPositionInterface[] = [];
-
   image: File | undefined;
   imagePreview: string | ArrayBuffer | undefined = '';
   imageFiles: string[] = [];

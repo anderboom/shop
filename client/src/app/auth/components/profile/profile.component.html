@@ -1,0 +1,74 @@
+<div class="row container">
+    <div class="col s9 order-form">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="modal-content">
+                <h5 class="mb4 profile center-align">Кабінет користувача</h5>
+            </div>
+            <div class="modal-content">
+                <h6 class="mb4 gray text bold">Заповніть ваші дані</h6>
+            </div>
+            <div class="input-field">
+                <input formControlName="firstName" id="pos-firstName" type="text" [ngClass]="{'invalid': f.firstName.invalid && f.firstName.touched}">
+                <label for="pos-firstName">Ім'я<span class="red-text">*</span></label>
+                <span *ngIf="f.firstName.invalid && f.firstName.touched" class="helper-text red-text">
+                    Поле Ім'я не повинно бути порожнім.
+                </span>
+            </div>
+            <div class="input-field">
+                <input formControlName="secondName" id="pos-secondName" type="text" [ngClass]="{'invalid': f.secondName.invalid && f.secondName.touched}">
+                <label for="pos-secondName">Прізвище<span class="red-text">*</span></label>
+                <span *ngIf="f.secondName.invalid && f.secondName.touched" class="helper-text red-text">
+                    Поле Прізвище не повинно бути порожнім.
+                </span>
+            </div>
+            <div class="input-field">
+                <input formControlName="phoneNumber" id="pos-phoneNumber" type="text" [ngClass]="{'invalid': f.phoneNumber.invalid && f.phoneNumber.touched}">
+                <label for="pos-phoneNumber">Телефон<span class="red-text">*</span></label>
+                <span *ngIf="f.phoneNumber.invalid && f.phoneNumber.touched" class="helper-text red-text">
+                    Поле Телефон не повинно бути порожнім.
+                </span>
+            </div>
+            <div class="input-field">
+                <input formControlName="email" id="pos-email" type="text">
+                <label for="pos-email">Email<span class="red-text">*</span></label>
+                <span *ngIf="f.email.invalid && f.email.touched" class="helper-text red-text">
+                    Поле email не повинно бути порожнім.
+                </span>
+            </div>
+            <div class="input-field">
+                <input formControlName="deliveryName" id="pos-deliveryName" type="text">
+                <label for="pos-deliveryName">Служба доставки<span class="red-text">*</span></label>
+                <span *ngIf="f.deliveryName.invalid && f.deliveryName.touched" class="helper-text red-text">
+                    Поле Служба доставки не повинно бути порожнім.
+                </span>
+            </div>
+            <div class="input-field">
+                <input formControlName="area" id="pos-area" type="text">
+                <label for="pos-area">Область<span class="red-text">*</span></label>
+                <span *ngIf="f.area.invalid && f.area.touched" class="helper-text red-text">
+                    Поле Область не повинно бути порожнім.
+                </span>
+            </div>
+            <div class="input-field">
+                <input formControlName="city" id="pos-city" type="text">
+                <label for="pos-city">Місто<span class="red-text">*</span></label>
+                <span *ngIf="f.city.invalid && f.city.touched" class="helper-text red-text">
+                    Поле Місто не повинно бути порожнім.
+                </span>
+            </div>
+            <div class="input-field">
+                <input formControlName="department" id="pos-department" type="text">
+                <label for="pos-department">Відділення<span class="red-text">*</span></label>
+                <span *ngIf="f.department.invalid && f.department.touched" class="helper-text red-text">
+                    Поле Відділення не повинно бути порожнім.
+                </span>
+            </div>
+            <div class="modal-footer row col s12">
+                <div class="col s6 right">
+                    <button class="modal-action btn cyan darken-2  waves-effect right" type="submit" [disabled]="form!.invalid || form!.disabled">
+                        Зберегти
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>

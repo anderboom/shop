@@ -25,7 +25,7 @@ export class AuthclientGuard implements CanActivate {
     if (this.auth.isAuth()) {
       return of(true);
     } else {
-      this.router.navigate(['/login'], {
+      this.router.navigate(['/auth/login'], {
         queryParams: {
           accessDenied: true,
         },
