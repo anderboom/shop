@@ -3,6 +3,7 @@ export enum AdminMenuEnum {
   promo = 'Акции',
   storage = 'Остатки по товарам',
   orders = 'Заказы',
+  users = 'Пользователи',
   register = 'Добавить администратора',
 }
 
@@ -11,6 +12,7 @@ export enum AdminMenuUrlEnum {
   promoUrl = '/admin/promo',
   storageUrl = '/admin/storage',
   ordersUrl = '/admin/order',
+  usersUrl = '/admin/users',
   registerUrl = '/admin/register',
 }
 

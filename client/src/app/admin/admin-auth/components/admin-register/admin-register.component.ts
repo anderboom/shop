@@ -47,7 +47,6 @@ export class AdminRegisterComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.pattern);
     this.aSub = this.route.queryParams.subscribe((params: Params) => {
       if (params['registered']) {
       } else if (params['accessDenied']) {
@@ -57,7 +56,7 @@ export class AdminRegisterComponent implements OnInit {
 
   ngOnDestroy() {
     if (this.aSub) {
-      this.aSub?.unsubscribe();
+      this.aSub.unsubscribe();
     }
   }
 

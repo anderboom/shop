@@ -27,6 +27,7 @@ export class AdminLayoutComponent implements AfterViewInit {
     { url: AdminMenuUrlEnum.promoUrl, name: AdminMenuEnum.promo },
     { url: AdminMenuUrlEnum.storageUrl, name: AdminMenuEnum.storage },
     { url: AdminMenuUrlEnum.ordersUrl, name: AdminMenuEnum.orders },
+    { url: AdminMenuUrlEnum.usersUrl, name: AdminMenuEnum.users },
     { url: AdminMenuUrlEnum.registerUrl, name: AdminMenuEnum.register },
   ];
   constructor(private auth: AdminAuthService, private router: Router) {}
