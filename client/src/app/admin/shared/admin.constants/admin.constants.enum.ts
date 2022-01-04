@@ -20,5 +20,5 @@ export enum MenuEnum {
 }
 
 export enum AdminPaginationStep {
-  step = 10,
+  step = 8,
 }

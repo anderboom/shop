@@ -6,13 +6,13 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
 import {
   AdminCategoryInterface,
 } from 'src/app/admin/admin-categories/types/admin-categories.interface';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { CartService } from 'src/app/cart/services/cart.service';
 import {
   CategoriesService,
 } from 'src/app/categories/services/categories.service';
@@ -34,9 +34,9 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
   sidenav: MaterialInstance | undefined;
 
   constructor(
-    private auth: AuthService,
-    public order: CartService,
-    private categoriesService: CategoriesService
+    private authService: AuthService,
+    private categoriesService: CategoriesService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -77,6 +77,6 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   logout() {
-    this.auth.logout();
+    this.authService.logout();
   }
 }

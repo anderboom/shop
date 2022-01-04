@@ -57,6 +57,7 @@ export class CartService {
       localStorage.getItem('totalQuantity') || '0'
     );
     this.cart = JSON.parse(localStorage.getItem('cart') || '[]');
+
     this.totalCost = JSON.parse(localStorage.getItem('total') || '0');
   }
 

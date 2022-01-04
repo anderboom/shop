@@ -4,12 +4,22 @@
 
 <div>
     <div *ngIf="orders.length > 0; else empty">
-        <app-admin-orders-position [orders]="orders"></app-admin-orders-position>
+        <app-admin-orders-position [orders]="orders | paginate: {itemsPerPage: paginationStep,currentPage: p}">
+        </app-admin-orders-position>
         <div class="center mb2">
             <ng-template #loader>
                 <app-loader></app-loader>
             </ng-template>
         </div>
+    </div>
+    <div class="col s12">
+        <style>
+            .my-pagination /deep/ .ngx-pagination .current {
+                background: #0097a7;
+            }
+        </style>
+        <pagination-controls class="my-pagination" (pageChange)="p = $event" previousLabel="" nextLabel="">
+        </pagination-controls>
     </div>
     <ng-template #empty>
         <div class="center">Заказов нет</div>

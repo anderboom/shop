@@ -1,6 +1,8 @@
 import {
+  AfterViewInit,
   Component,
   ElementRef,
+  OnDestroy,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -12,6 +14,10 @@ import {
 import { Router } from '@angular/router';
 
 import { SelectItem } from 'primeng/api';
+import { Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { ProfileInterface } from 'src/app/auth/types/profile.interface';
 import { CartService } from 'src/app/cart/services/cart.service';
 import { MaterialService } from 'src/app/shared/classes/material.service';
 import {
@@ -35,7 +41,7 @@ type UserType = 'sender';
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.css'],
 })
-export class OrderComponent implements OnInit {
+export class OrderComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('paymentSelector') select1Ref: ElementRef | undefined;
   @ViewChild('deliverySelector') select2Ref: ElementRef | undefined;
 
@@ -52,7 +58,7 @@ export class OrderComponent implements OnInit {
 
   form = new FormGroup({
     payment: new FormControl('', Validators.required),
-    delivery: new FormControl('', Validators.required),
+    deliveryName: new FormControl('', Validators.required),
     area: new FormControl(''),
     city: new FormControl(''),
     department: new FormControl(''),
@@ -73,15 +79,18 @@ export class OrderComponent implements OnInit {
   city: any;
   department: any;
   dateNow = new Date();
-  // orderNumber = 0;
+  email = '';
+  pSub$: Subscription | undefined;
+  profiles: ProfileInterface[] | undefined;
+  profile: ProfileInterface | undefined;
 
   constructor(
     private router: Router,
     private cartService: CartService,
     private orderService: OrderService,
-    private novaposhta: NovaposhtaService
+    private novaposhta: NovaposhtaService,
+    private authService: AuthService
   ) {}
-
   ngOnInit(): void {
     this.cart = JSON.parse(localStorage.getItem('cart') || '{}');
     this.totalCost = JSON.parse(localStorage.getItem('total') || '0');
@@ -92,14 +101,20 @@ export class OrderComponent implements OnInit {
       { id: 2, name: PaymentEnum.card },
       { id: 3, name: PaymentEnum.postpay },
     ];
+    this.authUserProfileFillForm();
   }
 
   ngAfterViewInit() {
+    if (!this.isAuth) {
+      MaterialService.initSelect(this.select2Ref!);
+    }
     MaterialService.initSelect(this.select1Ref!);
-    MaterialService.initSelect(this.select2Ref!);
     MaterialService.updateTextInputs;
   }
 
+  ngOnDestroy(): void {
+    this.pSub$?.unsubscribe();
+  }
   public getAreas() {
     this.novaposhta.getAreas().subscribe((response: any) => {
       this.areasSender = response.data.map((area: any) => ({
@@ -142,18 +157,40 @@ export class OrderComponent implements OnInit {
     });
   }
 
+  authUserProfileFillForm() {
+    if (this.isAuth) {
+      this.email = JSON.parse(localStorage.getItem('email') || '');
+      this.pSub$ = this.authService
+        .fetchProfileByEmail()
+        .pipe(
+          map((profiles) => {
+            this.profiles = profiles;
+            this.profile = this.profiles.find(
+              (profile) => profile.email === this.email
+            );
+            if (this.profile) {
+              this.fillUserForm(this.profile);
+            }
+          })
+        )
+        .subscribe();
+    }
+  }
   onSubmit() {
     this.area = this.areasSender?.find((a) => a.value == this.form.value.area);
     this.city = this.citiesSender?.find((c) => c.value == this.form.value.city);
     this.department = this.departmentsSender?.find(
       (d) => d.value == this.form.value.department
     );
+
     const delivery: DeliveryInterface = {
       payment: this.form.value.payment,
-      deliveryName: this.form.value.delivery,
-      area: this.area.label,
-      city: this.city.label,
-      department: this.department.label,
+      deliveryName: this.form.value.deliveryName,
+      area: this.isAuth ? this.form.value.area : this.area.label,
+      city: this.isAuth ? this.form.value.city : this.city.label,
+      department: this.isAuth
+        ? this.form.value.department
+        : this.department.label,
     };
 
     const userData: UserDataInterface = {
@@ -173,7 +210,6 @@ export class OrderComponent implements OnInit {
 
     this.orderService.createOrder(newOrder).subscribe(
       (order) => {
-        console.log(order);
         MaterialService.toast(
           "Дякуємо за замовлення! Наш оператор зв'яжеться з Вами найближчим часом."
         );
@@ -183,6 +219,20 @@ export class OrderComponent implements OnInit {
       },
       () => this.clearOrder()
     );
+  }
+
+  fillUserForm(profile: ProfileInterface) {
+    this.form.patchValue({
+      firstName: profile.firstName,
+      secondName: profile.secondName,
+      phoneNumber: profile.phoneNumber,
+      email: profile.email,
+      deliveryName: profile.deliveryName,
+      area: profile.area,
+      city: profile.city,
+      department: profile.department,
+    });
+    MaterialService.updateTextInputs();
   }
 
   clearOrder() {
@@ -216,5 +266,9 @@ export class OrderComponent implements OnInit {
 
   get f() {
     return this.form.controls;
+  }
+
+  get isAuth(): boolean {
+    return !!localStorage.getItem('auth-token');
   }
 }

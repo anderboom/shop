@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   Component,
   OnDestroy,
   OnInit,
@@ -23,7 +22,7 @@ import { ProfileInterface } from '../../types/profile.interface';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
 })
-export class ProfileComponent implements OnInit, OnDestroy, AfterViewInit {
+export class ProfileComponent implements OnInit, OnDestroy {
   public formDisabled = true;
   form = new FormGroup({
     firstName: new FormControl('', Validators.required),
@@ -58,7 +57,7 @@ export class ProfileComponent implements OnInit, OnDestroy, AfterViewInit {
             (profile) => profile.email === this.email
           );
           if (this.profile) {
-            this.fillForm(this.profile);
+            this.fillUserForm(this.profile);
             this.userId = this.profile._id;
           }
         })
@@ -66,13 +65,11 @@ export class ProfileComponent implements OnInit, OnDestroy, AfterViewInit {
       .subscribe();
   }
 
-  ngAfterViewInit(): void {}
-
   ngOnDestroy(): void {
     this.pSub$?.unsubscribe();
   }
 
-  fillForm(profile: ProfileInterface) {
+  fillUserForm(profile: ProfileInterface) {
     this.isFilled = true;
     this.form.patchValue({
       firstName: profile.firstName,
@@ -100,7 +97,7 @@ export class ProfileComponent implements OnInit, OnDestroy, AfterViewInit {
       isFilledProfile: true,
       _id: this.userId,
     };
-    this.authService.updateProfile(newProfile).subscribe(
+    this.pSub$ = this.authService.updateUserProfile(newProfile).subscribe(
       () => MaterialService.toast('Зміни збережено'),
       (error) => {
         MaterialService.toast(error.error.message);

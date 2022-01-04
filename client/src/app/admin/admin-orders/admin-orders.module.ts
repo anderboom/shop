@@ -5,6 +5,7 @@ import {
   Routes,
 } from '@angular/router';
 
+import { NgxPaginationModule } from 'ngx-pagination';
 import { LoaderModule } from 'src/app/shared/modules/loader/loader.module';
 
 import { AuthGuard } from '../shared/classes/auth.guard';
@@ -12,9 +13,11 @@ import {
   AdminLayoutComponent,
 } from '../shared/layouts/admin-layout/admin-layout.component';
 import {
+  AdminOrdersPositionComponent,
+} from './components/admin-orders-position/admin-orders-position.component';
+import {
   AdminOrdersComponent,
 } from './components/admin-orders/admin-orders.component';
-import { AdminOrdersPositionComponent } from './components/admin-orders-position/admin-orders-position.component';
 
 const routes: Routes = [
   {
@@ -27,6 +30,11 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [AdminOrdersComponent, AdminOrdersPositionComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), LoaderModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    LoaderModule,
+    NgxPaginationModule,
+  ],
 })
 export class AdminOrdersModule {}

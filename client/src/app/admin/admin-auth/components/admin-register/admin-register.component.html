@@ -3,6 +3,13 @@
         <div class="card-content">
             <span class="card-title">Добавить администратора</span>
             <div class="input-field">
+                <input formControlName="superAdminLogin" id="superAdminLogin" type="password" [ngClass]="{'invalid': f.superAdminLogin.invalid && f.superAdminLogin.touched}">
+                <label for="superAdminLogin">Логин суперадмина:</label>
+                <span class="helper-text red-text" *ngIf="f.superAdminLogin.invalid && f.superAdminLogin.touched">
+                    <span *ngIf="f.superAdminLogin.errors?.required">Неверный логин суперадмина</span>
+                </span>
+            </div>
+            <div class="input-field">
                 <input formControlName="email" id="email" type="email" [ngClass]="{'invalid': f.email.invalid && f.email.touched}">
                 <label for="email">Логин:</label>
                 <span class="helper-text red-text" *ngIf="f.email.invalid && f.email.touched">

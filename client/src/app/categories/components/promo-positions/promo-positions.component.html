@@ -2,7 +2,7 @@
     <div class="col s12 m12 l9 right">
         <div *ngIf="sortingSelected === ''">
             <div *ngIf="promoPositions$ | async as positions; else loader">
-                <div *ngFor="let position of positions | paginate: {itemsPerPage: 6,currentPage: p};" class="card col s12 m6 l4 ">
+                <div *ngFor="let position of positions | paginate: {itemsPerPage: paginationStep,currentPage: p};" class="card col s12 m6 l4 ">
                     <div class="card-image waves-effect waves-block waves-light mb0">
                         <img class="img-responsive" src="../../../../assets/akcia.png">
                         <img class="img activator center-block" src={{position.imageSrc}}>
@@ -47,7 +47,7 @@
     <div class="col s12 m12 l9 right">
         <div *ngIf="sortingSelected === increase">
             <div *ngIf="promoPositionsByInc$ | async as positions; else loader">
-                <div *ngFor="let position of positions | paginate: {itemsPerPage: 6,currentPage: p};" class="card col s12 m6 l4">
+                <div *ngFor="let position of positions | paginate: {itemsPerPage: paginationStep,currentPage: p};" class="card col s12 m6 l4">
                     <div class="card-image waves-effect waves-block waves-light mb0">
                         <img class="img-responsive" src="../../../../assets/akcia.png">
                         <img class="img activator center-block" src={{position.imageSrc}}>

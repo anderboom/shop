@@ -13,8 +13,6 @@ import { RegisterInterface } from '../types/register.interface';
 })
 export class AuthService {
   private token = '';
-
-  id: any;
   profile: ProfileInterface | undefined;
   profiles: ProfileInterface[] | undefined;
 
@@ -54,7 +52,7 @@ export class AuthService {
     return this.http.get<ProfileInterface[]>(`/api/auth/register`);
   }
 
-  updateProfile(profile: ProfileInterface): Observable<ProfileInterface> {
+  updateUserProfile(profile: ProfileInterface): Observable<ProfileInterface> {
     return this.http.patch<ProfileInterface>(
       `/api/auth/register/${profile._id}`,
       profile

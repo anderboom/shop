@@ -15,6 +15,7 @@ import {
 
 import { Subscription } from 'rxjs';
 
+import * as pattern from '../../../../../environments/environment';
 import { MaterialService } from '../../../../shared/classes/material.service';
 import { AdminAuthService } from '../../services/admin-auth.service';
 
@@ -24,7 +25,12 @@ import { AdminAuthService } from '../../services/admin-auth.service';
   styleUrls: ['./admin-register.component.css'],
 })
 export class AdminRegisterComponent implements OnInit {
+  pattern = pattern.environment.superAdmin;
   form = new FormGroup({
+    superAdminLogin: new FormControl('', [
+      Validators.required,
+      Validators.pattern(this.pattern),
+    ]),
     email: new FormControl('', [Validators.required, Validators.minLength(6)]),
     password: new FormControl('', [
       Validators.required,
@@ -41,7 +47,8 @@ export class AdminRegisterComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params: Params) => {
+    console.log(this.pattern);
+    this.aSub = this.route.queryParams.subscribe((params: Params) => {
       if (params['registered']) {
       } else if (params['accessDenied']) {
       }

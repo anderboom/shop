@@ -10,73 +10,133 @@
                     </select>
                     <label for="pos-payment">Спосіб оплати:<span class="red-text">*</span></label>
                 </div>
-                <div class="input-field">
-                    <select formControlName="delivery" id="pos-delivery" type="text" (ngModelChange)="deliverySelected($event)" [ngClass]="{'invalid': f.delivery.invalid && f.delivery.touched}" #deliverySelector>
-                        <option disabled selected>Выберіть спосіб доставки</option>
-                        <option *ngFor="let item of deliveryList" [value]="item.name">
-                            <img *ngIf="item.id == 2" class="image" src="../../../assets/Nova_Poshta.png">{{item.name}}
-                        </option>
-                    </select>
-                    <label for="pos-delivery">Спосіб доставки:<span class="red-text">*</span></label>
+                <div *ngIf="!isAuth">
+                    <div class="input-field">
+                        <select formControlName="deliveryName" id="pos-deliveryName" type="text" (ngModelChange)="deliverySelected($event)" [ngClass]="{'invalid': f.deliveryName.invalid && f.deliveryName.touched}" #deliverySelector>
+                            <option disabled selected>Выберіть спосіб доставки</option>
+                            <option *ngFor="let item of deliveryList" [value]="item.name">
+                                <img *ngIf="item.id == 2" class="image"
+                                    src="../../../assets/Nova_Poshta.png">{{item.name}}
+                            </option>
+                        </select>
+                        <label for="pos-deliveryName">Спосіб доставки:<span class="red-text">*</span></label>
+                    </div>
+
+                    <div *ngIf="isNovaPoshta">
+                        <p-tabView>
+                            <p-tabPanel header="Дані для відправки">
+                                <div class="p-col ">
+                                    <div class="m-bottom-15">
+                                        <label>Виберіть область</label>
+                                        <p-dropdown [style]="{ width: '100%' }" [autoDisplayFirst]="false" [options]="areasSender!" [filter]="true" formControlName="area" (onChange)="getCities($event.value, 'sender')">
+                                        </p-dropdown>
+                                    </div>
+                                    <div class="m-bottom-15">
+                                        <label for="pos-city">Виберіть населений пункт</label>
+                                        <p-dropdown [style]="{ width: '100%' }" id="pos-city" [attr.disabled]="isDisableSenderDropdownCity" [autoDisplayFirst]="false" [options]="citiesSender!" formControlName="city" [filter]="true" (onChange)="getDepartments($event.value, 'sender')" [attr.title]="isDisableSenderDropdownCity ? 'Спочатку виберіть область' : ''">
+                                        </p-dropdown>
+                                    </div>
+                                    <div class="m-bottom-15">
+                                        <label>Виберіть відділення</label>
+                                        <p-dropdown [style]="{ width: '100%' }" [attr.disabled]="isDisableSenderDropdownDepartment" [autoDisplayFirst]="false" [options]="departmentsSender!" formControlName="department" [filter]="true" [attr.title]="isDisableSenderDropdownDepartment ? 'Спочатку виберіть населений пункт' : ''">
+                                        </p-dropdown>
+                                    </div>
+                                </div>
+                            </p-tabPanel>
+                        </p-tabView>
+                    </div>
+
+                    <div class="input-field">
+                        <input formControlName="firstName" id="pos-firstName" type="text" [ngClass]="{'invalid': f.firstName.invalid && f.firstName.touched}">
+                        <label for="pos-firstName">Ім'я<span class="red-text">*</span></label>
+                        <span *ngIf="f.firstName.invalid && f.firstName.touched" class="helper-text red-text">
+                            Поле Ім'я не повинно бути порожнім.
+                        </span>
+                    </div>
+                    <div class="input-field">
+                        <input formControlName="secondName" id="pos-secondName" type="text" [ngClass]="{'invalid': f.secondName.invalid && f.secondName.touched}">
+                        <label for="pos-secondName">Прізвище<span class="red-text">*</span></label>
+                        <span *ngIf="f.secondName.invalid && f.secondName.touched" class="helper-text red-text">
+                            Поле Прізвище не повинно бути порожнім.
+                        </span>
+                    </div>
+                    <div class="input-field">
+                        <input formControlName="phoneNumber" id="pos-phoneNumber" type="text" [ngClass]="{'invalid': f.phoneNumber.invalid && f.phoneNumber.touched}">
+                        <label for="pos-phoneNumber">Телефон<span class="red-text">*</span></label>
+                        <span *ngIf="f.phoneNumber.invalid && f.phoneNumber.touched" class="helper-text red-text">
+                            Поле Телефон не повинно бути порожнім.
+                        </span>
+                    </div>
+                    <div class="input-field">
+                        <input formControlName="email" id="pos-email" type="text">
+                        <label for="pos-email">Email</label>
+                    </div>
                 </div>
 
-                <div *ngIf="isNovaPoshta">
-                    <p-tabView>
-                        <p-tabPanel header="Дані для відправки">
-                            <div class="p-col ">
-                                <div class="m-bottom-15">
-                                    <label>Виберіть область</label>
-                                    <p-dropdown [style]="{ width: '100%' }" [autoDisplayFirst]="false" [options]="areasSender!" [filter]="true" formControlName="area" (onChange)="getCities($event.value, 'sender')">
-                                    </p-dropdown>
-                                </div>
-                                <div class="m-bottom-15">
-                                    <label for="pos-city">Виберіть населений пункт</label>
-                                    <p-dropdown [style]="{ width: '100%' }" id="pos-city" [attr.disabled]="isDisableSenderDropdownCity" [autoDisplayFirst]="false" [options]="citiesSender!" formControlName="city" [filter]="true" (onChange)="getDepartments($event.value, 'sender')" [attr.title]="isDisableSenderDropdownCity ? 'Спочатку виберіть область' : ''">
-                                    </p-dropdown>
-                                </div>
-                                <div class="m-bottom-15">
-                                    <label>Виберіть відділення</label>
-                                    <p-dropdown [style]="{ width: '100%' }" [attr.disabled]="isDisableSenderDropdownDepartment" [autoDisplayFirst]="false" [options]="departmentsSender!" formControlName="department" [filter]="true" [attr.title]="isDisableSenderDropdownDepartment ? 'Спочатку виберіть населений пункт' : ''">
-                                    </p-dropdown>
-                                </div>
-                            </div>
-                        </p-tabPanel>
-                    </p-tabView>
+                <div *ngIf="isAuth">
+                    <div class="input-field">
+                        <input formControlName="firstName" id="pos-firstName" type="text" [ngClass]="{'invalid': f.firstName.invalid && f.firstName.touched}">
+                        <label for="pos-firstName">Ім'я<span class="red-text">*</span></label>
+                        <span *ngIf="f.firstName.invalid && f.firstName.touched" class="helper-text red-text">
+                            Поле Ім'я не повинно бути порожнім.
+                        </span>
+                    </div>
+                    <div class="input-field">
+                        <input formControlName="secondName" id="pos-secondName" type="text" [ngClass]="{'invalid': f.secondName.invalid && f.secondName.touched}">
+                        <label for="pos-secondName">Прізвище<span class="red-text">*</span></label>
+                        <span *ngIf="f.secondName.invalid && f.secondName.touched" class="helper-text red-text">
+                            Поле Прізвище не повинно бути порожнім.
+                        </span>
+                    </div>
+                    <div class="input-field">
+                        <input formControlName="phoneNumber" id="pos-phoneNumber" type="text" [ngClass]="{'invalid': f.phoneNumber.invalid && f.phoneNumber.touched}">
+                        <label for="pos-phoneNumber">Телефон<span class="red-text">*</span></label>
+                        <span *ngIf="f.phoneNumber.invalid && f.phoneNumber.touched" class="helper-text red-text">
+                            Поле Телефон не повинно бути порожнім.
+                        </span>
+                    </div>
+                    <div class="input-field">
+                        <input formControlName="email" id="pos-email" type="text">
+                        <label for="pos-email">Email<span class="red-text">*</span></label>
+                        <span *ngIf="f.email.invalid && f.email.touched" class="helper-text red-text">
+                            Поле email не повинно бути порожнім.
+                        </span>
+                    </div>
+                    <div class="input-field">
+                        <input formControlName="deliveryName" id="pos-deliveryName" type="text">
+                        <label for="pos-deliveryName">Служба доставки<span class="red-text">*</span></label>
+                        <span *ngIf="f.deliveryName.invalid && f.deliveryName.touched" class="helper-text red-text">
+                            Поле Служба доставки не повинно бути порожнім.
+                        </span>
+                    </div>
+                    <div class="input-field">
+                        <input formControlName="area" id="pos-area" type="text">
+                        <label for="pos-area">Область<span class="red-text">*</span></label>
+                        <span *ngIf="f.area.invalid && f.area.touched" class="helper-text red-text">
+                            Поле Область не повинно бути порожнім.
+                        </span>
+                    </div>
+                    <div class="input-field">
+                        <input formControlName="city" id="pos-city" type="text">
+                        <label for="pos-city">Місто<span class="red-text">*</span></label>
+                        <span *ngIf="f.city.invalid && f.city.touched" class="helper-text red-text">
+                            Поле Місто не повинно бути порожнім.
+                        </span>
+                    </div>
+                    <div class="input-field">
+                        <input formControlName="department" id="pos-department" type="text">
+                        <label for="pos-department">Відділення<span class="red-text">*</span></label>
+                        <span *ngIf="f.department.invalid && f.department.touched" class="helper-text red-text">
+                            Поле Відділення не повинно бути порожнім.
+                        </span>
+                    </div>
                 </div>
 
-                <div class="input-field">
-                    <input formControlName="firstName" id="pos-firstName" type="text" [ngClass]="{'invalid': f.firstName.invalid && f.firstName.touched}">
-                    <label for="pos-firstName">Ім'я<span class="red-text">*</span></label>
-                    <span *ngIf="f.firstName.invalid && f.firstName.touched" class="helper-text red-text">
-                        Поле Ім'я не повинно бути порожнім.
-                    </span>
-                </div>
-                <div class="input-field">
-                    <input formControlName="secondName" id="pos-secondName" type="text" [ngClass]="{'invalid': f.secondName.invalid && f.secondName.touched}">
-                    <label for="pos-secondName">Прізвище<span class="red-text">*</span></label>
-                    <span *ngIf="f.secondName.invalid && f.secondName.touched" class="helper-text red-text">
-                        Поле Прізвище не повинно бути порожнім.
-                    </span>
-                </div>
-                <div class="input-field">
-                    <input formControlName="phoneNumber" id="pos-phoneNumber" type="text" [ngClass]="{'invalid': f.phoneNumber.invalid && f.phoneNumber.touched}">
-                    <label for="pos-phoneNumber">Телефон<span class="red-text">*</span></label>
-                    <span *ngIf="f.phoneNumber.invalid && f.phoneNumber.touched" class="helper-text red-text">
-                        Поле Телефон не повинно бути порожнім.
-                    </span>
-                </div>
-                <div class="input-field">
-                    <input formControlName="email" id="pos-email" type="text">
-                    <label for="pos-email">Email</label>
-
-                </div>
                 <div class="input-field">
                     <i class="material-icons prefix">mode_edit</i>
                     <textarea formControlName="comment" id="pos-comment" type="text" class="materialize-textarea"></textarea>
                     <label for="pos-comment">Коментарі</label>
                 </div>
-
-                <!-- <div class="col s4 left mb4 total right">Сума: {{totalCost}} грн </div> -->
             </div>
             <div class="modal-footer row col s12">
                 <div class="col s6">

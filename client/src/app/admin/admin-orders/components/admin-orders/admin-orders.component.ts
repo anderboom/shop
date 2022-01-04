@@ -6,6 +6,9 @@ import {
 } from '@angular/core';
 
 import { Subscription } from 'rxjs';
+import {
+  AdminPaginationStep,
+} from 'src/app/admin/shared/admin.constants/admin.constants.enum';
 
 import { AdminOrdersService } from '../../services/admin-orders.service';
 import { AdminOrderInterface } from '../../types/admin-orders.interface';
@@ -20,6 +23,8 @@ export class AdminOrdersComponent implements OnInit {
   ordersSub$: Subscription | undefined;
   orders: AdminOrderInterface[] = [];
   loading = false;
+  p: number = 1;
+  paginationStep = AdminPaginationStep.step;
 
   constructor(private ordersService: AdminOrdersService) {}
 

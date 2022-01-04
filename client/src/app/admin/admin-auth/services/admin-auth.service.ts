@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { AdminLoginInterface } from '../types/admin-login.interface';
-import { AdminRegisterInterface } from '../types/admin-password.interface';
+import { AdminRegisterInterface } from '../types/admin-register.interface';
 
 @Injectable({
   providedIn: 'root',
