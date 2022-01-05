@@ -1,0 +1,31 @@
+<div *ngIf="!loading; else loader">
+    <table class="highlight mb2 center-align row">
+        <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody *ngIf="users?.length !== 0; else empty">
+            <tr class="row" *ngFor="let user of users">
+                <td>{{user.firstName}}</td>
+                <td>{{user.secondName}}</td>
+                <td>{{user.email}}</td>
+                <td class="center">
+                    <button class="btn btn-small  deep-orange darken-3 " (click)="onDeleteUser($event, user)">
+                        <i class="material-icons">delete</i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+        <ng-template #empty>
+            <div class="center bold">
+                Нет ни одного зарегистрированного пользователя!
+            </div>
+        </ng-template>
+    </table>
+</div>
+<ng-template class="right" #loader>
+    <app-loader></app-loader>
+</ng-template>

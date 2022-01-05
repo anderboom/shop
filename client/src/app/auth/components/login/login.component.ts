@@ -42,15 +42,11 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params: Params) => {
       if (params['registered']) {
-        MaterialService.toast('Зайдіть в систему використовуючи свої дані!');
+        MaterialService.toast('Увійдіть, використовуючи свої дані!');
       } else if (params['accessDenied']) {
-        MaterialService.toast(
-          'Для початку роботи з сервісом необхідно пройти авторизацію в системі!'
-        );
+        MaterialService.toast('Авторизуйтесь!');
       } else if (params['sessionFailed']) {
-        MaterialService.toast(
-          'Час сесії минув, необхідно пройти авторизацію в системі!'
-        );
+        MaterialService.toast('Час сесії минув, необхідно пройти авторизацію!');
       }
     });
   }

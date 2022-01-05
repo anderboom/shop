@@ -102,7 +102,7 @@ export class CartService {
       this.totalPromo =
         this.totalPromo + position.orderQuantity! * position.promoCost!;
     }
-    this.totalCost = this.totalMain + this.totalPromo;
+    return (this.totalCost = this.totalMain + this.totalPromo);
   }
 
   resetCart() {

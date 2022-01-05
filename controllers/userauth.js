@@ -84,3 +84,16 @@ module.exports.updateProfile = async function(req, res) {
         errorHandler(res, e);
     }
 };
+
+module.exports.deleteUser = async function(req, res) {
+    try {
+        const order = await User.findOne({ _id: req.params.id });
+
+        await User.deleteOne({ _id: req.params.id });
+        res.status(200).json({
+            message: 'Пользователь удалён!',
+        });
+    } catch (e) {
+        errorHandler(res, e);
+    }
+};

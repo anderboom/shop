@@ -5,7 +5,21 @@ const controller = require('../controllers/userauth');
 
 router.post('/login', controller.login);
 router.post('/register', controller.register);
-router.get('/register', controller.getUsers);
-router.patch('/register/:id', controller.updateProfile);
+router.get(
+    '/register',
+    passport.authenticate('jwt', { session: false }),
+    controller.getUsers
+);
+router.patch(
+    '/register/:id',
+    passport.authenticate('jwt', { session: false }),
+    controller.updateProfile
+);
+
+router.delete(
+    '/register/:id',
+    passport.authenticate('jwt', { session: false }),
+    controller.deleteUser
+);
 
 module.exports = router;

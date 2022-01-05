@@ -15,9 +15,6 @@ import { TabViewModule } from 'primeng/tabview';
 import { ToolbarModule } from 'primeng/toolbar';
 
 import {
-  AuthLayoutComponent,
-} from '../shared/layouts/auth-layout/auth-layout.component';
-import {
   ProfileLayoutComponent,
 } from '../shared/layouts/profile-layout/profile-layout.component';
 import { CartComponent } from './components/cart/cart.component';
@@ -26,7 +23,7 @@ import { OrderComponent } from './components/order/order.component';
 const routes: Routes = [
   {
     path: '',
-    component: AuthLayoutComponent,
+    component: ProfileLayoutComponent,
     children: [
       {
         path: 'cart',

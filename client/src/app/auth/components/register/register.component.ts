@@ -27,8 +27,8 @@ export class RegisterComponent implements OnInit {
       Validators.minLength(8),
     ]),
   });
-
   registerSub: Subscription | undefined;
+
   constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {}

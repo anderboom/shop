@@ -9,9 +9,6 @@ import { OrderInterface } from '../types/order.interface';
   providedIn: 'root',
 })
 export class OrderService {
-  public order: OrderInterface[] = [];
-  public totalCost = 0;
-
   constructor(private http: HttpClient) {}
 
   createOrder(order: OrderInterface): Observable<OrderInterface> {

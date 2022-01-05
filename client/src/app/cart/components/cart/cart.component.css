@@ -32,12 +32,6 @@
     max-width: 50%;
 }
 
-
-/* .center {
-    margin-top: 10px;
-    align-content: center;
-} */
-
 .order-order {
     margin-top: 20px;
     outline: 2px solid rgb(128, 128, 128);
@@ -60,4 +54,8 @@
 
 .table-cart {
     width: 97%;
+}
+
+.cart-bottom {
+    margin-top: 20px;
 }

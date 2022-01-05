@@ -3,7 +3,6 @@ export interface PositionInterface {
   cost: number;
   category: string;
   description?: string;
-  _id?: string;
   imageSrc?: string;
   quantity: number;
   orderQuantity?: number;
@@ -11,4 +10,5 @@ export interface PositionInterface {
   promoCost?: number;
   brand?: string;
   groupPages?: string;
+  _id?: string;
 }
