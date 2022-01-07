@@ -28,7 +28,7 @@ Run project - ```npm run dev```. <br />
 - pagination
 
 ### Backend
-- Archtecture: MVC
+- Architecture: MVC
 - Databases: MongoDB
 - Node.js, Mongoose, Express
 - Hash passwords: bcryptjs
