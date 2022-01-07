@@ -16,6 +16,7 @@ export class AdminUsersService {
     return this.http.get<AdminUserInterface[]>(`/api/auth/register`);
   }
 
+  // delete users
   deleteUser(user: AdminUserInterface): Observable<Message> {
     return this.http.delete<Message>(`/api/auth/register/${user._id}`);
   }
