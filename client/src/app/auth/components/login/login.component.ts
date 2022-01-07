@@ -67,6 +67,7 @@ export class LoginComponent implements OnInit {
     this.loginSub = this.auth.login(this.form.value).subscribe(
       () => {
         this.router.navigate(['/']);
+        MaterialService.toast(`З поверненням, вітаємо в нашому магазині!`);
       },
       (error) => {
         MaterialService.toast(error.error.message);
