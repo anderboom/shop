@@ -22,6 +22,7 @@ import { CartService } from 'src/app/cart/services/cart.service';
 import { MaterialService } from 'src/app/shared/classes/material.service';
 import {
   DeliveryEnum,
+  MenuEnum,
   PaymentEnum,
 } from 'src/app/shared/constants/constants.enum';
 
@@ -83,6 +84,8 @@ export class OrderComponent implements OnInit, AfterViewInit, OnDestroy {
   pSub$: Subscription | undefined;
   profiles: ProfileInterface[] | undefined;
   profile: ProfileInterface | undefined;
+  main = MenuEnum.main;
+  promo = MenuEnum.promo;
 
   constructor(
     private router: Router,

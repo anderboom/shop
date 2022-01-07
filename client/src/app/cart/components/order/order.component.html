@@ -162,7 +162,8 @@
             <div class="col s8 line">
                 <div class="name">{{order.name}}</div>
                 <div>Кількість: {{order.orderQuantity}}</div>
-                <div>Ціна: {{order.cost}} грн</div>
+                <div *ngIf="order.groupPages === main">Ціна: {{order.cost}} грн</div>
+                <div *ngIf="order.groupPages === promo">Ціна: {{order.promoCost}} грн</div>
             </div>
             <hr>
         </div>
