@@ -34,6 +34,9 @@ Run project - ```npm run dev```. <br />
 Deployed app using heroku service https://maeteshop.herokuapp.com/ <br />
 Main functionality video https://youtu.be/NXN6oVhtUAs <br />
 
+## License
+[GNU General Public License v3.0](https://github.com/anderboom/shop/blob/main/LICENSE)
+
 ## Screenshots
 
 ### Client
