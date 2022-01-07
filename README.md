@@ -28,7 +28,11 @@ Run project - ```npm run dev```. <br />
 - pagination
 
 ### Backend
-- 
+- Archtecture: MVC
+- Databases: MongoDB
+- Node.js, Mongoose, Express
+- Hash passwords: bcryptjs
+- Route access protection: passport-jwt, jsonwebtoken
 
 ## Try it out 
 Deployed app using heroku service https://maeteshop.herokuapp.com/ <br />
