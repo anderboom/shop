@@ -21,7 +21,7 @@ Run project - ```npm run dev```. <br />
 - create product categories
 - create product positions
 - create discount product positions
-- main store of all positions by categories and it's quantity
+- main store of all positions by categories and its quantity
 - control order processing (review, confirm, delete)
 - edit users list
 - add new admin (only by superadmin)
