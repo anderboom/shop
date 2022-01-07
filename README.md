@@ -28,8 +28,20 @@ Run project - ```npm run dev```. <br />
 - pagination
 
 ### Backend
-
+- 
 
 ## Try it out 
 Deployed app using heroku service https://maeteshop.herokuapp.com/ <br />
 Main functionality video https://youtu.be/NXN6oVhtUAs <br />
+
+## Screenshots
+
+### Client
+![shop_demo_client](https://user-images.githubusercontent.com/33073008/148524192-8d4fc749-f594-4731-8b24-01b0cc367635.jpeg)
+---
+
+### Admin
+![shop_demo_admin_1](https://user-images.githubusercontent.com/33073008/148524179-25170795-fb71-45f6-8b25-21b1481050a7.jpeg)
+---
+![shop_demo_admin_2](https://user-images.githubusercontent.com/33073008/148524189-b1e0b06b-75e9-46aa-9e8c-6dc61a36bff4.jpeg)
+---
