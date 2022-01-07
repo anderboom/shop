@@ -52,6 +52,7 @@ export class AuthService {
     return this.http.get<ProfileInterface[]>(`/api/auth/register`);
   }
 
+  // update by _id
   updateUserProfile(profile: ProfileInterface): Observable<ProfileInterface> {
     return this.http.patch<ProfileInterface>(
       `/api/auth/register/${profile._id}`,
