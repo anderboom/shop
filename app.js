@@ -11,6 +11,7 @@ const positionRoutes = require('./routes/position');
 const keys = require('./config/keys');
 const app = express();
 const path = require('path');
+const nodemailer = require('nodemailer');
 
 mongoose
     .connect(keys.mongoURI, {
