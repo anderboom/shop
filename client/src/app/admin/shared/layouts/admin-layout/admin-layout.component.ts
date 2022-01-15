@@ -40,6 +40,6 @@ export class AdminLayoutComponent implements AfterViewInit {
     event.preventDefault();
     this.auth.logout();
     this.router.navigate(['/']);
-    window.location.reload();
+    // window.location.reload();
   }
 }
