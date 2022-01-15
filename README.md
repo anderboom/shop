@@ -33,6 +33,7 @@ Run project - ```npm run dev```. <br />
 - Node.js, Mongoose, Express
 - Hash passwords: bcryptjs
 - Route access protection: passport-jwt, jsonwebtoken
+- Sending an order notification email
 
 ## Try it out 
 Deployed app using heroku service https://maeteshop.herokuapp.com/ <br />
