@@ -6,6 +6,11 @@ import {
 
 const routes: Routes = [
   {
+    path: 'category/promo',
+    loadChildren: () =>
+      import('./categories/categories.module').then((m) => m.CategoriesModule),
+  },
+  {
     path: 'admin',
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
