@@ -1,9 +1,9 @@
-# config/
-# node_modules/
-# client/node_modules/
-# uploads/
-# client/src/environments/
-# .vscode/
-# client/dist/
+config/
+node_modules/
+client/node_modules/
+uploads/
+client/src/environments/
+.vscode/
+client/dist/
 
 
