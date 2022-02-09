@@ -55,6 +55,7 @@ module.exports.deleteCategoryById = async function(req, res) {
         errorHandler(res, e);
     }
 };
+
 module.exports.updateCategoryById = async function(req, res) {
     const updated = {
         name: req.body.name,

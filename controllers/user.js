@@ -76,6 +76,7 @@ module.exports.getUsers = async function(req, res) {
         errorHandler(res, e);
     }
 };
+
 module.exports.updateProfile = async function(req, res) {
     try {
         const user = await User.findByIdAndUpdate({ _id: req.params.id }, { $set: req.body }, { new: true });

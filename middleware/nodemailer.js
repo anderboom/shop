@@ -4,7 +4,7 @@ const env = require('../config/keys');
 
 //Nodemailer module
 module.exports.sendMailConfim = async function(req, maxOrder) {
-    let transporter = nodemailer.createTransport({
+    const transporter = nodemailer.createTransport({
         service: 'gmail',
         port: 465,
         secure: true,
@@ -13,7 +13,8 @@ module.exports.sendMailConfim = async function(req, maxOrder) {
             pass: env.password,
         },
     });
-    let mailOptions = {
+
+    const mailOptions = {
         from: env.email,
         to: req.body.userData.email,
         subject: `Замовлення № Z1969${maxOrder + 1}`,
