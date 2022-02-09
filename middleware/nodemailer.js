@@ -2,6 +2,7 @@ const errorHandler = require('../utils/errorHandler');
 const nodemailer = require('nodemailer');
 const env = require('../config/keys');
 
+//Nodemailer module
 module.exports.sendMailConfim = async function(req, maxOrder) {
     let transporter = nodemailer.createTransport({
         service: 'gmail',
