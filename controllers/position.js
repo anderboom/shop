@@ -2,26 +2,6 @@ const Position = require('../models/Position');
 const errorHandler = require('../utils/errorHandler');
 const fs = require('fs');
 
-module.exports.getAllPositionsByCategoryId = async function(req, res) {
-    try {
-        const positions = await Position.find({
-            category: req.params.categoryId,
-        });
-        res.status(200).json(positions);
-    } catch (e) {
-        errorHandler(res, e);
-    }
-};
-
-module.exports.getAllPositions = async function(req, res) {
-    try {
-        const positions = await Position.find();
-        res.status(200).json(positions);
-    } catch (e) {
-        errorHandler(res, e);
-    }
-};
-
 module.exports.createPosition = async function(req, res) {
     const position = new Position({
         name: req.body.name,
@@ -43,6 +23,24 @@ module.exports.createPosition = async function(req, res) {
     }
 };
 
+module.exports.getAllPositions = async function(req, res) {
+    try {
+        const positions = await Position.find();
+        res.status(200).json(positions);
+    } catch (e) {
+        errorHandler(res, e);
+    }
+};
+module.exports.getAllPositionsByCategoryId = async function(req, res) {
+    try {
+        const positions = await Position.find({
+            category: req.params.categoryId,
+        });
+        res.status(200).json(positions);
+    } catch (e) {
+        errorHandler(res, e);
+    }
+};
 module.exports.updatePosition = async function(req, res) {
     try {
         const position = await Position.findByIdAndUpdate({ _id: req.params.id }, { $set: req.body }, { new: true });
