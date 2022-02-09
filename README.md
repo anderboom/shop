@@ -1,4 +1,4 @@
-D# eCommerce shop
+eCommerce shop
 Full stack app using Mongo DB, Express, Node js, Angular with admin panel. <br />
 Run project - `npm run dev`. <br />
 
