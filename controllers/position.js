@@ -37,7 +37,6 @@ module.exports.createPosition = async function(req, res) {
     });
     try {
         await position.save();
-        console.log('pos', position);
         res.status(201).json(position);
     } catch (e) {
         errorHandler(res, e);
